@@ -1,0 +1,9 @@
+
+perl:
+  LIB: [ "lib/" ]
+
+# acceptor config
+acceptor:
+  # base url for requests
+  base: '/psa'
+
