@@ -1,0 +1,56 @@
+----
+presentation_topic: Tangram
+presentation_title: A Brief History of Tangram
+presentation_place: Taipei, Taiwan
+presentation_date: March 26th, 2005
+----
+== Overview
+* Part 1. Introduction - what is Tangram?
++* Part 2. History - Wu Tangram
++* Part 3. Yu Tangram
+** DiYi Tangram
+** DiEr Tangram
+** Yin and Yang Tangram
++* Part 4. Tangram by Example
+
+----
+= Part 1. Introduction
+
+== What is Tangram, what does it do?
+----
+== Introduction
+
+What Tangram *is*:
+
++* A way to save objects between uses from Perl 5
++* Tangram is a storage system that implements a /database/.
++* An abstraction layer that requires a relational (SQL) database to do the hard work
++* Transaction safe, fully ACID compliant (subject to database support)
+
+What Tangram *isn't*:
+
++* Tangram /does not/ try to represent a /relational database/ using Perl objects
++* Lightweight (in terms of startup time)
++* A convenient tool for mapping legacy databases - see Alzabo, Class::DBI, etc
++* A slave to convention - relational normalised forms etc
+
+----
+== But what does it /do/?
+
+What Tangram *does*:
+
++* Stores /properties/ of objects (or whole objects), via /mappings/, which are declared in a /schema/, to columns
++* Stores /relationships/ between objects, using /foreign keys/ and /link tables/
++* Allows these /relationships/ to be followed using *demand paging* (Lazy loading)
++* Represents /inheritance/ using extra tables and/or columns
+
+What Tangram *doesn't* do:
+
++* Require your objects to descend from a common base class
++* Attempt to cover the entirety of the richness of the SQL language on which it runs
+
+----
+== Isn't Spork Great?
+
+ {include: file:Tangram%20by%20Example.sxi}
+

@@ -1,0 +1,275 @@
+
+----
+= Part 2. Wu Tangram
+
+== Historical Context
+----
+= Wu Tangram
+
++* Batch systems
++* On-line Systems
++* Heirarchical Databases
++* Relational Databases
+
+----
+= In the beginning...
+
++{image: http://www.monkeyheaven.com/monkey_whistle.jpg}
+
++* "Batch" processing based on stacks of cards to be processed
+{image: http://www.cs.uiowa.edu/~jones/cards/collection/fortran.gif}
+
++* Process:
+** Load “batch” of work into "core"
+** Perform scheduled task(s) on data set
+** Save “update” to second stack of punch cards
+
++* Became later known as "tape to tape" systems, or "daily update" systems
+{image: http://www.murraystate.edu/polcrjlst/ibm9-tracktape.jpg}
+
+----
+= Writing “batch update” with Perl
+
+* Use a *Serializer*
+{code: serialiser-generic.pl}
++* Use a module
+{code: use.pl}
++* Storable, or YAML
+{code: serialiser-yaml.pl}
+
+ use YAML qw(LoadFile DumpFile);
+ 
+ do this;
+
+----
+= Batch Storage Characteristics
+
+* Advantages
+** Very fast updates once loaded
+** Reasonably transparent to the program logic
+** Simple
+
+* Disadvantages
+** High /latency/ for simple actions
+** No concurrency
+
+----
+= On-line Databases
+
+* Random data access
+* Retrieve data with a “key”, such as a row number or unique identifier
+* Requires “locking” to co-ordinate multiple accesses
+* Can work with more than one record at once!
+
+----
+= Coding on-line Perl programs
+
+* tie, eg `DB_File`
+{code: online-db_file.pl}
++* Add a Serialiser!  To get MLDBM
+{code: online-mldbm.pl}
+
++* but still has problems;
+** deadlocks
+** dirty read
+
+----
+= Transactions and ACID
+
+* Fantastic revolution from the 60's and 70's
++* Nothing to do with Timothy Leary OR Albert Hoffman.
++* *Transactions* encapsulate an entire update (which might not make any changes)
++* *ACID* stands for:
++** Atomic – a transaction is either completely applied, or not at all.
+** Consistent – data does not appear to change during a transaction.
+** Independent – multiple writers can proceed in parallel, without seeing intermediate results of others
+** Durable – scraping the barrel to complete acronym?
+
+----
+= Heirarchical Databases
+
+* “Encapsulated” nodes on a tree
+* Good infrastructure for locking, to meet ACID guarantees.
+* Added support for “linking” to nodes outside the current “tree”
++* But that sucks.
+
+----
+= Heirarchical Storage with Perl
+
+* Pixie!
++{code: heirarchical-pixie.pl}
+* “Indexing” support very weak
+* Object “naming” bolted on because indexes too hard to write
+* Transaction support “an afterthought”
+* But still very cool
+
+----
+= Relational Databases
+
+* Loosely based on Set Theory
++* sans uniqueness
+* sans custom types
++* simple, straightforward, powerful design
+* Very limited implementation of “categories”
+
+----
+= Relational Databases with Perl
+
+* Alzabo
+* Class::DBI
+* DBIx::RecordSet
+* (Tangram 1)
+
+----
+= Object Databases
+
+* New directions stagnated; the relational model seemed to be winning.
+* People started re-inventing things for the sake of it anyway, Object Databases were a good buzzword for a while
+* Much confusion
++* Conclusion: they don't exist
+
+----
+= Using OODBMSes from Perl
+
+* Don't.
++* If you have to, try the PostgreSQL OO stuff
++* If you can't, shoot your manager
++* If you don't have a gun, maybe try ObjStore.
++* Be sure to shoot self afterwards
+
+----
+= ACID databases summary
+
+* sanity condition for “online” systems
+* Any style of database management can be made ACID compliant, in theory
+* Performance gains can be had from dropping one letter
+
+----
+= Part 3. Yu Tangram
+
+== The Basics of Tangram
+----
+= DiYi Tangram
+
+* Maps columns to tables - defined by the Tangram Schema
+* Map object properties such as Sets, Arrays, Hashes to database foreign key / link tables
+* No support for inheritance
+* “Simple” mapping, such as supported by many tools
+* Orthogonal
+* Engineered for transaction safety
+* Super-Relational feature (relationship ordering)
+
+----
+= Tangram 1 Layout
+
+* Properties to columns
+{image: tangram1-mapping.png}
++* Many to One relationships with regular /key/
+{image: tangram1-ref.png}
++* One to Many relationships with /foreign key/
+{image: tangram1-iset.png}
++* Many to Many relationships with /link table/
+{image: tangram1-set.png}
++* Ordered Many to Many relationships with extra properties
+{image: tangram1-array.png}
+
+----
+= DiEr Tangram
+
+* Added polymorphism
+* Largely different class / table mapping style
+* intent is still to map every property to a column
+* diverging from most relational databases
+
+----
+= Tangram 2 schema
+
+* Central to Tangram
+* The "model" of the application
+{code: tangram-schema.pl}
+
+----
+= Tangram 2 layout
+
+* Properties to columns - extra column "type"
+{image: tangram2-mapping.png}
++* Many to One relationships with regular /key/, and type
+{image: tangram2-ref.png}
++* One to Many relationships with /foreign key/, no type
+{image: tangram2-iset.png}
++* Many to Many relationships with /link table/, no type
+{image: tangram2-set.png}
+
+----
+= Tangram 2 - Polymorphism
+
+* Can support polymorphic /select/
+* Can support polymorphic /relationships/ (aka /joins/)
+
+----
+= How Tangram Maps Polymorphism
+
+* Horizontal mapping
+{image: tangram2-horiz.png}
++* Vertical mapping
+{image: tangram2-vert.png}
++* DB now thoroughly demoted to “tool”
+
+----
+= cRud with Tangram 2
+
+* Load by ID
+{code: crud-r.pl}
+* Load by demand paging
+* Tangram Query Expressions and Filters
+
+----
+= CrUD with Tangram 2
+
+* Create
+{code: crud-cud.pl}
+* Update
+* Delete
+
+----
+= Tangram extensible type system
+
+* Extra types can easily be added
+{code: types.pl}
+* rarely needed
+
+----
+= Standard Tangram 2 types
+
+{image: tangram2-types.png}
+
+----
+= Tangram Transactions
+
+* Tangram object cache
+* `tx_do` to support nested transactions
+* `tx_start` and `tx_commit` can be used too
+* Internal support to roll back state to match DB state on “rollback”
+{code: tangram-tx.pl}
+
+----
+= Yin and Yang Tangram
+
+* Tangram - Yang, full mapping
+* Jealous of simplicity of Pixie - Yin, empty mapping
+* Already had Tangram::PerlDump
+* Allow Tangram::Dump to support saving storage objects without looping
+* Make Tangram::IDBIF, can now store “main” object
+* Can save via YAML, Storable, Data::Dumper
+{code: tangram-yin.pl}
+
+----
+= Post-Tangram developments
+
+* Class::Tangram
+{code: class-tangram.pl}
++* Complementary approach: `Class::Tangram::Generator`
+{code: class-tangram-generator.pl}
+* T2
+* Tangram 3 - experimental
+

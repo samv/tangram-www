@@ -1,0 +1,2 @@
+
+samv@speights:~/utsl/tangram-svk/website/docs/docs/tut/YAPC-Taipei-2005$ perl -le '@ARGV=sort { ($numa)=($a=~m/(\d+)/); ($numb)=($b=~m/(\d+)/); $numa <=> $numb or $a cmp $b } @ARGV; while($fn=shift){open FH,$fn;$x=join"",<FH>;close FH;$x=~s{.*?<br>}{}s;$x=~s{<h3>Notes:.*}{}s; $x =~ s{<h1>(<[^<]*>)*(.+?)(<[^<]*>)*?</h1><p>}{= $2}mg; print "----\n= $fn\n",$x}' text*.html
