@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Tangram::Dump - Handy functions for Pixie-like dumping of data</title>
+<link rel="stylesheet" href="/styles/pod.css" type="text/css" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#functions">FUNCTIONS</a></li>
+	<li><a href="#bugs">BUGS</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Dump - Handy functions for Pixie-like dumping of data</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  use Tangram::Dump qw(flatten unflatten UNflatten nuke);</pre>
+<pre>
+  use YAML qw(freeze thaw); # for instance</pre>
+<pre>
+  my $frozen = freeze flatten($storage, $structure);</pre>
+<pre>
+  # optional - remove circular references from flattened
+  # structure so that it is freed up properly.
+  nuke $frozen;</pre>
+<pre>
+  # save frozen somewhere...</pre>
+<pre>
+  # restore, but don't load objects straight away
+  my $reconstituted = unflatten($storage, thaw $frozen);</pre>
+<pre>
+  # restore, loading objects immediately
+  my $original = UNflatten($storage, $frozen);</pre>
+<pre>
+  # Alternative, quickly marshall a structure for saving
+  my $structure;
+  flatten($storage, $structure);
+  # ... do something with it ...</pre>
+<pre>
+  # restore to former glory; note that Tangram's cache will
+  # prevent unnecessary DB access.
+  unflatten($storage, $structure);</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module contains functions for traversing data structures which
+are <em>not</em> Tangram-registered objects, and replacing all the Tangram
+objects found with `Mementos'.</p>
+<p>When a similar data structure is fed back into the reversal function,
+the mementos are filled with on-demand references to the real objects.</p>
+<p>All these functions operate <strong>in place</strong> for maximum efficiency.</p>
+<p>
+</p>
+<hr />
+<h1><a name="functions">FUNCTIONS</a></h1>
+<dl>
+<dt><strong><a name="item_flatten"><strong>flatten($storage, $structure)</strong></a></strong><br />
+</dt>
+<dd>
+Traverses the structure <strong>$structure</strong>, and replaces all the known (ie,
+already inserted) Tangram objects with references to them
+</dd>
+<p></p>
+<dt><strong><a name="item_unflatten"><strong>unflatten($storage, $structure)</strong></a></strong><br />
+</dt>
+<dd>
+Performs the logical opposite of <strong>flatten</strong>, but only insofar as a
+`normal' user is concerned.  `Normal' users, of course, don't care
+that the data structure is being loaded from the database as they use
+it :).
+</dd>
+<p></p></dl>
+<p>
+</p>
+<hr />
+<h1><a name="bugs">BUGS</a></h1>
+<p>Should this module just be an extension to Tangram::Storage ?</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>Sam Vilain, <a href="mailto:samv@cpan.org.">samv@cpan.org.</a>  All rights reserved.  This code is free
+software; you can use and/or modify it under the same terms as Perl
+itself.</p>
+
+</body>
+
+</html>

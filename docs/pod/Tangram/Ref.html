@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Tangram::Ref - map references to persistent objects</title>
+<link rel="stylesheet" href="/styles/pod.css" type="text/css" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body>
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#implementation_notes">IMPLEMENTATION NOTES</a></li>
+	<ul>
+
+		<li><a href="#inheritance">INHERITANCE</a></li>
+		<li><a href="#storing_references">STORING REFERENCES</a></li>
+		<li><a href="#loading_references">LOADING REFERENCES</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Ref - map references to persistent objects</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+   use Tangram;</pre>
+<pre>
+   # or
+   use Tangram::Core;
+   use Tangram::Ref;</pre>
+<pre>
+   $schema = Tangram::Schema-&gt;new(
+       classes =&gt; { Company =&gt; { fields =&gt; {
+         ref =&gt; [ qw( ceo vice_ceo ) ]</pre>
+<pre>
+   # or</pre>
+<pre>
+   $schema = Tangram::Schema-&gt;new(
+       classes =&gt; { Company =&gt; { fields =&gt; {
+         ref =&gt;
+         {
+            ceo =&gt;
+            {
+               col =&gt; 'ceo',
+               null =&gt; 0
+            },</pre>
+<pre>
+            vice_ceo =&gt;
+            {
+               ...
+            }</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is responsible for mapping fields that contain a reference
+to a Perl object. The persistent fields are grouped in a hash under the <code>ref</code>
+key in the field hash.</p>
+<p>The target object must belong to a persistent class.</p>
+<p>Tangram uses a column on the source object to store the id of the
+target object.</p>
+<p>The persistent fields may be specified either as a hash or as an array
+of field names.</p>
+<p>In the hash form, each entry consists in a field name and an
+associated option hash. The option hash may contain the following
+fields:</p>
+<ul>
+<li><strong><a name="item_aggreg">aggreg</a></strong><br />
+</li>
+<li><strong><a name="item_col">col</a></strong><br />
+</li>
+<li><strong><a name="item_null">null</a></strong><br />
+</li>
+<li><strong><a name="item_deep_update">deep_update</a></strong><br />
+</li>
+</ul>
+<p>Optional field <a href="#item_aggreg"><code>aggreg</code></a> specifies that the referenced element (if
+any) must be removed (erased) from persistent storage along with the
+source object. The default is not to aggregate.</p>
+<p><a href="#item_col"><code>col</code></a> sets the name of the column that contains the target object's
+id. This field is optional, it default to the persistent field
+name. You need to specify a column name if the field name is not an
+allowed SQL column identifier.</p>
+<p><a href="#item_null"><code>null</code></a>, if present and set to true, directs <code>deploy()</code> to generate SQL
+code that allows NULL values for that column.</p>
+<p>Optional field <a href="#item_deep_update"><code>deep_update</code></a> specificies that the target object has
+to be updated automatically when <code>update</code> is called on the source
+object. Automatic update ensures consisitency between the Perl
+representation and the DBMS state, but degrades update performance so
+use it with caution. The default is not to do automatic updates.</p>
+<p><strong>warning</strong>: there is currently something of a bug with all deep_update
+collections.  If you (for instance) insert an object, and a property
+of that object that is deep_update, then sometimes things end up
+getting inserted twice - especially in mapping tables.  This is
+currently under investigation.</p>
+<p>You may also pass the names of the persistent fields in an array, in
+which case Tangram uses the field names as column names and allows
+NULL values.</p>
+<p>
+</p>
+<hr />
+<h1><a name="implementation_notes">IMPLEMENTATION NOTES</a></h1>
+<p>
+</p>
+<h2><a name="inheritance">INHERITANCE</a></h2>
+<p>Ref directly inherits from Tangram::Scalar, and indirectly from Type.</p>
+<p>
+</p>
+<h2><a name="storing_references">STORING REFERENCES</a></h2>
+<p>When Tangram stores a reference to another object, it stores the
+target object's OID in the source object's table, just like what
+happens with other scalar types like String and Number.</p>
+<p>At least that's what <em>basically</em> happens, but there can be
+complications.</p>
+<p>Complication #1: the target object is not persistent yet. Thus it
+doesn't have an OID yet. Tangram will attempt to store the target
+object; if this succeeds, the target object gets an OID too and
+Tangram can proceed.</p>
+<p>Complication #2: Tangram may detect that the target object is already
+being saved; this happens in presence of cycles. Let's take an
+example:</p>
+<pre>
+        $homer = Person-&gt;new();
+        $marge = Person-&gt;new();
+        $homer-&gt;{partner} = $marge;
+        $marge-&gt;{partner} = $homer;</pre>
+<pre>
+        $storage-&gt;insert( $homer );</pre>
+<p>What happens here? Tangram detects that $homer refers to $marge, and
+that $marge is not yet persistent. So it ignores $homer for a while,
+and proceeds to storing $marge.</p>
+<p>In the process, Tangram sees that $marge refers to $homer - which is
+not persistent yet! its <code>insert()</code> is suspended. Fortunately Tangram
+realizes that, and doesn't attempt to store $homer again. Instead it
+stores a NULL in the 'partner' column of Marge's row.</p>
+<p>Tangram also schedules an UPDATE statement that will be executed just
+before returning from the call to insert(). That statement will patch
+Marge's 'partner' column with the proper OID.</p>
+<p>
+</p>
+<h2><a name="loading_references">LOADING REFERENCES</a></h2>
+<p>Tangram never loads the target object in the process of retrieving the
+source object. Doing so could have disastrous consequences. For
+example, consider a family tree, where each Person has a reference to
+Mom and Dad. Pulling any single Person would eventually retrieve
+everybody up to Adam and Eve! If Tangram did work that way, that is...</p>
+<p>Instead, Tangram ties all the fields that are declared as outgoing
+references to a package (Tangram::RefOnDemand). The underlying object
+keeps track of the source object's OID, the Storage object, and the
+name of the persistent field.</p>
+<p>When - if - a reference field is accessed, the target object is pulled
+from the database (if it's not already present in memory), and the
+field is untied and its value is replaced with a reference to the
+target object. As a result, the target object is loaded on demand, but
+in an almost transparent fashion (why almost? because you can always
+use <code>tied()</code> on the field and detect that strange things are taking place).</p>
+
+</body>
+
+</html>
