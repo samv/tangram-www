@@ -57,9 +57,10 @@ persistence backend.</p>
 automatically encodes <a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a> objects via <a href="/pod/MIME/Base64.html">the MIME::Base64 manpage</a>
 to avoid truncation of values on NUL bytes.</p>
 <p>Also, note that despite what is mentioned on the front page of
-<em>www.sqlite.org</em>, SQLite is not actually an ACID database; any writer
-to the database has to wait for all other writers to finish before
-they can begin their transaction.</p>
+<a href="http://www.sqlite.org/">http://www.sqlite.org/</a>, SQLite is not actually an ACID database;
+any writer to the database has to wait for all other readers and
+writers to finish what they are doing before they can begin their
+transaction.</p>
 <p>So make sure you start and complete your transactions as quickly as
 possible with this back-end.</p>
 

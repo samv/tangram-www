@@ -4,6 +4,10 @@
 find . -name \*.\*.tt -print | while read fn
 do
 	dest=`expr "$fn" : '\(.*\).tt'`
+	if [ $dest -nt $fn ]
+	then
+		continue
+	fi
 	echo "Processing $fn => $dest"
 	if tpage $fn > $dest
 	then
