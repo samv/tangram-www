@@ -1,0 +1,200 @@
+<!--#set var="title" value="Documentation: Tangram::Expr"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::Expr</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+<li><a class="POD_NAVLINK" href="#NUMERIC_EXPRESSIONS">NUMERIC EXPRESSIONS</a>
+<li><a class="POD_NAVLINK" href="#STRING_EXPRESSIONS">STRING EXPRESSIONS</a>
+<li><a class="POD_NAVLINK" href="#REFERENCE_EXPRESSION">REFERENCE EXPRESSIONS</a>
+<li><a class="POD_NAVLINK" href="#COLLECTION_EXPRESSIO">COLLECTION EXPRESSIONS</a>
+<li><a class="POD_NAVLINK" href="#PREDICATES">PREDICATES</a>
+<li><a class="POD_NAVLINK" href="#CLASS_METHODS">CLASS METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#new_type_expr_remote">new($type, $expr, @remotes)</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#INSTANCE_METHODS">INSTANCE METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#expr_">expr()</a>
+<li><a class="POD_NAVLINK" href="#type_">type()</a>
+<li><a class="POD_NAVLINK" href="#objects_">objects()</a>
+<li><a class="POD_NAVLINK" href="#storage_">storage()</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#EXAMPLES">EXAMPLES</a>
+<li><a class="POD_NAVLINK" href="#SEE_ALSO">SEE ALSO</a>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram::Expr - manipulate expressions on database server side
+</p>
+<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
+<pre class="POD_VERBATIM">
+   my ($r1, $r2) = $storage-&gt;remote(qw( ... ));
+
+   $r1-&gt;{field} operator $value
+      $r1-&gt;{field} operator $r2-&gt;{field2}
+
+      $r1-&gt;{collection}-&gt;includes( $obj )
+      $r1-&gt;{collection}-&gt;exists( $obj, $filter )
+</pre>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+Tangram::Expr objects represent expressions that will be evaluated on
+the database server side.
+</p>
+<p class="POD_TEXT">
+Expression objects fall into one of the following categories: numeric,
+string, reference or collection.
+</p>
+<p class="POD_TEXT">
+The methods in Expr are needed only by people extending Tangram. See
+the <a class="POD_LINK" href="../Tangram/Dialect.html">Tangram::Dialect</a> manpage.
+</p>
+<h2 class="POD_HEAD1"><a name="NUMERIC_EXPRESSIONS">NUMERIC EXPRESSIONS</a></h2>
+<p class="POD_TEXT">
+Numeric expression objects can be compared using the operators ==, !=,
+&lt;, &gt;, &lt;= and &gt;=.  The other operand must be either another numeric
+expression object, or a normal Perl numeric value.  The result of the
+comparison is a Filter.
+</p>
+<h2 class="POD_HEAD1"><a name="STRING_EXPRESSIONS">STRING EXPRESSIONS</a></h2>
+<p class="POD_TEXT">
+String expression objects can be compared using the operators eq, ne,
+lt, gt, le, and ge.  The other operand must be either a string
+expression object or any Perl scalar value. Tangram will automatically
+quote the operand as required by the SQL syntax.  The result of the
+comparison is a Tangram::Filter.
+</p>
+<p class="POD_TEXT">
+String expression objects also support the method like($str), where
+$str is a string that may contain SQL wildcards. The result is a
+Tangram::Filter that translates to a SQL <code>LIKE $str</code> predicate.
+</p>
+<h2 class="POD_HEAD1"><a name="REFERENCE_EXPRESSION">REFERENCE EXPRESSIONS</a></h2>
+<p class="POD_TEXT">
+Reference expression objects can be compared for equality using
+operators == and !=. The other operand must be another reference
+expression, a persistent object or undef(). The result of the
+comparison is a Filter.
+</p>
+<h2 class="POD_HEAD1"><a name="COLLECTION_EXPRESSIO">COLLECTION EXPRESSIONS</a></h2>
+<p class="POD_TEXT">
+Collection expression objects represents a collection inside an
+object. It supports the includes() and exists() methods, which returns
+a Tangram::Filter stating that the collection must contain the
+operand. exists() uses a subselect.
+</p>
+<p class="POD_TEXT">
+The operand may be a Tangram::Remote, a persistent object,
+or an object ID.
+</p>
+<p class="POD_TEXT">
+operator &lt; is provided as a synonym for includes().
+</p>
+<h2 class="POD_HEAD1"><a name="PREDICATES">PREDICATES</a></h2>
+<p class="POD_TEXT">
+Predicate objects represent logical expressions, or
+conditions. Predicates support logical operators &amp;, | and !. Note that
+a <i>single</i> ampersand or vertical bar must be used.  The result is
+another predicate.
+</p>
+<h2 class="POD_HEAD1"><a name="CLASS_METHODS">CLASS METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="new_type_expr_remote">new($type, $expr, @remotes)</a></h3>
+<p class="POD_TEXT">
+Returns a new instance.
+</p>
+<p class="POD_TEXT">
+$type is a Type object corresponding to this expression (see
+the <a class="POD_LINK" href="../Tangram/Type.html">Tangram::Type</a> manpage).
+</p>
+<p class="POD_TEXT">
+$expr is a SQL expression. It will eventually become part of a
+WHERE-CLAUSE.
+</p>
+<p class="POD_TEXT">
+@remotes contains the Remote objects (see the <a class="POD_LINK" href="../Tangram/Remote.html">Tangram::Remote</a> manpage) that
+participate in the expression. Tangram uses this list to insert the
+corresponding tables in the FROM clause and conditions in the
+WHERE-CLAUSE.
+</p>
+<h2 class="POD_HEAD1"><a name="INSTANCE_METHODS">INSTANCE METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="expr_">expr()</a></h3>
+<p class="POD_TEXT">
+Returns the SQL equivalent for this expression.
+</p>
+<h3 class="POD_HEAD2"><a name="type_">type()</a></h3>
+<p class="POD_TEXT">
+Returns the Type (see the <a class="POD_LINK" href="../Tangram/Type.html">Tangram::Type</a> manpage) corresponding  to this
+expression.
+</p>
+<h3 class="POD_HEAD2"><a name="objects_">objects()</a></h3>
+<p class="POD_TEXT">
+Returns the list of the objects that participate in this
+expression.
+</p>
+<h3 class="POD_HEAD2"><a name="storage_">storage()</a></h3>
+<p class="POD_TEXT">
+Returns the Storage associated with this expression.
+</p>
+<h2 class="POD_HEAD1"><a name="EXAMPLES">EXAMPLES</a></h2>
+<p class="POD_TEXT">
+$person is called 'Homer'
+</p>
+<pre class="POD_VERBATIM">
+      $person-&gt;{name} eq 'Homer'
+</pre>
+<p class="POD_TEXT">
+$person's name ends with 'mer'
+</p>
+<pre class="POD_VERBATIM">
+      $person-&gt;{name}-&gt;like('%mer');
+</pre>
+<p class="POD_TEXT">
+$person is older than 35
+</p>
+<pre class="POD_VERBATIM">
+      $person-&gt;{age} &gt; 35
+</pre>
+<p class="POD_TEXT">
+$person is married to $homer
+</p>
+<pre class="POD_VERBATIM">
+      $person-&gt;{partner} == $homer
+</pre>
+<p class="POD_TEXT">
+$person is not $homer
+</p>
+<pre class="POD_VERBATIM">
+      $person != $homer
+</pre>
+<p class="POD_TEXT">
+$person is not $homer and is older than 65
+</p>
+<pre class="POD_VERBATIM">
+      $person != $homer &amp; $person-&gt;{age} &gt; 65
+</pre>
+<p class="POD_TEXT">
+$person is $bart's parent
+</p>
+<pre class="POD_VERBATIM">
+      $person-&gt;{children}-&gt;includes( $bart )
+      $person-&gt;{children} &lt; $bart
+</pre>
+<p class="POD_TEXT">
+$person is not $bart's parent
+</p>
+<pre class="POD_VERBATIM">
+      !$person-&gt;{children}-&gt;includes( $bart )
+      !($person-&gt;{children} &lt; $bart)
+</pre>
+<h2 class="POD_HEAD1"><a name="SEE_ALSO">SEE ALSO</a></h2>
+<p class="POD_TEXT">
+the <a class="POD_LINK" href="../Tangram/Remote.html">Tangram::Remote</a> manpage, the <a class="POD_LINK" href="../Tangram/Expr.html">Tangram::Expr</a> manpage, the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage
+</p>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->

@@ -1,0 +1,39 @@
+<!--#set var="title" value="Documentation: Tangram::Remote"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::Remote</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram::Remote - represent persistent objects in client space
+</p>
+<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
+<pre class="POD_VERBATIM">
+   use Tangram;
+
+   $remote = $storage-&gt;remote( $class );
+   @remotes = $storage-&gt;remote( @classes );
+
+   ... $remote-&gt;{$field} ...
+</pre>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+A Remote object is a client-side representation of an object that
+resides in a database.  It has the same fields as a normal object of
+the same class - as declared in the Schema associated to the database
+the Remote was obtained from.  The values of the fields are not normal
+Perl values, but the <a class="POD_LINK" href="../Tangram/Expr.html">Tangram::Expr</a> manpages that will be evaluated on the
+database server side.
+</p>
+<p class="POD_TEXT">
+Remote objects are somewhat similar to SQL table aliases.
+</p>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->
