@@ -35,7 +35,9 @@ the presentation files.</p>
 
   <dt>Tangram and UML, Sam Vilain. <a href="tut/YAPC-Taipei-2005/spork/slides/start.html">Spork</a>, <a href="tut/YAPC-Taipei-2005/Tangram%20by%20Example.sxi">Impress</a></dt>
 
-  <dd>Delivered to YAPC::Taipei, March 26, 2005.</dd>
+  <dd>Delivered to YAPC::Taipei, March 26, 2005.  Also showed off were
+    various items from the <a href="http://search.cpan.org/src/SAMV/Tangram/t/musicstore/"><tt>t/musicstore</tt></a> Tangram test suite.
+</dd>
 
   <dt><a href="tut/Tangram-UML-YAPC2003.tar.gz">POOP with Tangram and
     UML</a>,<br />Sam Vilain. </dt>
