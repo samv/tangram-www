@@ -1,0 +1,156 @@
+<!--#set var="title" value="Documentation: Tangram::Dialect"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::Dialect</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+<li><a class="POD_NAVLINK" href="#CLASS_METHODS">CLASS METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#new_">new()</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#INSTANCE_METHODS">INSTANCE METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#expr_type_expr_remot">expr($type, $expr, @remotes)</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#EXAMPLE">EXAMPLE</a>
+<li><a class="POD_NAVLINK" href="#SEE_ALSO">SEE ALSO</a>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram::Dialect - support for SQL dialects and extensions
+</p>
+<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
+<pre class="POD_VERBATIM">
+   package Tangram::Dialect::SomeDialect;
+
+   use Tangram::Dialect;
+   use base qw( Tangram::Dialect );
+
+   sub expr
+   {
+      ...
+   }
+</pre>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+Like Charles Moore (inventor of Forth) used to say, &quot;standards are
+great, everybody should have one!&quot;.
+</p>
+<p class="POD_TEXT">
+Tangram can take advantage of extensions available in some SQL
+dialects. Each Storage has an associated Dialect object. The
+instantiation of some classes (currently Expr) is delegated to the
+Dialect object, which may return objects with extended functionality.
+</p>
+<h2 class="POD_HEAD1"><a name="CLASS_METHODS">CLASS METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="new_">new()</a></h3>
+<p class="POD_TEXT">
+Returns a new Dialect object.
+</p>
+<h2 class="POD_HEAD1"><a name="INSTANCE_METHODS">INSTANCE METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="expr_type_expr_remot">expr($type, $expr, @remotes)</a></h3>
+<p class="POD_TEXT">
+Returns a new Expr object. The object is obtained by calling method
+expr() on $type. See the <a class="POD_LINK" href="../Tangram/Expr.html">Tangram::Expr</a> manpage for a description of the
+arguments.
+</p>
+<h2 class="POD_HEAD1"><a name="EXAMPLE">EXAMPLE</a></h2>
+<p class="POD_TEXT">
+The following code adds support for Sybase's <code>datepart</code>
+extension. See below how to actually <i>use</i> the extension.
+</p>
+<pre class="POD_VERBATIM">
+   use strict;
+
+   ############################################
+   # derive a DateExpr class from existing Expr
+
+   package Tangram::Dialect::Sybase::DateExpr;
+   use base qw( Tangram::Expr );
+
+   ############################
+   # add method datepart($part)
+
+   sub datepart
+   {
+      my ($self, $part) = @_; # $part is 'year', 'month', etc
+      my $expr = $self-&gt;expr(); # the SQL string for this Expr
+
+      ##################################
+      # build a new Expr of Integer type
+      # pass this Expr's remote object list to the new Expr
+
+      return Tangram::Integer-&gt;expr(&quot;DATEPART($part, $expr)&quot;, $self-&gt;objects);
+   }
+
+   ###########################
+   # subclass Tangram::Dialect
+
+   package Tangram::Dialect::Sybase;
+   use Tangram::Dialect;
+   use base qw( Tangram::Dialect );
+
+   ############################################
+   # a hash that maps date-related Types to the
+   # DateExpr - the improved Expr class
+
+   my %improved =
+      (
+      'Tangram::RawDateTime' =&gt; 'Tangram::Dialect::Sybase::DateExpr',
+      'Tangram::RawDate' =&gt; 'Tangram::Dialect::Sybase::DateExpr',
+      );
+
+   ######################################################
+   # Tangram calls this method to obtain new Expr objects
+
+   sub expr
+   {
+      my ($self, $type, $expr, @remotes) = @_;
+
+      ###################################################
+      # is $type related to dates? if not, return default
+
+      my $improved = $improved{ref($type)} or return $type-&gt;expr(@_);
+
+      ####################################
+      # $type is a Date; return a DateExpr
+
+      return $improved-&gt;new($type, $expr, @remotes);
+   }
+
+   1;
+</pre>
+<p></p>
+<p class="POD_TEXT">
+To take advantage of the new Dialect, we must pass it to the connect()
+method:
+</p>
+<p></p>
+<pre class="POD_VERBATIM">
+   my $storage = Tangram::Storage-&gt;connect($schema,
+      $data_source, $user, $passwd,
+      { dialect =&gt; 'Tangram::Dialect::Sybase' } );
+</pre>
+<p></p>
+<p class="POD_TEXT">
+Now we can filter on the various parts of a Date:
+</p>
+<p></p>
+<pre class="POD_VERBATIM">
+   my $remote = $storage-&gt;remote('NaturalPerson');
+
+   my ($person) = $storage-&gt;select($remote,
+      $remote-&gt;{birth}-&gt;datepart('year') == 1963);
+</pre>
+<p></p>
+<h2 class="POD_HEAD1"><a name="SEE_ALSO">SEE ALSO</a></h2>
+<p class="POD_TEXT">
+the <a class="POD_LINK" href="../Tangram/Type.html">Tangram::Type</a> manpage, the <a class="POD_LINK" href="../Tangram/Expr.html">Tangram::Expr</a> manpage, the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
+</p>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->

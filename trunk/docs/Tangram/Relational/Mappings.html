@@ -1,0 +1,569 @@
+<!--#set var="title" value="Documentation: Tangram::Relational::Mappings"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::Relational::Mappings</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+<li><a class="POD_NAVLINK" href="#STRATEGIES_FOR_MAPPI">STRATEGIES FOR MAPPING INHERITANCE</a>
+<li><a class="POD_NAVLINK" href="#Horizontal_Mapping">Horizontal Mapping</a>
+<li><a class="POD_NAVLINK" href="#description">description</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#advantages">advantages</a>
+<li><a class="POD_NAVLINK" href="#disadvantages">disadvantages</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#Vertical_Mapping">Vertical Mapping</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#description1">description</a>
+<li><a class="POD_NAVLINK" href="#advantages1">advantages</a>
+<li><a class="POD_NAVLINK" href="#disadvantages1">disadvantages</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#Filtered_Mapping">Filtered Mapping</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#description2">description</a>
+<li><a class="POD_NAVLINK" href="#advantages2">advantages</a>
+<li><a class="POD_NAVLINK" href="#disadvantages2">disadvantages</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#MAPPINGS_SUPPORTED_B">MAPPINGS SUPPORTED BY TANGRAM</a>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram - Mapping inheritance
+</p>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+There are many ways of representing inheritance relationships in a relational
+database. This document describes three popular ways and how Tangram supports
+them.
+</p>
+<h2 class="POD_HEAD1"><a name="STRATEGIES_FOR_MAPPI">STRATEGIES FOR MAPPING INHERITANCE</a></h2>
+<p class="POD_TEXT">
+Inheritance is a concept that has no equivalent in the relational
+world. However, it is possible to implement it by using a combination of
+relational features like tables and foreign keys.
+</p>
+<p class="POD_TEXT">
+One of the paramount issues about mapping inheritance is how well the mapping
+supports polymorphism. Any Object-Oriented persistence facility that deserves
+its name needs to allow the retrieval of all the Fruits, and return a
+heterogeneous collection of Apples, Oranges and Bananas. Also, it must
+perform this operation in an efficient manner. In particular, polymorphic
+retrieval should not cost one SELECT per retrieved object.
+</p>
+<p class="POD_TEXT">
+A secondary - yet important - issue is how well the mapping plays by the rules
+of orthogonal orthodoxy.
+</p>
+<p class="POD_TEXT">
+Another issue we'll examine is how well the mapping supports 'complex' queries,
+that is, queries that involve several objects
+</p>
+<p class="POD_TEXT">
+Three strategies are in common use, that go by the name Vertical, Horizontal
+and Filtered mapping. They all have advantages and disadvantages.
+</p>
+<p class="POD_TEXT">
+The following sections describe the three strategies in details. They make use of
+a simple object model to illustrate the mappings.
+</p>
+<p></p>
+<pre class="POD_VERBATIM">
+                          +---------------------+
+                          |        Person       |
+                          |      {abstract}     |
+     +---------&lt;------- 1 +---------------------+
+     |                    | name: string        |
+     |                    +---------------------+
+     |                               |
+     |                               ^
+     |                               |
+     |            +------------------+---------------------+
+     |            |                                        |
+     |   +---------------+                        +-----------------+
+     V   | NaturalPerson |                        |    LegalPerson  |
+     |   +---------------+                        +-----------------+
+     |   |  age: integer |                        | form: string    |
+     |   +---------------+                        +-----------------+
+     |     
+     |
+     |
+     |                    +---------------------+
+     +--------&gt;-------- * |        Vehicle      |
+                          |       {abstract}    |
+                          +---------------------+
+                          | make: string        |
+                          +---------------------+
+                                     |
+                                     ^
+                                     |
+                  +------------------+-------------------+
+                  |                                      |
+         +---------------+                      +-----------------+
+         |      Car      |                      |      Plane      |
+         +---------------+                      +-----------------+
+         | plate: string |                      | ident: string   |
+         +---------------+                      +-----------------+
+</pre>
+<p></p>
+<h2 class="POD_HEAD1"><a name="Horizontal_Mapping">Horizontal Mapping</a></h2>
+<h2 class="POD_HEAD1"><a name="description">description</a></h2>
+<p class="POD_TEXT">
+Each <i>concrete</i> class is mapped onto a single table. Each row in the
+table describes the persistent state of one object.
+</p>
+<p class="POD_TEXT">
+The attributes are mapped onto columns, usually one column per
+attribute but not necessarily. For example, collections may be stored elsewhere
+(for example on a link table) and thus require no column on the class' table.
+</p>
+<p class="POD_TEXT">
+In effect, the database looks like this:
+</p>
+<pre class="POD_VERBATIM">
+         +---------------+
+         | NaturalPerson |
+         +------+--------+-------+------+
+         |  id  |  name          | age  |
+         ================================
+         |  17  | Bill Gates     |  46  |
+         +------+----------------+------+
+         |  23  | Georges Bush   |  50  |
+         +------+----------------+------+
+</pre>
+<p></p>
+<pre class="POD_VERBATIM">
+         +-------------+
+         | LegalPerson |
+         +------+------+---------+------+
+         |  id  |  name          | form |
+         ================================
+         |  36  |  Microsoft     |  Inc |
+         +------+----------------+------+
+</pre>
+<p></p>
+<pre class="POD_VERBATIM">
+         +------+
+         | Car  |
+         +------+-------+----------------+--------+
+         |  id  | owner	|  make          | plate  |
+         ==========================================
+         |  12  |  17  	| Saab           | BILL-1 |
+         +------+-------+----------------+--------+
+         |  50  |  36  	| Miata          | MS-001 |
+         +------+-------+----------------+--------+
+         |  51  |  36  	| Miata          | MS-002 |
+         +------+-------+----------------+--------+
+</pre>
+<p></p>
+<pre class="POD_VERBATIM">
+         +-------+
+         | Plane |
+         +------++-----+----------------+--------+
+         |  id  | owner|  make          | ident  |
+         =========================================
+         |  29  |  23  |  Boeing        | AF-001 |
+         +------+------+----------------+--------+
+</pre>
+<h3 class="POD_HEAD2"><a name="advantages">advantages</a></h3>
+<p class="POD_TEXT">
+Polymorphic retrieval costs one SELECT per concrete conforming class; retrieving
+all the Persons costs two SELECTs. These SELECTs, however, don't use joins -
+an expensive operation. In our example, retrieving all the Persons requires the
+following two SELECTs:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT id, name, age FROM NaturalPerson
+   SELECT id, name, form FROM LegalPerson
+</pre>
+<h3 class="POD_HEAD2"><a name="disadvantages">disadvantages</a></h3>
+<p class="POD_TEXT">
+This mapping is reasonable with regard to relational orthodoxy, but not perfect:
+the 'name' column is present on two different tables, with the same semantic.
+</p>
+<p class="POD_TEXT">
+The biggest drawback, however, happens when you try to perfrom complex queries.
+Suppose oyu want to retrieve all the Persons (Natural- or Legal-) that own a
+Vehicle of make 'Saab' (be it a Car or a Plane). Sticking with equijoins, the
+cost of the operation is four SELECTs:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT NaturalPerson.id, NaturalPerson.name, NaturalPerson.age
+      FROM NaturalPerson, Car
+      WHERE Car.owner = NaturalPerson.id
+
+   SELECT NaturalPerson.id, NaturalPerson.name, NaturalPerson.age
+      FROM NaturalPerson, Plane
+      WHERE Plane.owner = NaturalPerson.id
+
+   SELECT LegalPerson.id, LegalPerson.name, LegalPerson.form
+      FROM LegalPerson, Car
+      WHERE Car.owner = LegalPerson.id
+
+   SELECT LegalPerson.id, LegalPerson.name, LegalPerson.form
+      FROM LegalPerson, Plane
+      WHERE Plane.owner = LegalPerson.id
+</pre>
+<p class="POD_TEXT">
+When the depth of the hierarchies increase, the combinatory explosion makes
+complex queries prohibitive.
+</p>
+<h2 class="POD_HEAD1"><a name="Vertical_Mapping">Vertical Mapping</a></h2>
+<h3 class="POD_HEAD2"><a name="description1">description</a></h3>
+<p class="POD_TEXT">
+Each class has its corresponding table, which contains only the class' direct
+fields. In other words, the table doesn't store the inherited fields. Both
+concrete and abstract classes get a table. The state of an object is
+thus scattered over several tables.
+</p>
+<p class="POD_TEXT">
+For example:
+</p>
+<pre class="POD_VERBATIM">
+         +--------+
+         | Person |
+         +------+-+------+-------+
+         |  id  |  name          |
+         =========================
+         |  17  | Bill Gates     |
+         +------+----------------+
+         |  23  | Georges Bush   |
+         +------+----------------+
+         |  36  | Microsoft      |
+         +------+----------------+
+</pre>
+<p></p>
+<pre class="POD_VERBATIM">
+         +---------------+     +-------------+ 
+         | NaturalPerson |     | LegalPerson | 
+         +------+--------+     +-------+-----++
+         |  id  | age    |     |  id   | form |
+         =================     ================
+         |  17  |  46    |     |  36   |  Inc |
+         +------+--------+     +-------+------+
+         |  23  |  50    |
+         +------+--------+
+
+         +---------+
+         | Vehicle |
+         +------+--+----+----------------+
+         |  id  | owner |  make          |
+         =================================
+         |  12  | 17    | Saab           |
+         +------+-------+----------------+
+         |  29  | 23    | AF-001         |
+         +------+-------+----------------+
+         |  50  | 36    | Miata          |
+         +------+-------+----------------+
+         |  51  | 36    | Miata          |
+         +------+-------+----------------+
+
+         +------+              +-------+         
+         | Car  |              | Plane |         
+         +------++--------+    +-------+--------+
+         |  id   | plate  |    |  id   | ident  |
+         ==================    ==================
+         |  12   | BILL-1 |    |  29   | AF-001 |
+         +-------+--------+    +-------+--------+
+         |  50   | MS-001 |
+         +-------+--------+
+         |  51   | MS-002 |
+         +-------+--------+
+</pre>
+<p class="POD_TEXT">
+Polymorphic retrieval is achieved by issuing one SELECT per concrete
+conforming class; retrieving In our example, retrieving all the
+Persons requires the following two SELECTs:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT Person.id, Person.name, NaturalPerson.age
+      FROM Person, NaturalPerson
+      WHERE Person.id = NaturalPerson.id
+
+   SELECT Person.id, Person.name, LegalPerson.form
+      FROM Person, LegalPerson
+      WHERE Person.id = LegalPerson.id
+</pre>
+<p class="POD_TEXT">
+This mapping sometimes needs an extra column that carries a type
+identifier. In our example, we take the very resonable assumption that
+Person is an abstract class. Had we decided to allow 'pure' Persons,
+we would have been faced with the following problem: the Person table
+would contain rows that describe pure Persons, but also rows that
+describe the Person part of Natural- and LegalPersons. We would need
+to filter those incomplete objects out when retrieving the pure
+Persons. Thus the Person table would look like this:
+</p>
+<pre class="POD_VERBATIM">
+         +--------+
+         | Person |
+         +-----+--+---+----------------+
+         | id  | type |  name          |
+         ===============================
+         | 13  | 1    | Pure Person    |
+         +-----+------+----------------+
+         | 17  | 2    | Bill Gates     |
+         +-----+------+----------------+
+         | 23  | 2    | Georges Bush   |
+         +-----+------+----------------+
+         | 36  | 3    | Microsoft      |
+         +-----+------+----------------+
+</pre>
+<p class="POD_TEXT">
+In this case, we need an extra SELECT for retrieving pure Persons:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT Person.id, Person.name
+      FROM Person
+      WHERE Person.type IN (1)
+</pre>
+<h3 class="POD_HEAD2"><a name="advantages1">advantages</a></h3>
+<p class="POD_TEXT">
+From the relational point of view, this mapping is excellent: the
+resulting database is in third normal form.
+</p>
+<p class="POD_TEXT">
+This mapping also supports complex queries very well. Take the Saab
+owners example again: we don't need to involve the Car nor Plane
+tables in the query. As a result, two SELECTs suffice:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT Person.id, Person.name, NaturalPerson.age
+      FROM Person, NaturalPerson, Vehicle
+      WHERE Person.id = NaturalPerson.id AND Vehicle.owner = Person.id
+
+   SELECT Person.id, Person.name, LegalPerson.form
+      FROM Person, LegalPerson, Vehicle
+      WHERE Person.id = LegalPerson.id AND Vehicle.owner = Person.id
+</pre>
+<p></p>
+<h3 class="POD_HEAD2"><a name="disadvantages1">disadvantages</a></h3>
+<p class="POD_TEXT">
+The mapping potentially has the highest performance cost: it requires
+multiple SELECTs like the horizontal mapping, but in addition, these
+SELECTs use joins.
+</p>
+<p></p>
+<h2 class="POD_HEAD1"><a name="Filtered_Mapping">Filtered Mapping</a></h2>
+<h3 class="POD_HEAD2"><a name="description2">description</a></h3>
+<p class="POD_TEXT">
+Entire hierarchies are mapped onto a single table. Two rows may
+describe objects of different types, maybe completely unrelated. The
+set of columns is the uperset of all the columns needed by all the
+attributes of any of the classes involved in the mapping.
+</p>
+<p class="POD_TEXT">
+A special 'type' column contains an value that uniquely identifies the
+concrete class of the object described by the row.
+</p>
+<p class="POD_TEXT">
+All the columns related to attributes that don't occur in all the
+classes must be declared as NULLABLE. Indeed, the table may contain
+mostly NULL values.
+</p>
+<p class="POD_TEXT">
+In our example, the database may look either like this:
+</p>
+<pre class="POD_VERBATIM">
+         +---------+
+         | Persons |
+         +-----+---+--+----------------+------+------+
+         | id  | type |  name          | age  | form |
+         =============================================
+         | 17  |  1   | Bill Gates     |  46  | NULL |
+         +-----+------+----------------+------+------+
+         | 23  |  1   | Georges Bush   |  50  | NULL |
+         +-----+------+----------------+------+------+
+         | 36  |  2   | Microsoft      | NULL |  Inc |
+         +-----+------+----------------+------+------+
+
+         +---------+
+         | Persons |
+         +-----+---+--+----------------+------+------+
+         | id  | type |  name          | age  | form |
+         =============================================
+         | 17  |  1   | Bill Gates     |  46  | NULL |
+         +-----+------+----------------+------+------+
+         | 23  |  1   | Georges Bush   |  50  | NULL |
+         +-----+------+----------------+------+------+
+         | 36  |  2   | Microsoft      | NULL |  Inc |
+         +-----+------+----------------+------+------+
+         | 36  |  2   | Microsoft      | NULL |  Inc |
+         +-----+------+----------------+------+------+
+
+         +----------+
+         | Vehicles |
+         +-----+----+-+-------+----------------+--------+--------+
+         | id  | type | owner |  make          | plate  | ident  |
+         =========================================================
+         | 12  |  3   |  17   | Saab           | BILL-1 | NULL   |
+         +-----+------+-------+----------------+--------+--------+
+         | 29  |  4   |  23   | Boeing         | NULL   | AF-001 |
+         +-----+------+-------+----------------+--------+--------+
+         | 50  |  3   |  36   | Miata          | MS-001 | NULL   |
+         +-----+------+-------+----------------+--------+--------+
+         | 51  |  3   |  36   | Miata          | MS-002 | NULL   |
+         +-----+------+-------+----------------+--------+--------+
+</pre>
+<p class="POD_TEXT">
+Retrieving all the Persons requires only one SELECT:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT id, name, age, form FROM Persons
+</pre>
+<p class="POD_TEXT">
+When retrieving NaturalPersons we must take care to filter out the
+rows that belog to LegalPersons:
+</p>
+<pre class="POD_VERBATIM">
+   SELECT id, name, age FROM Persons WHERE type = 1
+</pre>
+<p class="POD_TEXT">
+We may even decide to place unrelated hierarchies on the same table:
+</p>
+<pre class="POD_VERBATIM">
+   +---------+
+   | Objects |
+   +-----+---+--+---------------+------+------+--------+--------+--------+
+   | id  | type |  name         | age  | form | make   | plate  | ident  |
+   =======================================================================
+   | 17  |  1   | Bill Gates    |  46  | NULL | NULL   | NULL   | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 23  |  1   | Georges Bush  |  50  | NULL | NULL   | NULL   | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 36  |  2   | Microsoft     | NULL | Inc  | NULL   | NULL   | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 12  |  3   | NULL          | NULL | NULL | Saab   | BILL-1 | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 29  |  4   | NULL          | NULL | NULL | Boeing | NULL   | AF-001 |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 50  |  3   | NULL          | NULL | NULL | Miata  | MS-001 | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+   | 51  |  3   | NULL          | NULL | NULL | Miata  | MS-002 | NULL   |
+   +-----+------+---------------+------+------+--------+--------+--------+
+</pre>
+<h3 class="POD_HEAD2"><a name="advantages2">advantages</a></h3>
+<p class="POD_TEXT">
+Polymorphic retrieval costs exactly one SELECT, regardless of the
+number of conforming types. Thus this mapping potentially is the most
+efficient.
+</p>
+<h3 class="POD_HEAD2"><a name="disadvantages2">disadvantages</a></h3>
+<p class="POD_TEXT">
+This mapping is very questionable according to relational
+orthodoxy. Even if one decides to forgo these rules, using such a
+mapping takes away many of the interesting features offered by modern
+RDBM systems. Because nearly all the columns must allow NULL values,
+we cannot take advantage of features like referential integrity
+constraints, domain constraints, indexes, etc.
+</p>
+<p class="POD_TEXT">
+Also, as the table becomes cluttered with NULL values, the relative
+number of significant columns in any given row tends towards zero: we
+may end up retrieving rows consisting of a little information swimming
+in a sea of NULLs.
+</p>
+<p class="POD_TEXT">
+In effect, this mapping may end up hindering performance instead of
+improving it in presence of deep hierarchies with many attributes.
+</p>
+<h2 class="POD_HEAD1"><a name="MAPPINGS_SUPPORTED_B">MAPPINGS SUPPORTED BY TANGRAM</a></h2>
+<p class="POD_TEXT">
+Tangram supports both vertical mapping and filtered mapping, and any
+hybrid of the two.
+</p>
+<p class="POD_TEXT">
+The 'table' attribute in the class description in the Schema can be
+used to put the state of several classes on the same table. The table
+name defaults to the class name, resulting in a vertical mapping.
+</p>
+<p class="POD_TEXT">
+For example, the following schema:
+</p>
+<pre class="POD_VERBATIM">
+   Tangram::Relational-&gt;schema( {
+        classes =&gt;
+          [ Person =&gt;
+            {
+             table =&gt; 'Persons',
+             fields =&gt; { string =&gt; [ qw( name ) ] }
+            },
+
+            NaturalPerson =&gt;
+            {
+             table =&gt; 'Persons',
+             fields =&gt; { int =&gt; [ qw( age ) ] }
+            },
+
+            LegalPerson =&gt;
+            {
+             table =&gt; 'Persons',
+             fields =&gt; { string =&gt; [ qw( form ) ] }
+            }
+          ] } );
+</pre>
+<p class="POD_TEXT">
+...specifies a pure filtered mapping for the Person hierarchy:
+</p>
+<pre class="POD_VERBATIM">
+   CREATE TABLE Persons
+   (
+     id INTEGER NOT NULL,
+     PRIMARY KEY( id ),
+     type INTEGER NOT NULL,
+     form VARCHAR(255) NULL,
+     age INT NULL,
+     name VARCHAR(255) NULL
+   );
+</pre>
+<p class="POD_TEXT">
+The following schema:
+</p>
+<pre class="POD_VERBATIM">
+   Tangram::Relational-&gt;schema( {
+        classes =&gt;
+          [ Person =&gt;
+            {
+             table =&gt; 'Person',
+             fields =&gt; { string =&gt; [ qw( name ) ] }
+            },
+
+            NaturalPerson =&gt;
+            {
+             table =&gt; 'NaturalPerson',
+             fields =&gt; { int =&gt; [ qw( age ) ] }
+            },
+
+            LegalPerson =&gt;
+            {
+             table =&gt; 'Person',
+             fields =&gt; { string =&gt; [ qw( form ) ] }
+            }
+          ] } );
+</pre>
+<p class="POD_TEXT">
+...gives NaturalPerson its own table, but LegalPerson shares the
+Person table:
+</p>
+<pre class="POD_VERBATIM">
+   CREATE TABLE Person
+   (
+     id INTEGER NOT NULL,
+     PRIMARY KEY( id ),
+     type INTEGER NOT NULL,
+     form VARCHAR(255) NULL,
+     name VARCHAR(255) NULL
+   );
+
+   CREATE TABLE NaturalPerson
+   (
+     id INTEGER NOT NULL,
+     PRIMARY KEY( id ),
+     type INTEGER NOT NULL,
+     age INT NULL
+   );
+</pre>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->
