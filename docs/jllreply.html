@@ -18,7 +18,6 @@
   </head>
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
-<form>
     <div id="sitelogo">
 	<a href="./">
 	  <img id="t2logo" src="./gfx/t2.png" border="0" />
@@ -26,9 +25,11 @@
 	</a>
     </div>
     <div id="navbar">
-<div class="menuItem right">
+<div id="navsearch">
+   <form style="display: inline" action="./search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
+   </form>
 </div>
 
 <div class="menuItem">
@@ -50,7 +51,6 @@
 	
 <div style="clear: both"></div>
 </div>
-</form>
 
 <div id="body">
 

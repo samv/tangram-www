@@ -18,7 +18,6 @@
   </head>
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
-<form>
     <div id="sitelogo">
 	<a href="./">
 	  <img id="t2logo" src="./gfx/t2.png" border="0" />
@@ -26,9 +25,11 @@
 	</a>
     </div>
     <div id="navbar">
-<div class="menuItem right">
+<div id="navsearch">
+   <form style="display: inline" action="./search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
+   </form>
 </div>
 
 <div class="menuItem">
@@ -50,28 +51,24 @@
 	
 <div style="clear: both"></div>
 </div>
-</form>
 
 <div id="body">
 
 
-
   <div class="head1">What is Tangram?</div>
 
-    <div style="float: right; margin: 1em; width: 235px;">
-	<a href="http://www.tangrams.ca/puzzles/puzzles.htm">
-       <img style="display: block" src="gfx/tangram1.png" border="0" />
-	</a>
-       <p style="padding: 0.5em"><i>Each piece of
-       the tangram puzzle is a combination of multiple copies of the
-       smallest piece.</i></p>
-    </div>
+    <div class="right figure" style="width: 235px">
+      <a href="http://www.tangrams.ca/puzzles/puzzles.htm">
+        <img src="gfx/tangram1.png" border="0" />
+      </a>
+      <p class="caption">Each piece of the Qi Qiao Tu (Seven Ingenious
+       Plan, or Tangram) is a combination of multiple copies of the
+       smallest piece.</p> </div>
 
-    <p>In the ancient Chinese puzzle of Qiqiaotu (Seven Ingenious
-       Plan, or Tangram), seven pieces are arranged to try to form a
-       specific shape.  Each piece is simple, yet as they fit together
-       seamlessly the scope for different configurations is
-       endless.</p>
+    <p>In the ancient Chinese puzzle of Qiqiaotu, seven pieces are
+       arranged to try to form a specific shape.  Each piece is
+       simple, yet as they fit together seamlessly the scope for
+       different configurations is endless.</p>
 
     <p>Tangram provides for your <a
        href="http://www.perl.org/">Perl</a> programs the basic pieces
@@ -161,39 +158,82 @@
 
     <p>The current version of Tangram is <b>not lightweight</b>.  The
       focus has never been on optimising for Perl-side performance,
-      but more for schema flexibility and database efficiency.  For
-      long-running applications such as OLTP (eg, web applications),
-      this is generally a good thing, however there are applications
-      that would be unncecessarily slowed by using Tangram over using
-      DBI directly.  This may change when Tangram is refactored to
-      T2.</p>
-    
+      but more for schema flexibility and <em>enabling you to
+      write</em> database efficient programs.  No library can really
+      put trainer wheels on the open-ended nature of data structure
+      design.
+
+    <p>For long-running applications such as OLTP (eg, web
+      applications), this is generally a good thing, however there are
+      applications that would be unncecessarily slowed by using
+      Tangram over using DBI directly.  This may change when Tangram
+      is refactored to T2.  Don't you just hate it when software
+      projects go the same way as movie sequels?  The same mentality
+      that brought you, <tt>$hollywood_blockbuster</tt> now brings you
+      <tt>$hollywood_blockbuster[1]</tt>.  But nobody stopped to
+      think, “hey, guys, what do you think the cinematography was like
+      on that one, don't you think we wrote the lead characters to be
+      a bit stock, dead and lifeless?  Maybe we should fire the sound
+      engineer who kept repeating all that patriotic fanfare during
+      the fight scenes, you know maybe that portraying the American
+      Dream Perpetuating along with scenes of gooks dying, good guys
+      winning and people being mutilated with Hot Irons would be so
+      ... very ... ironic?”.  In the words of the late William
+      S. Burroughs<a href="#fn4"><sup>4</sup></a> - "Hollywood will
+      get what it deserves: time."</p>
+
+    <p>But I digress.  Rest assured that T2 is not going to be a badly
+      done sequel.  See, I haven't even bumped the version number, it
+      can't be getting new, improved, etc.  It will be Tangram 2
+      <em>refined</em>.
+
     <div class="head1">Getting Started</div>
 
     <p>There is extensive <a href="docs/index.html">documentation</a> for Tangram, including
       tutorials and (soon!) example schemas and applications.  There
-      is also a relatively low volume <a href="list/t2-users">mailing list</a>.  You can get the latest
+      is also a relatively low volume <a href="lists/t2-users">mailing list</a>.  You can get the latest
       version of Tangram from <a
       href="http://search.cpan.org/dist/Tangram/">search.cpan.org</a>,
       the <a href="download/index.html">downloads section</a>
       of this web site, or directly from the <a href="development/index.html#svn">tangram.utsl.gen.nz Subversion
       repository</a>.</p>
 
-<hr />
-<p>Footnotes:
 
-<div class="footnotes"><a name="fn1"><sup>1</sup></a> With pre-caching
-available for those situations where demand loading would suck.</div>
+<div class="footnotes">
+  <hr />
+  <div class="head">Footnotes</div>
+  <ol>
 
-<div class="footnotes"><a name="fn2"><sup>2</sup></a> With a nice and
-easy way to dump the cache, so you can dump the cache at the beginning
-of each database transaction, thereby avoiding intra-transaction
-"Dirty Read" problems.</div>
+     <li class="footnote"><a name="fn1"></a>
+	Demand loading is the normal RAD way of building apps, but
+pre-caching facilities are also available for those situations where
+you need it.
+     </li>
 
-<div class="footnotes"><a name="fn3"><sup>3</sup></a> Class::Persist
-perhaps doesn't fit cleanly into this category, but then trying to
-categorise programming libraries into hard and fast categories is a
-mistake in the first place.</div>
+     <li class="footnote"><a name="fn2"></a>
+	All objects are cached, but there is an easy way to dump the cache -
+so you can start each database transaction free of “dirty read”
+related problems.
+     </li>
+
+     <li class="footnote"><a name="fn3"></a>
+	Class::Persist perhaps doesn't fit cleanly into this category, but
+then trying to categorise programming libraries into hard and fast
+categories is a mistake in the first place.  I put it in this category
+primarily because the data source (connection) and package are tightly
+bound.
+     </li>
+
+     <li class="footnote"><a name="fn4"></a>
+	Or maybe it was Kerouac or even the (not so late) Hunter S. Thompson.
+I picked up the quote from a live performance featuring writings from
+these authors.
+     </li>
+
+   </ol>
+</div>
+
+
 
 </div>
 

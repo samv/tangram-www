@@ -65,7 +65,7 @@
     likely they are to be found in Google - so go ahead and log it
     anyway.
 
-    <div class="head1">Subversion Repository</div>
+    <a name="svn"></a><div class="head1">Subversion Repository</div>
 
     <p>The latest development version of Tangram is available via
       Subversion from the tangram.utsl.gen.nz Subversion
@@ -103,15 +103,15 @@
 <pre>ssh -n -L 3690:longdrop:3690 tangram.utsl.gen.nz
 co svn://localhost/trunk/Tangram</pre>
 
-<hr />
-<p>Footnotes:
+[% INCLUDE footnotes.tt
+   footnotes = [
 
-<div class="footnotes"><sup>1</sup> Aboched stands for "A Botched
-Webserver"<sup>2</sup></div>
+'Aboched is short for "A Botched Webserver"<sup>2</sup>',
 
-<div class="footnotes"><sup>2</sup> all contributions to the web site,
-man page and code are encouraged to be as Gonzo style as possible.
-Patches may be turned down on the grounds that they do not add enough
-character to the code base.</div>
+'all contributions to the web site and code base are encouraged to be
+as Gonzo style as possible.  Patches may be turned down on the grounds
+that they do not add enough character.'
+
+] %]
 
 [% INCLUDE footer.tt %]

@@ -19,7 +19,6 @@
   </head>
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
-<form>
     <div id="sitelogo">
 	<a href="../">
 	  <img id="t2logo" src="../gfx/t2.png" border="0" />
@@ -27,9 +26,11 @@
 	</a>
     </div>
     <div id="navbar">
-<div class="menuItem right">
+<div id="navsearch">
+   <form style="display: inline" action="../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
+   </form>
 </div>
 
 <div class="menuItem">
@@ -51,7 +52,6 @@
 	
 <div style="clear: both"></div>
 </div>
-</form>
 
 <div id="body">
 
@@ -102,6 +102,7 @@
 
 
 
+<a name="prod"></a>
 
   <h2>Production / Stable Releases</h2>
 
@@ -275,6 +276,7 @@
   </tbody>
 </table>
 
+<a name="test"></a>
 
   <h2>Development / Test Releases</h2>
 
@@ -414,14 +416,22 @@
 
 
 
-<hr />
-<p>Footnotes:
+<div class="footnotes">
+  <hr />
+  <div class="head">Footnotes</div>
+  <ol>
 
-   <div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
-   Tangram was known to work with Perl 5.005_03.  Compatibility with
-   this Perl version for later versions of Tangram will only be 
-   included if the person who wants it is willing to test and debug
-   that platform.  </div>
+     <li class="footnote"><a name="fn1"></a>
+	Version 2.05 of Tangram was known to work with Perl 5.005_03.
+Compatibility with this Perl version for later versions of Tangram
+will only be included if the person who wants it is willing to test
+and debug that platform.
+     </li>
+
+   </ol>
+</div>
+
+
 
 </div>
 

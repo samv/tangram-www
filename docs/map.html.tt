@@ -1,0 +1,34 @@
+[% title = "tangram.utsl.gen.nz Site Map" %]
+[% INCLUDE header.tt %]
+
+<h1>Site map</h1>
+
+<p>Dude, this site's like, 4 pages of content and some man pages, how
+could you get lost?</p>
+
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <ul>
+    <li><a href="principles.html">OO principles</a></li>
+  </ul>
+  <li><a href="download/index.html">Download</a></li>
+  <ul>
+    <li><a href="download/index.html#prod">production / stable releases</a></li>
+    <li><a href="download/index.html#test">development / test releases</a></li>
+  </ul>
+  <li><a href="docs/index.html">Documentation</a></li>
+  <ul>
+    <li><a href="docs/index.html#pres">presentations</a></li>
+    <li><a href="docs/index.html#man">man pages</a></li>
+  </ul>
+  <li><a href="development/index.html">Development</a></li>
+  <ul>
+    <li><a href="docs/index.html#irc">IRC channel</a></li>
+    <li><a href="docs/index.html#list">Mailing List</a></li>
+    <li><a href="docs/index.html#rt">Bug Tracker</a></li>
+    <li><a href="docs/index.html#svn">Subversion repository</a></li>
+  </ul>
+</ul>
+
+
+[% INCLUDE footer.tt %]

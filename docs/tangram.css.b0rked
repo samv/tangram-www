@@ -1,0 +1,185 @@
+    
+
+/* It's always handy to detach this IME ... */
+body { padding: 0; margin: 0; }
+
+/* something to contain everything */
+div #body {
+    margin: 0.5em 1em 0em 1em;
+    max-width: 80em;
+    font-family: "FreeSans", Verdana, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #ff9900;
+}
+
+body p, ul, dl, ol {
+    margin: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+INPUT {
+    background-color: #ddffdd;
+}
+
+.head1, h1, .head2, h2, .menuItem, #navsearch {
+    font-family : "Nimbus Sans L", Arial, sans-serif;
+}
+
+.head1, .h1 {
+    font-size : 16pt;
+    font-weight : bold;
+	padding-top: 0.3em;
+	padding-bottom: 0.2em;
+}
+
+.head2, h2 {
+      font-size : 13pt;
+      font-weight : bold;
+	padding-top: 0.6em;
+	padding-bottom: 0.2em;
+}
+
+tt, pre, samp {
+	font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
+}
+
+pre {
+	padding: 0;
+	margin: 0.5em 2em 0.5em 2em;
+}
+
+.menuItem, #navsearch {
+      color: #ffffff;
+	display: inline;
+      font-size : 9pt;
+      font-weight : bold;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.right {
+	margin: 0;
+      font-size : 6pt;
+	float: right;
+}
+
+.right input {
+      font-size : 6pt;
+}
+
+A {
+      text-decoration: none;
+      color: #009900;
+}
+
+A:hover {
+      text-decoration: none;
+      color: #33cc33;
+}
+
+A.menu {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight : bold;
+}
+
+A.menu:hover {
+      text-decoration: none;
+      color: #ff9900;
+      font-weight : bold;
+}
+
+HR.footer {
+        border-bottom: 1px solid #cccccc;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+}
+
+HR {
+        border-bottom: 1px solid #cccccc;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+}
+#sitelogo {
+	height: 40px;
+	padding: 0;
+	margin: 0;
+}
+
+#tangramlogo {
+	position: absolute;
+	top: 8px;
+	left: 70px;
+}
+
+#navbar {
+	background: black;
+	font-family: "Nimbus Sans L"
+	vertical-align: middle;
+	padding: 0.3em;
+}
+
+#navsearch {
+	position: absolute;
+	right: 10px;
+	top: 40px;
+}
+
+#footer {
+	text-align: center;
+	color: grey;
+	padding: 0.3em;
+	font-family: "FreeSans", verdana, sans-serif;
+	font-size: 7pt;
+}
+
+.BigQuote {
+	font: x-large serif;
+	margin-left: 5em;
+	margin-right: 5em;
+}
+
+.BigQuote .attribution {
+	margin-left: 15em;
+}
+
+table.downloads {
+   margin-left: 2em;
+   margin-right: 2em;
+   width: 80%;
+}
+
+table.downloads.prod thead {
+   background: #009900;
+   color: white;
+}
+
+table.downloads.test thead {
+   background: #990000;
+   color: white;
+}
+
+table.downloads tr.distheading {
+   font-weight: bold
+}
+
+table.downloads tr.distheading.test {
+}
+
+table.downloads tr.head.prod {
+   background: #ade6ad;
+}
+table.downloads tr.heading {
+}
+table.downloads tr.head {
+   font-weight: bold
+}
+
+ol li, ul li, dl dd {
+   padding-top: 0.2em;
+   padding-bottom: 0.2em;
+}
+

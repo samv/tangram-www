@@ -1,0 +1,15 @@
+[% IF footnotes %]
+<div class="footnotes">
+  <hr />
+  <div class="head">Footnotes</div>
+  <ol>
+[% i = 0;
+   FOR note = footnotes;
+     i = i + 1 %]
+     <li class="footnote"><a name="fn[% i %]"></a>
+	[% note %]
+     </li>
+[% END %]
+   </ol>
+</div>
+[% END %]

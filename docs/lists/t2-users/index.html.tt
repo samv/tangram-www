@@ -1,0 +1,11 @@
+[% title = "t2-users List Info"
+   top = "../../"
+ %]
+[% INCLUDE header.tt %]
+
+  <h1>t2-users Mailing List</h1>
+
+  <p>This is a placeholder for now.  There was a list, there will be
+    one again very soon too.</p>
+
+[% INCLUDE footer.tt %]

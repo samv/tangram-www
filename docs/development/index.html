@@ -19,7 +19,6 @@
   </head>
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
-<form>
     <div id="sitelogo">
 	<a href="../">
 	  <img id="t2logo" src="../gfx/t2.png" border="0" />
@@ -27,9 +26,11 @@
 	</a>
     </div>
     <div id="navbar">
-<div class="menuItem right">
+<div id="navsearch">
+   <form style="display: inline" action="../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
+   </form>
 </div>
 
 <div class="menuItem">
@@ -51,7 +52,6 @@
 	
 <div style="clear: both"></div>
 </div>
-</form>
 
 <div id="body">
 
@@ -118,7 +118,7 @@
     likely they are to be found in Google - so go ahead and log it
     anyway.
 
-    <div class="head1">Subversion Repository</div>
+    <a name="svn"></a><div class="head1">Subversion Repository</div>
 
     <p>The latest development version of Tangram is available via
       Subversion from the tangram.utsl.gen.nz Subversion
@@ -156,16 +156,26 @@
 <pre>ssh -n -L 3690:longdrop:3690 tangram.utsl.gen.nz
 co svn://localhost/trunk/Tangram</pre>
 
-<hr />
-<p>Footnotes:
 
-<div class="footnotes"><sup>1</sup> Aboched stands for "A Botched
-Webserver"<sup>2</sup></div>
+<div class="footnotes">
+  <hr />
+  <div class="head">Footnotes</div>
+  <ol>
 
-<div class="footnotes"><sup>2</sup> all contributions to the web site,
-man page and code are encouraged to be as Gonzo style as possible.
-Patches may be turned down on the grounds that they do not add enough
-character to the code base.</div>
+     <li class="footnote"><a name="fn1"></a>
+	Aboched is short for "A Botched Webserver"<sup>2</sup>
+     </li>
+
+     <li class="footnote"><a name="fn2"></a>
+	all contributions to the web site and code base are encouraged to be
+as Gonzo style as possible.  Patches may be turned down on the grounds
+that they do not add enough character.
+     </li>
+
+   </ol>
+</div>
+
+
 
 </div>
 

@@ -1,1 +1,8 @@
-[% 
+[% title = "No search yet" %]
+[% INCLUDE header.tt %]
+
+<h1>Search not there yet</h1>
+
+<p>Sometime... soon, perhaps.</p>
+
+[% INCLUDE footer.tt %]

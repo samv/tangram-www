@@ -70,6 +70,7 @@
 
 [% USE date %]
 [% FOR stage = [ "prod", "test" ] %]
+<a name="[% stage %]"></a>
 [% IF stage == "test" %]
   <h2>Development / Test Releases</h2>
 [% ELSE %]
@@ -124,14 +125,14 @@
 </table>
 [% END %]
 
+[% INCLUDE footnotes.tt
+   footnotes = [
 
-<hr />
-<p>Footnotes:
+"Version 2.05 of Tangram was known to work with Perl 5.005_03.
+Compatibility with this Perl version for later versions of Tangram
+will only be included if the person who wants it is willing to test
+and debug that platform."
 
-   <div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
-   Tangram was known to work with Perl 5.005_03.  Compatibility with
-   this Perl version for later versions of Tangram will only be 
-   included if the person who wants it is willing to test and debug
-   that platform.  </div>
+] %]
 
 [% INCLUDE footer.tt %]

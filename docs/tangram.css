@@ -1,134 +1,175 @@
+
 body {
-	padding: 0 0 0 0;
-	margin: 0 0 0 0;
+	padding: 0;
+	margin: 0;
 }
 
 div#body {
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-top: 0.5em;
-    max-width: 80em;
-    font-family: "FreeSans", Verdana, Helvetica, sans-serif;
-    font-weight: normal;
-    color: #000000;
+	margin: 0.5em 1em 0em 1em;
+	max-width: 80em;
+	font-weight: normal;
 }
 
-body p, ul, dl, ol {
-    margin: 0;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
+/* main fonts and colors */
+body {
+	background: #eedfc9;
+}
+.head, .head1, h1, .head2, h2, .menuItem, #navbar, #navsearch, INPUT {
+	font-family : "Nimbus Sans L", Arial, sans-serif;
+}
+div#body, p, #footer, td {
+	font-family: "FreeSans", Verdana, Helvetica, sans-serif;
+	color: #60416e;
+}
+.head, .head1, h1, .head2, h2 {
+	color: #da880c;
+}
+tt, pre, samp, .mono {
+	font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
 }
 
-INPUT {
-    background-color: #ddffdd;
-}
-
-.head1, h1 {
-    font-family : "Nimbus Sans L", Arial, Helvetica, sans-serif;
-    font-size : 16pt;
-    font-weight : bold;
-	padding-top: 0.3em;
-	padding-bottom: 0.2em;
-}
-
-.head2, h2 {
-    font-family : "Nimbus Sans L", Arial, Helvetica, sans-serif;
-      font-size : 13pt;
-      font-weight : bold;
-	padding-top: 0.6em;
-	padding-bottom: 0.2em;
-}
-
-tt, pre, samp {
-    font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
-}
-
-pre {
+/* logo */
+#sitelogo {
+	height: 40px;
 	padding: 0;
-	margin: 0.5em 2em 0.5em 2em;
+	margin: 0;
+}
+#t2logo {
+	margin-left: 15px;
+}
+#tangramlogo {
+	position: absolute;
+	top: 8px;
+	left: 70px;
 }
 
+/* navbar */
+#navbar {
+	vertical-align: middle;
+	padding: 0.3em;
+	border: 2px outset #ff9900;
+}
+#navsearch {
+	position: absolute;
+	right: 10px;
+	top: 40px;
+	margin: 2px;
+}
+#navbar, .menuItem, #navsearch {
+	background: #dd9900;
+	color: white;
+	font-size : 8pt;
+}
 .menuItem {
-      color: #ffffff;
+	font-weight : bold;
 	display: inline;
-      font-family : Arial, Helvetica, sans-serif;
-      font-size : 8pt;
-      font-weight : bold;
 	margin-left: 0.5em;
 	margin-right: 0.5em;
 }
 
-.right {
-	margin: 0;
-      font-size : 6pt;
-	float: right;
+
+/* body */
+body #body p {
+	margin-left: 1em;
+}
+body p, ul, dl, ol {
+	margin: 0em 1em 0em 1em;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
 }
 
-.right input {
-      font-size : 6pt;
+/* generic page elements */
+.head1, h1 {
+	font-size : 16pt;
+	font-weight : bold;
+	padding-top: 0.3em;
+	padding-bottom: 0.2em;
 }
-
-A {
-      text-decoration: none;
-      color: #009900;
+.head2, h2 {
+	font-size : 13pt;
+	font-weight : bold;
+	padding-top: 0.6em;
+	padding-bottom: 0.2em;
 }
-
-A:hover {
-      text-decoration: none;
-      color: #33cc33;
+INPUT {
+	background: #dd9900;
 }
-
-A.menu {
-      text-decoration: none;
-      color: #ffffff;
-      font-weight : bold;
+INPUT[type="submit"] {
+	background: #ff8800;
 }
-
-A.menu:hover {
-      text-decoration: none;
-      color: #ff9900;
-      font-weight : bold;
+INPUT[type="text"] {
+	background-color: #eec68b;
 }
-
-HR.footer {
-        border-bottom: 1px solid #cccccc;
-        border-left: 0px;
-        border-right: 0px;
-        border-top: 0px;
-}
-
-HR {
-        border-bottom: 1px solid #cccccc;
-        border-left: 0px;
-        border-right: 0px;
-        border-top: 0px;
-}
-#sitelogo {
-	height: 40px;
-	background-image: url('[% top %]gfx/bgdots.png');
-	background-repeat: repeat-both;
+pre, .inc {
 	padding: 0;
-	margin: 0;
+	margin: 0.5em 2em 0.5em 2em;
 }
-#tangramlogo {
-	position: absolute;
-	top: 6px;
-	left: 70px;
+hr {
+	color: red;
+	background: red;
 }
-
-#navbar {
-	background: black;
-	font-family: verdana;
-	vertical-align: middle;
-	padding: 0.3em;
+ol li, ul li, dl dd {
+   padding-top: 0.2em;
+   padding-bottom: 0.2em;
 }
 
+/* Footer */
 #footer {
 	text-align: center;
 	color: grey;
 	padding: 0.3em;
-	font-family: "FreeSans", verdana, sans-serif;
 	font-size: 7pt;
+}
+
+/* Anchors */
+A {
+	color: #ad0bf2;
+	text-decoration: none;
+}
+A:hover, A:visited:hover {
+	color: #c267f2;
+	text-decoration: underline;
+}
+A:visited {
+	color: #82419e;
+	text-decoration: none;
+}
+
+A.menu {
+	text-decoration: none;
+	color: #ffffff;
+	font-weight : bold;
+}
+A.menu:hover {
+	text-decoration: none;
+	color: #ffbaba;
+	font-weight : bold;
+}
+
+/* site authoring elements */
+div.figure {
+	margin: 1em;
+}
+div.right {
+	float: right; 
+}
+p.caption {
+	padding: 0.5em;
+	font-size: small;
+	font-style: italic;
+	text-align: center;
+}
+
+.footnotes {
+	margin: 0.5em 1em 0.5em 1em;
+}
+.footnotes .head {
+	font-size: 11pt;
+	font-weight: bold;
+	margin-left: 1em;
+}
+.footnote {
+
 }
 
 .BigQuote {
@@ -136,7 +177,6 @@ HR {
 	margin-left: 5em;
 	margin-right: 5em;
 }
-
 .BigQuote .attribution {
 	margin-left: 15em;
 }
@@ -146,26 +186,21 @@ table.downloads {
    margin-right: 2em;
    width: 80%;
 }
-
 table.downloads.prod thead {
-   background: #009900;
+   background: #dd9900;
    color: white;
 }
-
 table.downloads.test thead {
-   background: #990000;
+   background: #dd3333;
    color: white;
 }
-
 table.downloads tr.distheading {
    font-weight: bold
 }
-
 table.downloads tr.distheading.test {
 }
-
 table.downloads tr.head.prod {
-   background: #ade6ad;
+   background: #eec68b;
 }
 table.downloads tr.heading {
 }
@@ -173,8 +208,4 @@ table.downloads tr.head {
    font-weight: bold
 }
 
-ol li, ul li, dl dd {
-   padding-top: 0.2em;
-   padding-bottom: 0.2em;
-}
 
