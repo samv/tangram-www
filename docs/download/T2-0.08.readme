@@ -1,0 +1,30 @@
+README for T2 0.08
+~~~~~~~~~~~~~~~~~~
+This module implements schema management and class auto-generation for
+Tangram.  It is also the centre for code refactoring of the Tangram
+core.  That is, eventually this suite will replace Tangram whilst
+providing a 100% compatible API.  At this point in time, I can see no
+reason why it couldn't provide the Pixie API as well, but that is a
+secondary concern :)
+
+To get started, run the test suite.  It will take you through setting
+up a database to hold your schemas, itself a Tangram store.  The test
+suite will use this database for its initial run.
+
+After that, if you want to re-run the T2 test suite, you should create
+another database for the tests.  The Makefile.PL re-creates database
+tables when it is run, so only re-run it if you are sure you want to
+lose the contents of the configured schema database.  If you name the
+database ending in "_t", it is assumed that you are aware of this and
+happy for Makefile.PL to blaze it.
+
+ERRATA
+~~~~~~
+`perl Makefile.PL' will sometimes cause a segmentation fault.  This is
+due to a bug in Storable.  The bug is tracked in the Perl bug tracker:
+
+  http://guest:guest@rt.perl.org/rt3/Ticket/Display.html?id=25145
+
+This bug has since been fixed, so if you get it try to upgrade your
+version of Storable.
+

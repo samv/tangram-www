@@ -1,0 +1,16 @@
+Revision history for Perl extension Set::Object.
+
+0.01  Sat Jun  6 13:36:56 1998
+	- original version; created by h2xs 1.18
+
+0.02  Sun Jul  12 1998
+	- fixed refcount bug that leaked object when hash was reorganized
+	- ensured compatibility with Perl 5.004_71
+
+1.00 mid-99
+	- fixed some bug (related to subsets?)
+	- first mature release
+
+1.01 8 Nov 1999
+	- no longer use Perl arrays internally, now compatible with Perl 5.005_62
+

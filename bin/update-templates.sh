@@ -1,12 +1,17 @@
 
+libs="header.tt footer.tt"
 
-
-find . -name \*.\*.tt -print | while read fn
+find . -name \*.\*.tt -print | xargs ls -tr | while read fn
 do
 	dest=`expr "$fn" : '\(.*\).tt'`
 	if [ $dest -nt $fn ]
 	then
-		continue
+		nt=
+		for x in $libs
+		do
+			[ $dest -ot $x ] && nt="$nt $x"
+		done
+		[ -z "$nt" ] && continue
 	fi
 	echo "Processing $fn => $dest"
 	if tpage $fn > $dest

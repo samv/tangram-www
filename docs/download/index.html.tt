@@ -1,112 +1,123 @@
 [% title = "Download Tangram" %]
+[% top = "../" %]
 [% INCLUDE header.tt %]
+[% files = {
+      "Tangram" = { prod = [ "2.04", "2.05", "2.06", "2.07" ],
+		    test = [ "2.07_03", "2.07_04", "2.07_05", "2.07_06",
+			     "2.07_07" ]
+		  },
+      "Class::Tangram" = { prod = [ "1.11", "1.12a", "1.13", "1.54" ]
+			   test = [ "1.53", "1.53.1", "1.53.2", "1.53.3", "1.53.4", "1.53.5" ] },
+      "Set::Object" = { prod = [ "1.00", "1.01", "1.02", "1.03a", "1.04",
+				 "1.05", "1.06", "1.07", "1.08" ],
+			test = [ "1.08_01", "1.08_02" ],
+			}
+      "T2" = { test = [ "0.06", "0.07", "0.08" ] }
+      "Data::Lazy" = { prod = [ "0.6" ] }
+   }
+   head = { "Tangram" = "2.07",
+            "Class::Tangram" = "1.54",
+            "Set::Object" = "1.08",
+            "T2" = "0.08",
+            "Data::Lazy" = "0.06",
+	    },
+   order = [ "Tangram", "Set::Object", "T2", "Data::Lazy" ]
+%]
     <div class="head1">Download Tangram</div>
     
-    <p>The following versions of Tangram are available:</p>
+    <p>To use the latest release of Tangram, you will need:
+
+<style type="text/css" language="css"><!--
+  ol li {
+     padding: 0.3em;
+  }
+--></style>
+    <ol>
+      <li>Perl, version 5.6.1, 5.8.1 or any later 5.8.x release<a
+         href="#fn1"><sup>1</sup></a>.</li>
+
+      <li>A SQL database.  Currently well supported are <a
+         href="http://www.mysql.com/">MySQL/MyISAM</a>, <a
+         href="http://www.innodb.com/index.php">MySQL/InnoDB</a>, <a
+         href="http://www.postgresql.org/">PostgreSQL</a>, <a
+         href="http://www.oracle.com">Oracle</a> and <a
+         href="http://www.sqlite.org/">SQLite</a>.  See <a href="[%
+         top %]docs/Tangram/Dialect.html">Tangram::Dialect</a> for the
+         low-down. </li>
+
+      <li>The <a href="http://search.cpan.org/dist/Scalar-List-Utils/lib/Scalar/Util.pm">Scalar::Util</a>
+        module (included with the standard Perl distribution with
+        5.8+)</li>
+
+      <li>If you would like to represent date/time columns, install
+        one of your choice of well-supported Date modules (ie, with a
+        <a href="[% top %]docs/Tangram/Type.html">Tangram::Type</a>
+        class written for them): <a
+        href="http://search.cpan.org/dist/DateManip/">Date::Manip</a>
+        (also needed for the generic SQL driver [patches welcome]), <a
+        href="http://search.cpan.org/dist/Class-Date/Date.pod">Class::Date</a>,
+        <a
+        href="http://search.cpan.org/dist/DateTime/lib/DateTime.pm">DateTime</a>
+        or <a
+        href="http://search.cpan.org/dist/Time-Piece/Piece.pm">Time::Piece</a>.
+	</li>
+
+      <li>The modules Tangram, Set::Object and optionally,
+        Class::Tangram - either from CPAN, this web page, or perhaps
+        supplied by your OS distribution of choice.</li>
+
+    </ol>
+
+<table class="downloads">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Release Date</th>
+      <th>Size</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+[% USE date %]
+[% FOR stage = [ "prod", "test" ] %]
+  [% FOR dist = order %]
+    [% IF files.$dist.$stage.size;
+       dist_name = dist.replace("::", "-") %]
+    <tr class="distheading [% stage %]">
+      <td colspan="5">
+        [% dist %] [% stage == "test" ? "(Test Release)" : "" %]
+      </td>
+    </tr>
+    [% FOR version = files.$dist.$stage.reverse;
+       filename = dist_name _ "-" _ version _ ".tar.gz";
+       readme = dist_name _ "-" _ version _ ".readme";
+       changes = dist_name _ "-" _ version _ ".changes";
+       stats = {};
+       FOR fn = [ readme, changes, filename ];
+            rfn = "download/" _ fn;
+            USE cheese = File(rfn);
+	    stats.$fn = cheese;
+       END;
+       IF version == head.$dist;
+           is_head = 1;
+       ELSE;
+           is_head = 0;
+       END %]
+    <tr class="dist [% stage %][% is_head ? ' head' : '' %]">
+      <td><a href="[% filename %]">[% filename %]</a></td>
+      <td>[% date.format(file.mtime, "%d %b %Y") %]</td>
+      <td>[% file.size %]</td>
+      <td><a href="[% readme %]">README</a>,
+      </td>
+    </tr>
+    [% END %]
+    [% END %]
+  [% END %]
+[% END %]
+  </tbody>
+</table>
     
-    <ul>
-      <li>
-        <b>Stable</b>
-	  <br />
-          Version 2.07 from CPAN
-          <a href="http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Tangram-2.07.tar.gz">Download</a>, or from tangram-persistence.org: <a href="Tangram-2.07.tar.gz">Download</a><br />
-          Version 2.06 from CPAN
-          <a href="http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Tangram-2.06.tar.gz">Download</a>, or from tangram-persistence.org: <a href="Tangram-2.06.tar.gz">Download</a><br />
-          Version 2.05 from CPAN
-          <a href="http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Tangram-2.05.tar.gz">Download</a>, or from tangram-persistence.org: <a href="Tangram-2.05.tar.gz">Download</a><br />
-          Version 2.04 from CPAN
-          <a href="http://search.cpan.org/CPAN/authors/id/J/JL/JLLEROY/Tangram-2.04.tar.gz">Download</a>, or from tangram-persistence.org: <a href="Tangram-2.04.tar.gz">Download</a><br />
-	  <br>
-      </li>
-      <li>
-        <b>Development</b><br />
-	  Version 2.07.3 from tangram-persistence.org
-          <a href="Tangram-2.07.3.tar.gz">Download</a>
-	<br />
-	  Version 2.07pre4 from tangram-persistence.org
-          <a href="Tangram-2.07pre4.tar.gz">Download</a>
-	<br />
-	  Version 2.07pre3 from tangram-persistence.org
-          <a href="Tangram-2.07pre3.tar.gz">Download</a>
-	<br />
-	  Version 2.07pre2 from tangram-persistence.org
-          <a href="Tangram-2.07pre2.tar.gz">Download</a>
-	<br />
-	  Version 2.07pre1 from tangram-persistence.org
-          <a href="Tangram-2.07pre1.tar.gz">Download</a>
-	<br />
-	  Version 2.05pre2 from tangram-persistence.org
-          <a href="Tangram-2.05pre2.tar.gz">Download</a>
-	<br />
-          Version 2.05pre1 from tangram-persistence.org
-          <a href="Tangram-2.05pre1.tar.gz">Download</a>
-      </li>
-    </ul>
-
-    <div class="head1">Class::Tangram</div>
-
-    <p>Class::Tangram is a sidekick module to Tangram, creating the classes
-	that Tangram will store, and auto-generating DWIMy accessors from
-	the Tangram Class specification.
-
-    <ul>
-      <li>
-        <b>Stable</b>
-	  <br />
-          Version 1.13 from CPAN
-          <a href="http://search.cpan.org/CPAN/authors/id/S/SA/SAMV/Class-Tangram-1.13.tar.gz">Download</a>, or from tangram-persistence.org: <a href="Class-Tangram-1.13.tar.gz">Download</a><br />
-      </li>
-      <li>
-        <b>Development</b><br />
-	<br />
-          Version 1.53.5 from tangram-persistence.org
-          <a href="Tangram-1.53.5.tar.gz">Download</a>
-	<br />
-          Version 1.53.4 from tangram-persistence.org
-          <a href="Tangram-1.53.4.tar.gz">Download</a>
-	<br />
-          Version 1.53.3 from tangram-persistence.org
-          <a href="Tangram-1.53.3.tar.gz">Download</a>
-	<br />
-          Version 1.53.2 from tangram-persistence.org
-          <a href="Tangram-1.53.2.tar.gz">Download</a>
-	<br />
-          Version 1.53.1 from tangram-persistence.org
-          <a href="Tangram-1.53.1.tar.gz">Download</a>
-      </li>
-   </ul>
-
-  <!--
-
-    <div class="head1">T2</div>
-
-    <p>T2 is the module that will eventually replace Tangram.  It is a
-	set of Class::Tangram class definitions that model entities that
-	the Tangram schema describes - such as "Class", "Attribute", etc.
-
-    <p>Once you have a structure of these objects, you can generate:
-
-	<ul>
-	  <li>Perl Code - via T2::Class->as_module
-	  <li>ECMAScript Code - via T2::Class->as_prototype (note: requires some `sanity' functions on lesser browsers)
-	  <li>Tangram Schema objects - via T2::Schema->schema
-	  <li>A Class::Tangram::Generator object - via T2::Schema->generator
-	</ul>
-
-    <p>Note: this version isn't even ready for peer review yet.  I'm in the process of tidying up the distribution so that it can be installed from scratch without you getting really confused.  Stay tuned :-)</p>
-
-    <ul>
-      <li>
-        <b>Development</b><br />
-        <br />
-          Version 0.05 from tangram-persistence.org
-          <a href="T2-0.05.tar.gz">Download</a>
-      </li>
-   </ul>
-
-   -->
-
-    <div class="head1">Tangram from CVS</div>
+    <div class="head1">Subversion Repository</div>
 
     <p>The latest development version of Tangram is available via CVS
       from the perlfect.com CVS repository.</p>
@@ -128,5 +139,11 @@ cvs -z3 -d:pserver:anonymous@perlfect.com:/home/cvsroot checkout t2</pre>
     
     <p>There is no password for anonymous access - when prompted for a
       password, just press enter.</p>
+
+<div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
+   Tangram was known to work with Perl 5.005_03.  Compatibility with
+   this Perl version for later versions of Tangram will only be 
+   included if the person who wants it is willing to test and debug
+   that platform.  </div>
 
 [% INCLUDE footer.tt %]

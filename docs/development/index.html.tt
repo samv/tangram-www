@@ -1,4 +1,5 @@
 [% title = "Development" %]
+[% top = "../" %]
 [% INCLUDE header.tt %]
 
     <div class="head1">How to Participate in Tangram development</div>

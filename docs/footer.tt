@@ -1,6 +1,12 @@
-          <hr class="footer">
-          </td>
-        </tr>
-    </table>
+</div>
+
+<div id="footer">
+   <hr>
+   <a href="[% top %]copyright.html">copyright info</a> |
+   <a href="[% top %]credits.html">credits</a> |
+   <a href="[% top %]map.html">site map</a>
+
+</div>
+
   </body>
 </html>

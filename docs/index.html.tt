@@ -1,46 +1,132 @@
 [% title = "Home" %]
 [% INCLUDE header.tt %]
-    <div class="head1">About</div>
-    Tangram is an object-relational mapper. In other words, it lets you store objects in a conventional relational database, as if it were an object-oriented database. The original authors of Tangram are <a href="http://www.soundobjectlogic.com">Sound Object Logic</a>.
-    <p></p>
 
-    <div class="head1">Who we are</div>
-    A group of Tangram users, lead by Sam Vilain, author of the successful Class::Tangram module which can be found on <a href="http://www.cpan.org">CPAN</a>.  Although we are not affiliated with <a href="http://www.soundobjectlogic.com">Sound Object Logic</a> we intend to work closely with them as their experience and achievements are highly respected.
-    <p></p>
-    
-    <div class="head1">The current status of Tangram and our intentions</div>
-    After a recent post by <a href="giorgos at perlfect.com">myself</a> to the Tangram-users mailing list enquiring about the status of Tangram it emerged that even though there is a user base for Tangram, the module isn't actively maintained by its original authors, <a href="http://www.soundobjectlogic.com">Sound Object Logic</a>. This is for a variety of reasons including their shift of focus to developing the next generation Tangram; code-named "T3". If you wish you may read the <a href="jllreply.html">full reply of Jean-Louis Leroy</a> from Sound Object Logic about this issue.
-    <p></p>
-    The main difference between T3 and T2 (the Tangram we currently use) is the former's current lack of support for RDBMS storage. This, combined with the fact that T2 has already been used by many of us lead to the decision to attempt to resurrect it. However, we don't see T2 and T3 as competing products; we'd rather see one aiding the development of the other.
-    <p></p>
-    
-    <div class="head1">Our plan</div>
-    After a brief discussion on the mailing list we decided that our efforts should focus on:
-    <ul>
-      <li>Refactoring and internal documentation of the existing T2 classes</li>
-      <li>Implementation of new features including but not limited to:
-         <ul>
-	   <li>truly symmetric back-references - so that two attributes that are exact opposites of each other can be accessed from either direction
-           <li>Tangram::IntrHash completion
-	   <li>Tangram::ixHash - an ordered hash which can behave like an array or a hash
-	   <li>more basic data types (enumerated values, booleans, sets, etc)
-	   <li>indexing support in the schema
-	   <li>alternative id allocation strategies
-	   <li>result set paging
-	   <li>schema evolution
-	 </ul>
 
-      <li>Engineering a sound migration path for T2 users to move to
-        T3 once it is ready.
-    </ul>
+  <div class="head1">What is Tangram?</div>
+
+    <div style="float: right; margin: 1em; width: 235px;">
+	<a href="http://www.tangrams.ca/puzzles/puzzles.htm">
+       <img style="display: block" src="gfx/tangram1.png" border="0" />
+	</a>
+       <p style="padding: 0.5em"><i>Each piece of
+       the tangram puzzle is a combination of multiple copies of the
+       smallest piece.</i></p>
+    </div>
+
+    <p>In the ancient Chinese puzzle of Qiqiaotu (Seven Ingenious
+       Plan, or Tangram), seven pieces are arranged to try to form a
+       specific shape.  Each piece is simple, yet as they fit together
+       seamlessly the scope for different configurations is
+       endless.</p>
+
+    <p>Tangram provides for your <a
+       href="http://www.perl.org/">Perl</a> programs the basic pieces
+       that allow you to take a program model - such as a UML or
+       Entity Relationship diagram - and convert it directly to a
+       <em><a href="[% top %]docs/Tangram/Schema.html">Tangram
+       Schema</a></em>.  Interfaces have been written to allow a more
+       rapid development of data models, similar to the <a
+       href="http://www.alzabo.org/">Alzabo</a> data modeller.
+       </p>
+
+    <p>Once you have this schema, you can easily create
+      <em>transaction-savvy</em> applications that can perform
+      <em>complex queries</em> on your data base, 
+      <em>without directly coding SQL</em>.  Advanced <em>demand
+      loading</em> combined with a superb <em>data caching model</em>
+      removes the need for a fantastic proportion of queries in a
+      typical program.
+    </p>
+
+    <div class="head2">Tangram implements Orthogonal Object
+      Persistence to Relational Databases</div>
+
+    <p>That term might not make much sense to a lot of people - no
+      doubt including people who have been programming for decades -
+      so your first reaction might be, "Oh, no, another Object
+      Orientation Loony!".  If that is your reaction, perhaps one of
+      the other similar tools mentioned on this page will be more your
+      style.</p>
+
+    <p>To explain it piece by piece - <b>Object Persistence</b> in
+      this context, means taking Perl objects and saving them
+      somewhere.  Lots of tools on CPAN will do that for you, from
+      humble serializers like <a
+      href="http://search.cpan.org/dist/Storable">Storable</a> or <a
+      href="http://www.yaml.org/">YAML</a>, to more
+      structured solutions like <a
+      href="http://search.cpan.org/dist/MLDBM">MLDBM</a> or <a
+      href="http://search.cpan.org/dist/Pixie">Pixie</a>.
+
+    <p><b>Orthogonal</b> (literally “at a tangent to”) means that the
+      tool itself does not <em>intrude on the application</em>, such
+      as by requiring all stored objects to have a <em>common base
+      class</em>, associating <em>storage-related information</em> in
+      the (user-visible) data structure or requiring the objects to
+      <em>conform to an interface</em> by implementing special
+      methods.  Very few CPAN modules that implement forms of object
+      persistence are truly orthogonal.
+
+    <p>Whilst Tangram itself is orthogonal, a companion module <a
+      href="[% top %]docs/Class/Tangram.html">Class::Tangram</a>
+      exists that makes Perl classes from entire Tangram Schemas (via
+      <a href="[% top
+      %]docs/Class/Tangram/Generator.html">Class::Tangram::Generator)</a>
+      or portions of schema and give you fully customisable packages
+      and DWIM accessors for your data structure.  Class::Tangram
+      has been designed to honour various <a href="[% top
+      %]principles.html">Object Orientation principles</a>.</p>
+
+    <p><b>Relational Databases</b> are the predominant storage systems
+      used and taught throughout the advanced programming world.  They
+      are distinctly different from <em>heirarchical</em> databases,
+      such as file systems, in that they are based on <em>Set
+      Theory</em>.  Some understanding of set theory, or experience
+      with relational databases is beneficial but not essential for
+      using Tangram.</p>
+
+    <div class="head1">What Tangram is not</div>
+
+    <p>Tangram does not provide <b>Storage Objects</b>.  That is, the
+      programming style where every action performed on an object will
+      immediately be updated in the open database transaction, perhaps
+      after calling a “store” method.  This is a complementary
+      approach to Tangram - and a very simple and effective technique,
+      used by modules such as <a
+      href="http://www.class-dbi.com/cgi-bin/wiki/index.cgi?HomePage">Class::DBI</a>
+      or <a
+      href="http://search.cpan.org/dist/Class-Persist/">Class::Persist</a>.</p>
+
+    <p>Tangram can not (always) be used to <b>retro-actively fit a
+      database</b> in the way that Alzabo or Class::DBI can.  If you
+      are able to accomodate minor schema additions to the original
+      database, and certain conditions are met, it can be possible to
+      engineer a Tangram Schema that maps to a desired database
+      structure - but this is not the design intent of Tangram, and
+      you will be missing out on a lot of features.
+      </p>
+
+    <p>The current version of Tangram is <b>not lightweight</b>.  The
+      focus has never been on optimising for Perl-side performance,
+      but more for schema flexibility and database efficiency.  For
+      long-running applications such as OLTP (eg, web applications),
+      this is generally a good thing, however there are applications
+      that would be unncecessarily slowed by using Tangram over using
+      DBI directly.  This may change when Tangram is refactored to
+      T2.</p>
     
-    Of course our strategy is still in its very early stages.
-    <p></p>
-    
-    <div class="head1">How to participate</div>
-    The best starting point is joining the mailing list. The are two ways:
-    <ul>
-      <li>Visit <a href="http://www.perlfect.com/mailman/listinfo/tangram-t2-maintainers">http://www.perlfect.com/mailman/listinfo/tangram-t2-maintainers</a></li>
-      <li>Send a message to <a href="mailto:tangram-t2-maintainers-request@perlfect.com">tangram-t2-maintainers-request@perlfect.com</a> with "subscribe" as the subject of the message</li>
-    </ul>
+    <div class="head1">Getting Started</div>
+
+    <p>There is extensive <a href="[% top
+      %]docs/index.html">documentation</a> for Tangram, including
+      tutorials and (soon!) example schemas and applications.  There
+      is also a relatively low volume <a href="[% top
+      %]list/t2-users">mailing list</a>.  You can get the latest
+      version of Tangram from <a
+      href="http://search.cpan.org/dist/Tangram/">search.cpan.org</a>,
+      the <a href="[% top %]download/index.html">downloads section</a>
+      of this web site, or directly from the <a href="[% top
+      %]development/index.html#svn">tangram.utsl.gen.nz Subversion
+      repository</a>.</p>
+
 [% INCLUDE footer.tt %]

@@ -1,0 +1,36 @@
+[% title = "Copyright Info" %]
+[% INCLUDE header.tt %]
+
+  <div class="BigQuote">
+    If you are asking under what licence this program is released,
+    you are asking the wrong question.
+	<div class="attribution">
+	  Earle Martin's Mu License
+	</div>
+  </div>
+
+  <div class="head1">Tangram Licensing</div>
+
+  <p>Current production versions of Tangram are released under the GNU
+    General Public License, version 2.0.  Contributions have been made
+    from various sources, so no version later than version 2.04 is
+    available under the commercial licenses that were once available
+    from the original authors, <a
+href="http://www.soundobjectlogic.com/">Sound Object Logic</a>.</p>
+
+  <p>The GPL is slightly hazy when it comes to what exactly
+    constitutes a derived work, when it comes to linking - in fact
+    loading the Tangram library into your program could be considered
+    making a derived work by some.</p>
+
+  <p>Whilst I am not a lawyer, I believe the spirit of the licensing
+    is as follows.  Any program written that simply uses Tangram via
+    its API does not constitute a derived work.  If you use custom
+    mapping types, those parts which augment Tangram functionality
+    will be a part of the derived work.</p>
+
+<pre style="margin-left: 5em; width: 80%; font-size: 10pt">
+[% INCLUDE "GPL-2.txt" %]
+</pre>
+
+[% INCLUDE footer.tt %]

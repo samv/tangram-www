@@ -1,0 +1,49 @@
+Revision history for Perl extension Set::Object.
+
+0.01  Sat Jun  6 13:36:56 1998
+	- original version; created by h2xs 1.18
+
+0.02  Sun Jul  12 1998
+	- fixed refcount bug that leaked object when hash was reorganized
+	- ensured compatibility with Perl 5.004_71
+
+1.00 mid-99
+	- fixed some bug (related to subsets?)
+	- first mature release
+
+1.01 8 Nov 1999
+	- no longer use Perl arrays internally, now compatible with Perl 5.005_62
+
+1.02 8 May 08 2000
+	- fixed bug that miscomputed new bucket while reindexing
+
+1.03 24 Jan 2003
+	- fixed overload related bug
+
+1.04 3 Aug 2003
+	- added various functions similar to some found in Scalar::Util,
+	  but with an extra one that performs a function that lays some
+	  groundwork for Container::Object (ish_int).
+
+	  Some of these functions were in the XS code anyway, and they
+	  are extremely small, so I didn't see a problem with
+	  duplicating them - saves an extra dependancy.  Plus, Graham
+	  Barr won't let me put ish_int or is_key in his module.
+
+	  Knowing that they are available will also assist in fixing
+	  some longer standing bugs in Tangram (eg, using $obj + 0 to
+	  get a unique ID when refaddr($obj) would be better)
+
+	- lots more input marshalling; if you ever end up doing funny
+	  things to a Set::Object, then at least now you'll get a
+	  clearer error message.
+
+	- more tests; Devel::Cover test coverage now at 91% (stmt),
+	  67% (branch)
+
+	- erroneously putting scalars into Set::Objects now no longer
+	  dumps core.
+
+	- serialisation of Set::Object objects is now possible via the
+	  Storable module (Data::Dumper still does the wrong thing,
+	  but there is nothing I can do about that).

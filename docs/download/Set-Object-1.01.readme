@@ -1,0 +1,52 @@
+NAME
+
+   Set::Object
+
+DESCRIPTION
+
+   This module implements a Set of objects, that is, a collection of
+   objects without duplications. It is similar to a Smalltalk
+   IdentitySet.
+
+SYNOPSIS
+
+   use Set::Object;
+   $simpsons = Set::Object->new($homer, $marge, $lisa);
+   $simpsons->insert($bart, $lisa, $maggie); # only one $lisa
+   $simpsons->remove($bart, $burns); # $burns not there; ok
+   foreach $member ($simpsons->members) { ... }
+   # etc
+
+INSTALLATION
+
+   perl Makefile.PL
+   make
+   make test
+   make install (If all tests pass)
+
+REQUIREMENTS
+
+   perl 5.004 or later
+   a C compiler
+
+   This module was developed on MS Windows NT 4.0 using MS Visual C++
+   5.0 with Service Pack 2. It was also tested on AIX 4.1.5 using
+   IBM's xlc compiler.
+
+LICENSE
+
+   Copyright (c) 1998, Jean-Louis Leroy. All Rights Reserved.
+   This module is free software. It may be used, redistributed
+   and/or modified under the terms of the Perl Artistic License
+
+SUPPORT
+
+   email me or post in comp.lang.perl.modules
+
+AUTHOR
+
+   Jean-Louis Leroy, jll@skynet.be
+
+DO YOU WANT TO KNOW MORE?
+
+   See the pod embedded in module.

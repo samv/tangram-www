@@ -1,0 +1,77 @@
+Revision history for Perl extension Set::Object.
+
+0.01  Sat Jun  6 13:36:56 1998
+	- original version; created by h2xs 1.18
+
+0.02  Sun Jul  12 1998
+	- fixed refcount bug that leaked object when hash was reorganized
+	- ensured compatibility with Perl 5.004_71
+
+1.00 mid-99
+	- fixed some bug (related to subsets?)
+	- first mature release
+
+1.01 8 Nov 1999
+	- no longer use Perl arrays internally, now compatible with Perl 5.005_62
+
+1.02 8 May 08 2000
+	- fixed bug that miscomputed new bucket while reindexing
+
+1.03 24 Jan 2003
+	- fixed overload related bug
+
+1.04 3 Aug 2003
+	- added various functions similar to some found in Scalar::Util,
+	  but with an extra one that performs a function that lays some
+	  groundwork for Container::Object (ish_int).
+
+	  Some of these functions were in the XS code anyway, and they
+	  are extremely small, so I didn't see a problem with
+	  duplicating them - saves an extra dependancy.  Plus, Graham
+	  Barr won't let me put ish_int or is_key in his module.
+
+	  Knowing that they are available will also assist in fixing
+	  some longer standing bugs in Tangram (eg, using $obj + 0 to
+	  get a unique ID when refaddr($obj) would be better)
+
+	- lots more input marshalling; if you ever end up doing funny
+	  things to a Set::Object, then at least now you'll get a
+	  clearer error message.
+
+	- more tests; Devel::Cover test coverage now at 91% (stmt),
+	  67% (branch)
+
+	- erroneously putting scalars into Set::Objects now no longer
+	  dumps core.
+
+	- serialisation of Set::Object objects is now possible via the
+	  Storable module (Data::Dumper still does the wrong thing,
+	  but there is nothing I can do about that).
+
+1.05 5 Jan 2004
+	- some segfault fixes with Storable and Perl 5.6.1 (Perl 5.8.1
+	  should be OK)
+
+1.06 1 May 2004
+	- Fixed segfault when attempting to remove items from an empty
+	  set (fix from Richard Sterling Cox)
+
+1.07 16 Aug 2004
+	- yet another segfault fix, this time due to incorrect use of
+	  PUSHs vs XPUSHs.  There is no test case for this bug
+	  unfortunately.
+
+1.08 14 Oct 2004
+	- another segfault bites the dust; this time, avoids a
+	  segfault when taking a difference between sets of exactly
+	  31 and 0 size.  Same root fault as the previous bug, this
+	  time I have a test case for it, too.
+
+1.08_01 12 Jan 2005
+	- First attempt at adding support for scalars.  This version
+	  tries to work as closely to Set::Scalar as possible.
+
+	  This approach will not be continued unless there are a lot
+	  of requests for it to be implemented.  I think it's overly
+	  complicated, and not what people expect when they want a
+	  Set.

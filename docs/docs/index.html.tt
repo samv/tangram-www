@@ -1,7 +1,19 @@
 [% title = "Tangram Documentation" %]
+[% top = "../" %]
 [% INCLUDE header.tt %]
+
 <a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Table of Contents</h1>
+
+<h1 class="POD_TITLE">Tangram Documentation and Tutorials</h1>
+
+  <p>The current maintainers believe in keeping the documentation with
+    the code, so that it is more easily kept up to date.
+
+  <p>If you are getting started with Tangram, the best introductory
+    piece is still Jean-Louis LeRoy's <a
+    href="Tangram/Tour.html">Guided Tour of Tangram</a>.  However, it
+    is no longer (as of Tangram 2.07_05) necessary to 
+
 <hr>
 <table>
 <tr><td colspan="2" class="head2">Presentations</td></tr>
