@@ -1,0 +1,156 @@
+[% title = 'POD: Tangram::Intro - an introduction to Tangram' %]
+[% INCLUDE header.tt %]
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#yin_and_yang_of_object_persistence">YIN AND YANG OF OBJECT PERSISTENCE</a></li>
+	<ul>
+
+		<li><a href="#yin_object_persistence__a_la_pixie_">YIN OBJECT PERSISTENCE (A LA PIXIE)</a></li>
+		<li><a href="#yang_object_persistence">YANG OBJECT PERSISTENCE</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Intro - an introduction to Tangram</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+ # <a href="http://www.faqs.org/rfcs/rfc2324.html">http://www.faqs.org/rfcs/rfc2324.html</a>
+ perl -MNet::HTCPCP -le 'Net::HTCPCP-&gt;new(&quot;BREW&quot;)-&gt;send'</pre>
+<pre>
+ perldoc Tangram::Intro</pre>
+<p>
+</p>
+<hr />
+<h1><a name="yin_and_yang_of_object_persistence">YIN AND YANG OF OBJECT PERSISTENCE</a></h1>
+<p>There are yin and yang approaches to object persistence.  Are you a
+yin programmer or a yang programmer?</p>
+<dl>
+<dt><strong><a name="item_yin"><strong>yin</strong></a></strong><br />
+</dt>
+<dd>
+(without, empty) - ``I just want to store my objects''
+</dd>
+<p></p>
+<dt><strong><a name="item_yang"><strong>yang</strong></a></strong><br />
+</dt>
+<dd>
+(with, full) - ``I want my database to represent my object structure''
+</dd>
+<p></p></dl>
+<p>Please skip to the introduction that suits you.</p>
+<p>
+</p>
+<h2><a name="yin_object_persistence__a_la_pixie_">YIN OBJECT PERSISTENCE (A LA PIXIE)</a></h2>
+<p>One yin approach is to have a single table of objects -</p>
+<pre>
+  +----+------------------+
+  | ID | DATA             |
+  +----+------------------+</pre>
+<p>This is the raw technique used by modules like MLDBM.  Stick objects
+in, get a tag (or, insert with a tag), and later present that tag to
+get the objects out.</p>
+<p>Modules like <em>Pixie</em> extend this concept, to allow you to have
+objects that are <em>persistent</em> (ie, have been stored and could be
+retrieved again by ID or name), inside other structures that are also
+persistent.  This is achieved without storing the same structure
+twice, without having to fetch all objects that are in a single
+persistent structure, and without requiring that the objects being
+stored even know that they are being stored.</p>
+<p>Fantastic.  This method is fine for any application that doesn't mind
+single threading data manipulation on objects.</p>
+<p>Enough banter, let's see some code; here's a project schema:</p>
+<pre>
+ package MyProject::Tangram;</pre>
+<pre>
+ use Heritable::Types;
+ use Tangram::Core;
+ use Tangram::IDBIF;</pre>
+<pre>
+ our $schema =
+     Tangram::Schema-&gt;new
+         ( { classes =&gt;
+              [ HASH =&gt; {
+                    fields =&gt; {
+                        idbif =&gt; # poof!
+                           undef
+                    },
+                },
+              ],
+           } );</pre>
+<pre>
+  sub db { Tangram::Storage-&gt;new($schema, @_) }</pre>
+<p>This defines a sort of ``store anything'' schema.  You could deploy your
+database like this:</p>
+<pre>
+ my $dbh = DBI-&gt;connect
+      (&quot;dbi:mysql:tangram&quot;, &quot;user&quot;, &quot;pass&quot;);
+ Tangram::Relational-&gt;deploy ( $MyProject::Tangram::schema,
+                               $dbh );</pre>
+<p>And then shove objects in and out like this:</p>
+<pre>
+  use MyProject::Tangram;
+  my $storage = MyProject::Tangram::db
+      (&quot;dbi:mysql:tangram&quot;, &quot;user&quot;, &quot;pass&quot;);</pre>
+<pre>
+  my $object = bless { first_name =&gt; &quot;Homer&quot;,
+                       last_lame =&gt; &quot;Simpson&quot;,
+                      }, &quot;NaturalPerson&quot;;
+  my $oid = $storage-&gt;insert($object);</pre>
+<pre>
+  my $homer = $storage-&gt;load($oid);</pre>
+<p>If this Pixie-like functionality is all you're after, then you can
+stop there, and isn't much slower than Pixie.  You also get the choice
+of whether you want to freeze data structures in your database via
+``Data::Dumper'', ``Storable'' or ``YAML''.</p>
+<p>
+</p>
+<h2><a name="yang_object_persistence">YANG OBJECT PERSISTENCE</a></h2>
+<p>If you wish to enable concurrency without paying a large performance
+penalty for most standard types of data access, then you may need to
+extract single parts of your objects into columns.  That way, you can
+make the most use of your database's (hopefully) highly tuned and
+refined ability to cache and manipulate data indices.</p>
+<p>In that case, you may choose to start with mapping all of your
+object's properties to database columns (as was the only option before
+Tangram 2.08):</p>
+<pre>
+ package MyProject::Tangram;</pre>
+<pre>
+ use Tangram::Core;</pre>
+<pre>
+ our $schema =
+     Tangram::Schema-&gt;new
+         ( { classes =&gt;
+              [ NaturalPerson =&gt; {
+                    fields =&gt; {
+                        string =&gt; {
+                        },
+                        integer =&gt; {
+                                    }
+                    },
+                },
+              ],
+           } );</pre>
+<pre>
+  sub db { Tangram::Storage-&gt;new($schema, @_) }</pre>
+<p>Tangram has been transaction-savvy since version 1.  So long as you
+are careful to flush Tangram's object cache, before you start doing
+selects that lock rows for update, then you can easily write
+transaction protected programs.</p>
+
+[% INCLUDE footer.tt %]

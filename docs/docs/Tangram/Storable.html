@@ -1,0 +1,145 @@
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram::Storable - map any Perl object as scalar dump via Storable</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Storable - map any Perl object as scalar dump via Storable</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+   use Tangram::Core;
+   use Tangram::Storable; # always</pre>
+<pre>
+   $schema = Tangram::Schema-&gt;new(
+      classes =&gt; { NaturalPerson =&gt; { fields =&gt; {</pre>
+<pre>
+      storable =&gt;
+      {
+         diary =&gt; # diary is a perl hash 
+         {
+            col =&gt; 'diarydata',
+            sql =&gt; 'BLOB',
+            indent =&gt; 0,
+            terse =&gt; 1,
+            purity =&gt; 0
+         },</pre>
+<pre>
+         lucky_numbers =&gt; 'int', # use defaults
+      }</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Maps arbitrary Perl data structures by serializing to a string
+representation. The persistent fields are grouped in a hash under the
+<code>storable</code> key in the field hash.</p>
+<p>Serialization is done by <a href="/pod/Storable/freeze.html">the Storable::freeze manpage</a>, which traverses the Perl
+data structure and creates a binary representation of it. The
+resulting string will be mapped to the DBMS as a scalar value. During
+restore, the scalar value will be restored with <a href="/pod/Storable/thaw.html">the Storable::thaw manpage</a> to
+reconstruct the original data structure.</p>
+<p>The structure should be able to contain pretty much anything that may
+be safely dumped by Storable.  However, be aware that
+<strong>Tangram::Dump::flatten()</strong> must be able to find the persistent
+objects in the field.  Unless you're using classes that are
+implemented in C and contain other objects, you should be fine
+(Set::Object has a special work-around).</p>
+<p>The field names are passed in a hash that associates a field name with
+a field descriptor. The field descriptor may be either a hash or a
+string. The hash uses the following fields:</p>
+<ul>
+<li><strong><a name="item_col">col</a></strong><br />
+</li>
+<li><strong><a name="item_sql">sql</a></strong><br />
+</li>
+<li><strong><a name="item_indent">indent</a></strong><br />
+</li>
+<li><strong><a name="item_terse">terse</a></strong><br />
+</li>
+<li><strong><a name="item_purity">purity</a></strong><br />
+</li>
+</ul>
+<p>The optional fields <a href="#item_col"><code>col</code></a> and <a href="#item_sql"><code>sql</code></a> specify the column name and the
+column type for the scalar value in the database. If not present,
+<a href="#item_col"><code>col</code></a> defaults to the field name and <a href="#item_sql"><code>sql</code></a> defaults to VARCHAR(255).
+Values will be always quoted as they are passed to the database.</p>
+<p>The remaining optional fields control the serialization process. They
+will be passed down to <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
+<a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
+(<code>indent=0</code>), compact format (<code>terse=1</code>), and quick dump
+(<code>purity=0</code>).</p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>This mapping was contributed by Gabor Herr
+&lt;<a href="mailto:herr@iti.informatik.tu-darmstadt.de">herr@iti.informatik.tu-darmstadt.de</a>&gt;</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

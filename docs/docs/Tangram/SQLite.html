@@ -1,0 +1,110 @@
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram::SQLite - Orthogonal Object Persistence in SQLite databases</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#errata">ERRATA</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::SQLite - Orthogonal Object Persistence in SQLite databases</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+   use Tangram;
+   use Tangram::SQLite;</pre>
+<pre>
+   $schema = Tangram::SQLite-&gt;schema( $hashref );</pre>
+<pre>
+   Tangram::SQLite-&gt;deploy($schema, $dbh);</pre>
+<pre>
+   $storage = Tangram::SQLite-&gt;connect( $schema,
+      $data_source, $username, $password );</pre>
+<pre>
+   $storage-&gt;disconnect();</pre>
+<pre>
+   Tangram::SQLite-&gt;retreat($schema, $dbh);</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is the entry point in the SQLite-specific object-relational
+persistence backend.</p>
+<p>
+</p>
+<hr />
+<h1><a name="errata">ERRATA</a></h1>
+<p>For reasons similar to the <a href="/pod/./Tangram/Pg.html">the Tangram::Pg manpage</a> module, this back-end
+automatically encodes <a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a> objects via <a href="/pod/MIME/Base64.html">the MIME::Base64 manpage</a>
+to avoid truncation of values on NUL bytes.</p>
+<p>Also, note that despite what is mentioned on the front page of
+<em>www.sqlite.org</em>, SQLite is not actually an ACID database; any writer
+to the database has to wait for all other writers to finish before
+they can begin their transaction.</p>
+<p>So make sure you start and complete your transactions as quickly as
+possible with this back-end.</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

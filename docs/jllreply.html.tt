@@ -1,0 +1,124 @@
+[% title = "JLL's reply" %]
+[% INCLUDE header.tt %]
+    <div class="head1">JLL's emancipation of T2</div>
+
+    <p>In the below e-mail, Jean-Louis Leroy, the original author of
+    Tangram, explains his reasons for neglecting to maintain Tangram
+    2.  (the <b>bold</b> sections are my emphasis - Sam)</p>
+
+<pre class="included">
+From: Jean-Louis Leroy &lt;jll@soundobjectlogicANDNOTANOUNCEOFSPAM.com&gt;
+Subject: Re: [Tangram-users] tangram status
+To: tangram-users &lt;tangram-users@lists.sourceforge.net&gt;
+Date: 14 May 2003 15:54:46 +0200
+
+Ok, here I am at last.
+
+It's true that I haven't been very present recently, and the concerns
+about the status and further development of Tangram are
+legitimate. So, in this (long) post I'll try to give a correct picture
+of our plans wrt Tangram; that will include a description of the kind
+of company SOL is, what we've been busying ourselves with, etc.
+
+SOL is a small company. There are four of us, all partners, and
+currently we have no employees. We spend most of our time working as
+contractors. Currently three of us work for <b>Eurocontrol, the agency
+responsible for managing the airspace of 31 european countries</b>.
+
+We don't see ourselves as a pool of mercenaries though. We are all
+technology obsessed people, we believe that we have quality answers to
+recurring problems in software development, and we want to promote
+them. In that respect, SOL is a true company, with objectives of its
+own, and not a mere aggregation of individuals. We're ready to invest
+- time and money - in projects we believe in, but only within our
+sustainable capacities. We don't have any external investors, by
+choice if anything else. The time spent writing this long post will
+reduce by a little bit what the four of us can spend next month on
+pizza and beer ;-)
+
+The Tangram you use, we call it 'T2'. It's an object-relational mapper
+written in Perl. Some of you probably remember me talking about T2's
+successor, <b>T3, which is a multi-language approach to object
+persistence in multiple media (relational database, XML, etc) and,
+more generally, is a tool for generic object manipulation</b>.
+
+We haven't paid much attention to T2 because we've barely used it in
+these recent years. I've implemented a couple of CGI websites in which
+I've used Tangram, and it worked well enough for me these times; I'm
+*very* pleased to hear that it does for most of you too, most of the
+time.
+
+We made very little direct cash with Tangram, and no benefit at all,
+at least from an accountant's point of view. We had a couple (like in
+'2') of requests for commercial licenses, and it would have cost us a
+lot more to hire the legal support to write them down than dozens of
+license sales would have secured. We sold one support contract.
+
+Mind you, we're not bitter about it. We see ourselves as craftsmen,
+not sellers of boxed software like that guy in Redmond ;-)
+
+Currently we've dropped the entire idea/hope/illusion of making euros
+or dollars with our open-source software. OTOH we still firmly believe
+that 'the community' can offer us a lot, not in cash, but in field
+testing and code contributions.
+
+Ok, forward.
+
+Frankly, for us, T2 is a thing from the past. We don't plan to invest
+any more time, effort or money in it, beyond the microscopic. We'd be
+glad to transfer the responsibility of maintaining T2 to someone
+else. We don't see that as a 'fork' - it would be a one-sprong fork
+indeed...It would be nice if the maintainance effort was made via our
+SourceForge account, and if the filiation between T2 and SOL remained
+evident. For the least, this is likely to help us bring T3 to
+achievement. That being said, we acknowledge the right for anybody to
+fork any piece of GPL code, anytime.
+
+<b>Our focus is now on T3.</b>
+
+<b>The famed T3 is no science fiction at all. It's used everyday at
+Eurocontrol, and that usage is spreading. We use it to exchange and
+massage *complex* data between C++, Java and Perl.</b> InCASE - a
+Tangram-based universal object GUI written in Java - is used to
+visualize and edit test data for crucial software at Eurocontrol.
+
+Up to now, the development of T3 has been driven by the needs of our
+only Tangram paying client - Eurocontrol. <b>We have XML and binary and
+text dump and diff backends in all three languages</b>. We don't have a
+relational backend yet because they use a commercial, proprietary
+product.
+
+Recently there's been an exciting development: <b>last year we applied
+for a R&amp;D subvention from the Brussels Region - and we got it!</b> We
+committed to developing the T3 architecture in the three
+aforementioned languages, plus the XML *and* relational backends, plus
+some cross-language development and testing tools. The Region funds
+60% of the effort. We seek other means of financing, and we're ready
+to hurt our wallet a bit ;-)
+
+The subvention includes funds for writing papers, going to
+conferences, etc.
+
+Yes T3 is an open-source project. That's in the agreement with the
+Region. While in the beginning T3 is more of a Cathedral project, I do
+see a lot of room for some Bazaar. For example, my command of
+automake/autoconf is nil; someone wants to help? Tomorrow I need some
+sort of ODBC in C++ on Linux, sure I've heard that it exists, but
+where, are there several contenders, which one is best, etc? T3 will
+support multiple backends, we want many of them, feel like cranking
+yours? What about two new mailing lists: tangram-t2-maintainers and
+tangram-t3-dev? The first one will be that new guy's turf, and Jacques
+and Pascal and Yves and I will be present and active and listening on
+the latter.
+
+Talked a lot. Listening now...
+-- 
+Jean-Louis Leroy
+Sound Object Logic
+http://www.soundobjectlogic.com
+</pre>
+
+<p>If you want a full transcript of the thread, consult your local
+Oracle, because SourceForge has lost it.</p>
+
+[% INCLUDE footer.tt %]

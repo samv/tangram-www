@@ -1,61 +1,103 @@
-<!--#set var="title" value="Documentation: Tangram::Tour"-->
-<!--#include virtual="/header.html"-->
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Tangram::Tour</h1>
-<hr>
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram - Guided Tour</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
 <ul>
-<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
-<li><a class="POD_NAVLINK" href="#INTRODUCTION">INTRODUCTION</a>
-<ul>
-<li><a class="POD_NAVLINK" href="#Creating_a_Schema">Creating a Schema</a>
-<li><a class="POD_NAVLINK" href="#Setting_up_a_databas">Setting up a database</a>
-<li><a class="POD_NAVLINK" href="#Connecting_to_a_data">Connecting to a database</a>
-<li><a class="POD_NAVLINK" href="#Inserting_objects">Inserting objects</a>
-<li><a class="POD_NAVLINK" href="#Updating_objects">Updating objects</a>
-<li><a class="POD_NAVLINK" href="#Memory_management">Memory management</a>
-<li><a class="POD_NAVLINK" href="#Finding_objects">Finding objects</a>
-<li><a class="POD_NAVLINK" href="#Loading_by_ID">Loading by ID</a>
-<li><a class="POD_NAVLINK" href="#Obtaining_objects_fr">Obtaining objects from other objects</a>
-<li><a class="POD_NAVLINK" href="#select">select</a>
-<li><a class="POD_NAVLINK" href="#Filtering">Filtering</a>
-<li><a class="POD_NAVLINK" href="#Cursors">Cursors</a>
-<li><a class="POD_NAVLINK" href="#Remote_objects">Remote objects</a>
-<li><a class="POD_NAVLINK" href="#Multiple_loads">Multiple loads</a>
-<li><a class="POD_NAVLINK" href="#Transactions">Transactions</a>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#introduction">INTRODUCTION</a></li>
+	<ul>
+
+		<li><a href="#creating_a_schema">Creating a Schema</a></li>
+		<li><a href="#setting_up_a_database">Setting up a database</a></li>
+		<li><a href="#connecting_to_a_database">Connecting to a database</a></li>
+		<li><a href="#inserting_objects">Inserting objects</a></li>
+		<li><a href="#updating_objects">Updating objects</a></li>
+		<li><a href="#memory_management">Memory management</a></li>
+		<li><a href="#finding_objects">Finding objects</a></li>
+		<li><a href="#loading_by_id">Loading by ID</a></li>
+		<li><a href="#obtaining_objects_from_other_objects">Obtaining objects from other objects</a></li>
+		<li><a href="#select">select</a></li>
+		<li><a href="#filtering">Filtering</a></li>
+		<li><a href="#cursors">Cursors</a></li>
+		<li><a href="#remote_objects">Remote objects</a></li>
+		<li><a href="#multiple_loads">Multiple loads</a></li>
+		<li><a href="#transactions">Transactions</a></li>
+	</ul>
+
 </ul>
-</ul>
-<hr>
-<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
-<p class="POD_TEXT">
-Tangram - Guided Tour
+<!-- INDEX END -->
+
+<hr />
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="INTRODUCTION">INTRODUCTION</a></h2>
-<p class="POD_TEXT">
-In this tour, we add persistence to a simple Person design.
+<h1><a name="name">NAME</a></h1>
+<p>Tangram - Guided Tour</p>
+<p>
 </p>
-<p class="POD_TEXT">
-A Person is either a NaturalPerson or a LegalPerson. Persons (in
-general) have a collection of addresses.
-</p>
-<p class="POD_TEXT">
-An address consists in a type (a string) and a city (also a string).
-</p>
-<p class="POD_TEXT">
-NaturalPerson - a subclass of Person - represents persons of flesh and
+<hr />
+<h1><a name="introduction">INTRODUCTION</a></h1>
+<p>In this tour, we add persistence to a simple Person design.</p>
+<p>A Person is either a NaturalPerson or a LegalPerson. Persons (in
+general) have a collection of addresses.</p>
+<p>An address consists in a type (a string) and a city (also a string).</p>
+<p>NaturalPerson - a subclass of Person - represents persons of flesh and
 blood. NaturalPersons have a name and a firstName (both strings) and
 an age (an integer). NaturalPersons sometimes have a partner (another
-NaturalPerson) and even children (a collection of NaturalPersons).
-</p>
-<p class="POD_TEXT">
-LegalPerson - another subclass of Person - represents companies and
+NaturalPerson) and even children (a collection of NaturalPersons).</p>
+<p>LegalPerson - another subclass of Person - represents companies and
 other entities that the law regards as 'persons'. A LegalPerson has a
-name (a string) and a manager (a NaturalPerson).
-</p>
-<p class="POD_TEXT">
-All this is expressed in the following UML diagram:
-</p>
-<p></p>
-<pre class="POD_VERBATIM">
+name (a string) and a manager (a NaturalPerson).</p>
+<p>All this is expressed in the following UML diagram:</p>
+<pre>
                        +---------------------+        +--------------+ 
                        |       Person        |        |    Address   |
                        |     { abstract }    |1&lt;&gt;--&gt;-*|--------------|
@@ -75,634 +117,498 @@ All this is expressed in the following UML diagram:
                 1       1 
                 |    partner
                 |       |
-                +---&gt;---+
-</pre>
-<p class="POD_TEXT">
-<b>Note that Tangram does <i>not</i> create the corresponding Perl
-packages!</b>. That's up to the user. However, to facilitate
+                +---&gt;---+</pre>
+<p><strong>Note that Tangram does <em>not</em> create the corresponding Perl
+packages!</strong>. That's up to the user. However, to facilitate
 experimentation, Tangram comes with a module that implements the
-necessary classes. For more information see the <a class="POD_LINK" href="../Tangram/Springfield.html">Tangram::Springfield</a> manpage.
-</p>
-<p class="POD_TEXT">
-Before we can actually store objects we must complete two steps:
-</p>
-<ol class="POD_LIST">
-<li class="POD_ITEM"><a name="_"></a>
-<p class="POD_TEXT">
+necessary classes. For more information see <a href="/pod/./Tangram/Springfield.html">the Tangram::Springfield manpage</a>.</p>
+<p>Before we can actually store objects we must complete two steps:</p>
+<ol>
+<li></li>
 Create a Schema
-</p>
-<li class="POD_ITEM"><a name="_1"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 Create a database
+<p></p></ol>
+<p>
 </p>
-</ol>
-<h3 class="POD_HEAD2"><a name="Creating_a_Schema">Creating a Schema</a></h3>
-<p class="POD_TEXT">
-A Schema object contains information about the persistent
-aspects of a system of classes.
-</p>
-<p class="POD_TEXT">
-It also gives a degree of control over the way Tangram performs the
-object-relational mapping, but in this tour we will use all the defaults.
-</p>
-<p class="POD_TEXT">
-Here is the Schema for Springfield:
-</p>
-<pre class="POD_VERBATIM">
-   $schema = Tangram::Relational-&gt;schema( {
-
-      classes =&gt; [
-
+<h2><a name="creating_a_schema">Creating a Schema</a></h2>
+<p>A Schema object contains information about the persistent
+aspects of a system of classes.</p>
+<p>It also gives a degree of control over the way Tangram performs the
+object-relational mapping, but in this tour we will use all the defaults.</p>
+<p>Here is the Schema for Springfield:</p>
+<pre>
+   $schema = Tangram::Relational-&gt;schema( {</pre>
+<pre>
+      classes =&gt; [</pre>
+<pre>
        Person =&gt; {
           abstract =&gt; 1,
-
+      
           fields =&gt; {
               iarray =&gt; {
                  addresses =&gt; { class =&gt; 'Address', aggreg =&gt; 1 } }
           }
-       },
-
+       },</pre>
+<pre>
       Address =&gt; {
          fields =&gt; {
             string =&gt; [ qw( kind city ) ],
          },
-      },
-
-      NaturalPerson =&gt; {
-
-         bases =&gt; [ qw( Person ) ],
-
+      },</pre>
+<pre>
+      NaturalPerson =&gt; {</pre>
+<pre>
+         bases =&gt; [ qw( Person ) ],</pre>
+<pre>
          fields =&gt; {
             string   =&gt; [ qw( firstName name ) ],
             int      =&gt; [ qw( age ) ],
             ref      =&gt; [ qw( partner ) ],
             array    =&gt; { children =&gt; 'NaturalPerson' },
          }
-      },
-
+      },</pre>
+<pre>
       LegalPerson =&gt; {
-         bases =&gt; [ qw( Person ) ],
-
+         bases =&gt; [ qw( Person ) ],</pre>
+<pre>
          fields =&gt; {
             string   =&gt; [ qw( name ) ],
             ref      =&gt; [ qw( manager ) ],
             }
          },
-   ] } );
-</pre>
-<p class="POD_TEXT">
-The Schema lists all the classes that need persistence, along with
+   ] } );</pre>
+<p>The Schema lists all the classes that need persistence, along with
 their attributes and the inheritance relationships.  We must provide
 type information for the attributes, because SQL is more typed than
 Perl.  We also tell Tangram that <code>Person</code> is an abstract class, so it
-wastes no time attempting to retrieve objects of that exact class.
-</p>
-<p class="POD_TEXT">
-Note that Tangram cannot deduce this information by itself. While Perl
+wastes no time attempting to retrieve objects of that exact class.</p>
+<p>Note that Tangram cannot deduce this information by itself. While Perl
 makes it possible to extract the list of all the classes in an
 application, in general not all classes will need to persist. A class
 may have both persistent and non-persistent bases.  As for attributes,
 Perl's most typical representation for objects - a hash - even allows
-two objects of the same class to have a different set of attributes.
+two objects of the same class to have a different set of attributes.</p>
+<p>For more information on creating Schemas, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>
+and  <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on creating Schemas, see the <a class="POD_LINK" href="../Tangram/Relational.html">Tangram::Relational</a> manpage
-and  the <a class="POD_LINK" href="../Tangram/Schema.html">Tangram::Schema</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Setting_up_a_databas">Setting up a database</a></h3>
-<p class="POD_TEXT">
-Now we create a database. The simplest way is to create an
+<h2><a name="setting_up_a_database">Setting up a database</a></h2>
+<p>Now we create a database. The simplest way is to create an
 empty database and let Tangram initialize it:
-    use Tangram;
-</p>
-<pre class="POD_VERBATIM">
+    use Tangram;</p>
+<pre>
     $dbh = DBI-&gt;connect(
-        @cp );
-
-    Tangram::Relational-&gt;deploy($schema, $dbh );
-
-    $dbh-&gt;disconnect();
-</pre>
-<p class="POD_TEXT">
-Tangram::Relational is the vanilla object-relational backend. It
+        @cp );</pre>
+<pre>
+    Tangram::Relational-&gt;deploy($schema, $dbh );</pre>
+<pre>
+    $dbh-&gt;disconnect();</pre>
+<p>Tangram::Relational is the vanilla object-relational backend. It
 assumes that the database understands standard SQL, and that both the
 database and the related DBI driver fully implements the DBI
-specification.
-</p>
-<p class="POD_TEXT">
-Tangram also comes with vendor-specific backends for Mysql and
+specification.</p>
+<p>Tangram also comes with vendor-specific backends for Mysql and
 Sybase. When a vendor-specific backend exists, it should be used in
-place of the vanilla backend.
+place of the vanilla backend.</p>
+<p>For more information, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>, <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a>
+and <a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information, see the <a class="POD_LINK" href="../Tangram/Relational.html">Tangram::Relational</a> manpage, the <a class="POD_LINK" href="../Tangram/Sybase.html">Tangram::Sybase</a> manpage
-and the <a class="POD_LINK" href="../Tangram/mysql.html">Tangram::mysql</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Connecting_to_a_data">Connecting to a database</a></h3>
-<p class="POD_TEXT">
-We are now ready to store objects. First we connect to the database,
+<h2><a name="connecting_to_a_database">Connecting to a database</a></h2>
+<p>We are now ready to store objects. First we connect to the database,
 using the class method Tangram::Relational::connect (or
-Tangram::mysql::connect for Mysql).
-</p>
-<p class="POD_TEXT">
-The first argument of connect() the schema object; the others are
+Tangram::mysql::connect for Mysql).</p>
+<p>The first argument of <code>connect()</code> the schema object; the others are
 passed directly to DBI::connect. The method returns a Tangram::Storage
-object that will be used to communicate with the database.
-</p>
-<p class="POD_TEXT">
-For example:
-</p>
-<pre class="POD_VERBATIM">
+object that will be used to communicate with the database.</p>
+<p>For example:</p>
+<pre>
     $storage = Tangram::Relational-&gt;connect( $schema,
-        @cp );
-</pre>
-<p class="POD_TEXT">
-connects to a database named Springfield via the vanilla Relational
-backend, using a specific account and password.
+        @cp );</pre>
+<p>connects to a database named Springfield via the vanilla Relational
+backend, using a specific account and password.</p>
+<p>For more information on connecting to databases, see  <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a> and
+<a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on connecting to databases, see  the <a class="POD_LINK" href="../Tangram/Relational.html">Tangram::Relational</a> manpage and
-the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Inserting_objects">Inserting objects</a></h3>
-<p class="POD_TEXT">
-Now we can populate the database:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="inserting_objects">Inserting objects</a></h2>
+<p>Now we can populate the database:</p>
+<pre>
    $storage-&gt;insert( NaturalPerson-&gt;new(
-      firstName =&gt; 'Montgomery', name =&gt; 'Burns' ) );
-</pre>
-<p class="POD_TEXT">
-This inserts a single NaturalPerson object into the database. We can
-insert several objects in one call:
-</p>
-<pre class="POD_VERBATIM">
+      firstName =&gt; 'Montgomery', name =&gt; 'Burns' ) );</pre>
+<p>This inserts a single NaturalPerson object into the database. We can
+insert several objects in one call:</p>
+<pre>
    $storage-&gt;insert(
       NaturalPerson-&gt;new( firstName =&gt; 'Patty', name =&gt; 'Bouvier' ),
-      NaturalPerson-&gt;new( firstName =&gt; 'Selma', name =&gt; 'Bouvier' ) );
-</pre>
-<p class="POD_TEXT">
-Sometimes Tangram saves objects implicitly:
-</p>
-<pre class="POD_VERBATIM">
+      NaturalPerson-&gt;new( firstName =&gt; 'Selma', name =&gt; 'Bouvier' ) );</pre>
+<p>Sometimes Tangram saves objects implicitly:</p>
+<pre>
     @kids = (
         NaturalPerson-&gt;new( firstName =&gt; 'Bart', name =&gt; 'Simpson' ),
-        NaturalPerson-&gt;new( firstName =&gt; 'Lisa', name =&gt; 'Simpson' ) );
-
+        NaturalPerson-&gt;new( firstName =&gt; 'Lisa', name =&gt; 'Simpson' ) );</pre>
+<pre>
     $marge = NaturalPerson-&gt;new(
         firstName =&gt; 'Marge', name =&gt; 'Simpson',
         addresses =&gt; [
             Address-&gt;new(
                 kind =&gt; 'residence', city =&gt; 'Springfield' ) ],
-        children =&gt; [ @kids ] );
-
+        children =&gt; [ @kids ] );</pre>
+<pre>
     $homer = NaturalPerson-&gt;new( firstName =&gt; 'Homer', name =&gt; 'Simpson',
         addresses =&gt; [
             Address-&gt;new(
                 kind =&gt; 'residence', city =&gt; 'Springfield' ),
             Address-&gt;new(
                 kind =&gt; 'work', city =&gt; 'Springfield' ) ],
-        children =&gt; [ @kids ] );
-
+        children =&gt; [ @kids ] );</pre>
+<pre>
     $homer-&gt;{partner} = $marge;
     $marge-&gt;{partner} = $homer;
-
-    $homer_id = $storage-&gt;insert( $homer );
-</pre>
-<p class="POD_TEXT">
-In the process of saving Homer, Tangram detects that it contains
+   
+    $homer_id = $storage-&gt;insert( $homer );</pre>
+<p>In the process of saving Homer, Tangram detects that it contains
 references to objects that are not persistent yet (Marge, the
 addresses and the kids), and inserts them automatically. Note that
-Tangram can handle cycles: Homer and Marge refer to each other.
+Tangram can handle cycles: Homer and Marge refer to each other.</p>
+<p><code>insert()</code> returns an object id, or a list of object ids, that uniquely
+identify the <code>object(s)</code> that have been inserted.</p>
+<p>For more information on inserting objects, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-insert() returns an object id, or a list of object ids, that uniquely
-identify the object(s) that have been inserted.
-</p>
-<p class="POD_TEXT">
-For more information on inserting objects, see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Updating_objects">Updating objects</a></h3>
-<p class="POD_TEXT">
-Updating works pretty much the same as inserting:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="updating_objects">Updating objects</a></h2>
+<p>Updating works pretty much the same as inserting:</p>
+<pre>
     my $maggie = NaturalPerson-&gt;new(
-      firstName =&gt; 'Maggie', name =&gt; 'Simpson' );
-
+      firstName =&gt; 'Maggie', name =&gt; 'Simpson' );</pre>
+<pre>
     push @{ $homer-&gt;{children} }, $maggie;
-    push @{ $marge-&gt;{children} }, $maggie;
-
-    $storage-&gt;update( $homer, $marge );
-</pre>
-<p class="POD_TEXT">
-Here again Tangram detects that Maggie is not already persistent in
+    push @{ $marge-&gt;{children} }, $maggie;</pre>
+<pre>
+    $storage-&gt;update( $homer, $marge );</pre>
+<p>Here again Tangram detects that Maggie is not already persistent in
 $storage and automatically inserts it. Note that we need to update
-Marge explicitly because she was already persistent.
+Marge explicitly because she was already persistent.</p>
+<p>For more information on updating objects, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on updating objects, see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Memory_management">Memory management</a></h3>
-<p class="POD_TEXT">
-...is still up to you. Tangram won't break in-memory cycles, it's a
+<h2><a name="memory_management">Memory management</a></h2>
+<p>...is still up to you. Tangram won't break in-memory cycles, it's a
 persistence tool, not a memory management tool. Let's make sure we
-don't leak objects:
-</p>
-<pre class="POD_VERBATIM">
-   $homer-&gt;{partner} = undef; # do this before $homer goes out of scope
-</pre>
-<p class="POD_TEXT">
-Also, when we're finished with a storage, we can explicitly disconnect it:
-</p>
-<pre class="POD_VERBATIM">
-   $storage-&gt;disconnect();
-</pre>
-<p class="POD_TEXT">
-Whether it's important or not to disconnect the Storage depends on
-what version of Perl you use. If it's prior to 5.6, you <i>must</i>
-disconnect the storage explicitly (or at least call unload())
+don't leak objects:</p>
+<pre>
+   $homer-&gt;{partner} = undef; # do this before $homer goes out of scope</pre>
+<p>Also, when we're finished with a storage, we can explicitly disconnect it:</p>
+<pre>
+   $storage-&gt;disconnect();</pre>
+<p>Whether it's important or not to disconnect the Storage depends on
+what version of Perl you use. If it's prior to 5.6, you <em>must</em>
+disconnect the storage explicitly (or at least call <code>unload())</code>
 otherwise the Storage will prevent the objects it controls from being
-reclaimed by Perl. For more information see see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
+reclaimed by Perl. For more information see see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="Finding_objects">Finding objects</a></h3>
-<p class="POD_TEXT">
-After reconnecting to Springfield, we now want to retrieve some objects.
-But how do we find them? Basically there are three options
-</p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="_2"></a>
-<p class="POD_TEXT">
+<h2><a name="finding_objects">Finding objects</a></h2>
+<p>After reconnecting to Springfield, we now want to retrieve some objects.
+But how do we find them? Basically there are three options</p>
+<ul>
+<li></li>
 We know their IDs.
-</p>
-<li class="POD_ITEM"><a name="_3"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 We obtain them from another object.
-</p>
-<li class="POD_ITEM"><a name="_4"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 We use a query.
+<p></p></ul>
+<p>
 </p>
-</ul>
-<h3 class="POD_HEAD2"><a name="Loading_by_ID">Loading by ID</a></h3>
-<p class="POD_TEXT">
-When an object is inserted, Tangram assigns an identifier to it.
+<h2><a name="loading_by_id">Loading by ID</a></h2>
+<p>When an object is inserted, Tangram assigns an identifier to it.
 IDs are numbers that uniquely identify objects in the database.
-<code>insert</code> returns the ID(s) of the object(s) it was passed:
-</p>
-<pre class="POD_VERBATIM">
+<code>insert</code> returns the <code>ID(s)</code> of the <code>object(s)</code> it was passed:</p>
+<pre>
     $storage = Tangram::Relational-&gt;connect( $schema,
-        @cp );
-
+        @cp );</pre>
+<pre>
     $ned_id = $storage-&gt;insert( NaturalPerson-&gt;new(
-        firstNname =&gt; 'Ned', name =&gt; 'Flanders' ) );
-
+        firstNname =&gt; 'Ned', name =&gt; 'Flanders' ) );</pre>
+<pre>
     @sisters_id = $storage-&gt;insert(
         NaturalPerson-&gt;new( firstName =&gt; 'Patty', name =&gt; 'Bouvier' ),
-        NaturalPerson-&gt;new( firstName =&gt; 'Selma', name =&gt; 'Bouvier' ) );
-</pre>
-<p class="POD_TEXT">
-This enables us to retrieve the objects:
-</p>
-<pre class="POD_VERBATIM">
+        NaturalPerson-&gt;new( firstName =&gt; 'Selma', name =&gt; 'Bouvier' ) );</pre>
+<p>This enables us to retrieve the objects:</p>
+<pre>
     $ned = $storage-&gt;load( $ned_id );
-    @sisters = $storage-&gt;load( @sisters_id );
-</pre>
-<p class="POD_TEXT">
-For more information on loading objects by id, see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
+    @sisters = $storage-&gt;load( @sisters_id );</pre>
+<p>For more information on loading objects by id, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="Obtaining_objects_fr">Obtaining objects from other objects</a></h3>
-<p class="POD_TEXT">
-Once Homer has been restored to his previous state, including his relations
-with his family. Thus we can say:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="obtaining_objects_from_other_objects">Obtaining objects from other objects</a></h2>
+<p>Once Homer has been restored to his previous state, including his relations
+with his family. Thus we can say:</p>
+<pre>
     $storage = Tangram::Relational-&gt;connect( $schema,
-        @cp );
-
-    $homer = $storage-&gt;load( $homer_id ); # load by id
-
+        @cp );</pre>
+<pre>
+    $homer = $storage-&gt;load( $homer_id ); # load by id</pre>
+<pre>
     $marge = $homer-&gt;{partner};
-    @kids = @{ $homer-&gt;{children} };
-</pre>
-<p class="POD_TEXT">
-Actually, when Tangram loads an object that contains references to
+    @kids = @{ $homer-&gt;{children} };</pre>
+<p>Actually, when Tangram loads an object that contains references to
 other persistent objects, it doesn't retrieve the referenced objects
 immediately. Marge is retrieved only when Homer's 'partner' field is
 accessed.  This mechanism is almost totally transparent, we'd have to
-use <code>tied</code> to observe a non-present collection or reference.
+use <code>tied</code> to observe a non-present collection or reference.</p>
+<p>For more information on relationships, see <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>,
+<a href="/pod/./Tangram/Ref.html">the Tangram::Ref manpage</a>, <a href="/pod/./Tangram/Array.html">the Tangram::Array manpage</a>, <a href="/pod/./Tangram/IntrArray.html">the Tangram::IntrArray manpage</a>,
+<a href="/pod/./Tangram/Set.html">the Tangram::Set manpage</a> and <a href="/pod/./Tangram/IntrSet.html">the Tangram::IntrSet manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on relationships, see the <a class="POD_LINK" href="../Tangram/Schema.html">Tangram::Schema</a> manpage,
-the <a class="POD_LINK" href="../Tangram/Ref.html">Tangram::Ref</a> manpage, the <a class="POD_LINK" href="../Tangram/Array.html">Tangram::Array</a> manpage, the <a class="POD_LINK" href="../Tangram/IntrArray.html">Tangram::IntrArray</a> manpage,
-the <a class="POD_LINK" href="../Tangram/Set.html">Tangram::Set</a> manpage and the <a class="POD_LINK" href="../Tangram/IntrSet.html">Tangram::IntrSet</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="select">select</a></h3>
-<p class="POD_TEXT">
-To retrieve all the objects of a given class, we use <code>select</code>:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="select">select</a></h2>
+<p>To retrieve all the objects of a given class, we use <code>select</code>:</p>
+<pre>
     $storage = Tangram::Relational-&gt;connect( $schema,
-        @cp );
-
-    my @people = $storage-&gt;select( 'NaturalPerson' );
-</pre>
-<p class="POD_TEXT">
-Tangram supports polymorphic retrieval. Let's first insert a
-LegalPerson:
-</p>
-<pre class="POD_VERBATIM">
+        @cp );</pre>
+<pre>
+    my @people = $storage-&gt;select( 'NaturalPerson' );</pre>
+<p>Tangram supports polymorphic retrieval. Let's first insert a
+LegalPerson:</p>
+<pre>
     $storage-&gt;insert( LegalPerson-&gt;new(
-        name =&gt; 'Springfield Nuclear Power Plant', manager =&gt; $burns ) );
-</pre>
-<p></p>
-<p class="POD_TEXT">
-Now we can retrieve all the Persons - Natural or Legal - by making a
-single call to select(), passing it the base class name:
+        name =&gt; 'Springfield Nuclear Power Plant', manager =&gt; $burns ) );</pre>
+<p>Now we can retrieve all the Persons - Natural or Legal - by making a
+single call to select(), passing it the base class name:</p>
+<pre>
+    my @all = $storage-&gt;select( 'Person' );</pre>
+<p>For more information on select(), see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>
 </p>
-<pre class="POD_VERBATIM">
-    my @all = $storage-&gt;select( 'Person' );
-</pre>
-<p class="POD_TEXT">
-For more information on select(), see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Filtering">Filtering</a></h3>
-<p class="POD_TEXT">
-Usually we won't want to load <i>all</i> the NaturalPersons, only those
+<h2><a name="filtering">Filtering</a></h2>
+<p>Usually we won't want to load <em>all</em> the NaturalPersons, only those
 objects that satisfy some condition. Say, for example, that we want to
 load only the NaturalPersons whose name field is 'Simpson'. Here's how
-this can be done:
-</p>
-<pre class="POD_VERBATIM">
+this can be done:</p>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
-    my @simpsons = $storage-&gt;select( $person, $person-&gt;{name} eq 'Simpson' );
-</pre>
-<p class="POD_TEXT">
-This will bring in memory only the Simpsons; Burns or the Bouvier
+    my @simpsons = $storage-&gt;select( $person, $person-&gt;{name} eq 'Simpson' );</pre>
+<p>This will bring in memory only the Simpsons; Burns or the Bouvier
 sisters won't turn up.  The filtering happens on the database server
 side, not in Perl space. Internally, Tangram translates the
 <code>$person-</code>{name} eq 'Simpson'&gt; clause into a piece of SQL code that
-is passed down to the database.
-</p>
-<p class="POD_TEXT">
-The above example only begins to scratch the surface of Tangram's
-filtering capabilities. The following examples are all legal and working code:
-</p>
-<pre class="POD_VERBATIM">
-    # find all the persons *not* named Simpson
-
+is passed down to the database.</p>
+<p>The above example only begins to scratch the surface of Tangram's
+filtering capabilities. The following examples are all legal and working code:</p>
+<pre>
+    # find all the persons *not* named Simpson</pre>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
-    my @others = $storage-&gt;select( $person, $person-&gt;{name} ne 'Simpson' );
-
-    # same thing in a different way
-
+    my @others = $storage-&gt;select( $person, $person-&gt;{name} ne 'Simpson' );</pre>
+<pre>
+    # same thing in a different way</pre>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
-    my @others = $storage-&gt;select( $person, !($person-&gt;{name} eq 'Simpson') );
-
-    # find all the persons who are older than me
-
+    my @others = $storage-&gt;select( $person, !($person-&gt;{name} eq 'Simpson') );</pre>
+<pre>
+    # find all the persons who are older than me</pre>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
-    my @elders = $storage-&gt;select( $person, $person-&gt;{age} &gt; 35 );
-
-    # find all the Simpsons older than me
-
+    my @elders = $storage-&gt;select( $person, $person-&gt;{age} &gt; 35 );</pre>
+<pre>
+    # find all the Simpsons older than me</pre>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
     my @simpsons = $storage-&gt;select( $person,
-        $person-&gt;{name} eq 'Simpson' &amp; $person-&gt;{age} &gt; 35 );
-
-    # find Homer's wife - note that select *must* be called in list context
-
+        $person-&gt;{name} eq 'Simpson' &amp; $person-&gt;{age} &gt; 35 );</pre>
+<pre>
+    # find Homer's wife - note that select *must* be called in list context</pre>
+<pre>
     my ($person1, $person2) = $storage-&gt;remote(
-        qw( NaturalPerson NaturalPerson ));
-
+        qw( NaturalPerson NaturalPerson ));</pre>
+<pre>
     my ($marge) = $storage-&gt;select( $person1,
         $person1-&gt;{partner} == $person2
-        &amp; $person2-&gt;{firstName} eq 'Homer' &amp; $person2-&gt;{name} eq 'Simpson' );
-
-    # find Homer's wife - this time Homer is already in memory
-
+        &amp; $person2-&gt;{firstName} eq 'Homer' &amp; $person2-&gt;{name} eq 'Simpson' );</pre>
+<pre>
+    # find Homer's wife - this time Homer is already in memory</pre>
+<pre>
     my $homer = $storage-&gt;load( $homer_id );
-    my $person = $storage-&gt;remote( 'NaturalPerson' );
-
+    my $person = $storage-&gt;remote( 'NaturalPerson' );</pre>
+<pre>
     my ($marge) = $storage-&gt;select( $person,
-        $person-&gt;{partner} == $homer );
-
-    # find everybody who works in Springfield
-
-    my $address = $storage-&gt;remote( 'Address' );
-
+        $person-&gt;{partner} == $homer );</pre>
+<pre>
+    # find everybody who works in Springfield</pre>
+<pre>
+    my $address = $storage-&gt;remote( 'Address' );</pre>
+<pre>
     my @population = $storage-&gt;select( $person,
         $person-&gt;{addresses}-&gt;includes( $address )
         &amp; $address-&gt;{kind} eq 'work'
-        &amp; $address-&gt;{city} eq 'Springfield');
-
-    # find the parents of Bart Simpson
-
+        &amp; $address-&gt;{city} eq 'Springfield');</pre>
+<pre>
+    # find the parents of Bart Simpson</pre>
+<pre>
     my ($person1, $person2) = $storage-&gt;remote(
-        qw( NaturalPerson NaturalPerson ));
-
+        qw( NaturalPerson NaturalPerson ));</pre>
+<pre>
     my @parents = $storage-&gt;select( $person1,
         $person1-&gt;{children}-&gt;includes( $person2 )
            &amp; $person2-&gt;{firstName} eq 'Bart'
-           &amp; $person2-&gt;{name} eq 'Simpson' );
-
+           &amp; $person2-&gt;{name} eq 'Simpson' );</pre>
+<pre>
     # load Bart
-    my ($bart) = $storage-&gt;select( $person1, $person1-&gt;{firstName} eq 'Bart');
-
+    my ($bart) = $storage-&gt;select( $person1, $person1-&gt;{firstName} eq 'Bart');</pre>
+<pre>
     # find the parents of Bart, this time given an object already loaded
-    my $person = $storage-&gt;remote( 'NaturalPerson' );
-
+    my $person = $storage-&gt;remote( 'NaturalPerson' );</pre>
+<pre>
     @parents = $storage-&gt;select( $person,
-        $person-&gt;{children}-&gt;includes( $bart ) );
-</pre>
-<p class="POD_TEXT">
-Note that Tangram uses a single ampersand (&amp;) or vertical bar (|) to
+        $person-&gt;{children}-&gt;includes( $bart ) );</pre>
+<p>Note that Tangram uses a single ampersand (&amp;) or vertical bar (|) to
 represent logical conjunction or disjunction, not the usual &amp;&amp; or
 ||. This is due to a limitation in Perl's operator overloading
 mechanism. Make sure you never forget this, because, unfortunately,
-using &amp;&amp; or || in place of &amp; or | is not even a syntax error :(
-</p>
-<p class="POD_TEXT">
-Finally, Tangram make it possible to retrieve tuples of related objects:
-</p>
-<pre class="POD_VERBATIM">
-    my ($parent, $child) = $storage-&gt;remote('NaturalPerson', 'NaturalPerson');
-
+using &amp;&amp; or || in place of &amp; or | is not even a syntax error :(</p>
+<p>Finally, Tangram make it possible to retrieve tuples of related objects:</p>
+<pre>
+    my ($parent, $child) = $storage-&gt;remote('NaturalPerson', 'NaturalPerson');</pre>
+<pre>
     @pairs = $storage-&gt;select( [ $parent, $child ],
-        $parent-&gt;{children}-&gt;includes($child) );
-</pre>
-<p class="POD_TEXT">
-@pairs contains a list of references to arrays of size two; each array
-contains a pair of parent and child.
+        $parent-&gt;{children}-&gt;includes($child) );</pre>
+<p>@pairs contains a list of references to arrays of size two; each array
+contains a pair of parent and child.</p>
+<p>For more information on filters, see <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a> and <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on filters, see the <a class="POD_LINK" href="../Tangram/Expr.html">Tangram::Expr</a> manpage and the <a class="POD_LINK" href="../Tangram/Remote.html">Tangram::Remote</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Cursors">Cursors</a></h3>
-<p class="POD_TEXT">
-Cursors provide a way of retrieving objects one at a time.  This is
-important is the result set is potentially large.  cursor() takes the
-same arguments as select() and returns a Cursor objects that can be
-used to iterate over the result set via methods current() and next():
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="cursors">Cursors</a></h2>
+<p>Cursors provide a way of retrieving objects one at a time.  This is
+important is the result set is potentially large.  <code>cursor()</code> takes the
+same arguments as <code>select()</code> and returns a Cursor objects that can be
+used to iterate over the result set via methods <code>current()</code> and next():</p>
+<pre>
     $storage = Tangram::Relational-&gt;connect( $schema,
-        @cp );
-
-    # iterate over all the NaturalPersons in storage
-
-    my $cursor = $storage-&gt;cursor( 'NaturalPerson' );
-
+        @cp );</pre>
+<pre>
+    # iterate over all the NaturalPersons in storage</pre>
+<pre>
+    my $cursor = $storage-&gt;cursor( 'NaturalPerson' );</pre>
+<pre>
     while (my $person = $cursor-&gt;current())
     {
         # process $person
         $cursor-&gt;next();
-    }
-
-    $cursor-&gt;close();
-</pre>
-<p class="POD_TEXT">
-The Cursor will be automatically closed when $cursor is garbage-collected,
+    }</pre>
+<pre>
+    $cursor-&gt;close();</pre>
+<p>The Cursor will be automatically closed when $cursor is garbage-collected,
 but Perl doesn't define just when that may happen :( Thus it's a good idea to
-explicitly close the cursor.
-</p>
-<p class="POD_TEXT">
-Each Cursor uses a separate connection to the database. Consequently you can
+explicitly close the cursor.</p>
+<p>Each Cursor uses a separate connection to the database. Consequently you can
 have several cursors open at the same, all with pending results. Of course,
-mixing reads and writes to the same tables can result in deadlocks.
+mixing reads and writes to the same tables can result in deadlocks.</p>
+<p>For more information on cursors, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a> and
+<a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on cursors, see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage and
-the <a class="POD_LINK" href="../Tangram/Cursor.html">Tangram::Cursor</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Remote_objects">Remote objects</a></h3>
-<p class="POD_TEXT">
-At this point, most people wonder what $person <i>exactly</i> is and how
+<h2><a name="remote_objects">Remote objects</a></h2>
+<p>At this point, most people wonder what $person <em>exactly</em> is and how
 it all works.  This section attempts to give an idea of the mechanisms
-that are used.
-</p>
-<p class="POD_TEXT">
-In Tangram terminology, $person a <i>remote</i> object. Its Perl class is
+that are used.</p>
+<p>In Tangram terminology, $person a <em>remote</em> object. Its Perl class is
 Tangram::Remote, but it's really a placeholder for an object of class
-<code>NaturalPerson</code> <i>in the database</i>, much like a table alias in
-SQL-speak.
-</p>
-<p class="POD_TEXT">
-When you request a remote object of a given class, Tangram arranges
-that the remote object <i>looks like</i> an object of the said class. It
-<i>seems</i> to have the same fields as a regular object, but don't be
+<code>NaturalPerson</code> <em>in the database</em>, much like a table alias in
+SQL-speak.</p>
+<p>When you request a remote object of a given class, Tangram arranges
+that the remote object <em>looks like</em> an object of the said class. It
+<em>seems</em> to have the same fields as a regular object, but don't be
 misled, it's not the real thing, it's just a way of providing a nice
-syntax.
-</p>
-<p class="POD_TEXT">
-If you dig it, you'll find out that a Remote is just a hash of
+syntax.</p>
+<p>If you dig it, you'll find out that a Remote is just a hash of
 Tangram::Expr objects.  When you say $homer-&gt;{name}, an Expr is
 returned, which, most of the time, can be used like any ordinary Perl
-scalar. However, an Expr represents a value <i>in the database</i>, it's
-the equivalent of Remote, only for expressions, not for objects.
-</p>
-<p class="POD_TEXT">
-Expr objects that represent scalar values (e.g. ints, floats, strings)
+scalar. However, an Expr represents a value <em>in the database</em>, it's
+the equivalent of Remote, only for expressions, not for objects.</p>
+<p>Expr objects that represent scalar values (e.g. ints, floats, strings)
 can be compared between them, or compared with straight Perl
 scalars. Reference-like Exprs can be compared between themselves and
-with references
-</p>
-<p class="POD_TEXT">
-Expr objects that represent collections have an <code>include</code> methods
-that take a persistent object, a Remote object or an ID.
-</p>
-<p class="POD_TEXT">
-The result of comparing Exprs (or calling <code>include</code>) is a
+with references</p>
+<p>Expr objects that represent collections have an <code>include</code> methods
+that take a persistent object, a Remote object or an ID.</p>
+<p>The result of comparing Exprs (or calling <code>include</code>) is a
 Tangram::Filter that will translate into part of the SQL where-clause
-that will be passed to the RDBMS.
+that will be passed to the RDBMS.</p>
+<p>For more information on remote objects, see <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For more information on remote objects, see the <a class="POD_LINK" href="../Tangram/Remote.html">Tangram::Remote</a> manpage.
-</p>
-<h3 class="POD_HEAD2"><a name="Multiple_loads">Multiple loads</a></h3>
-<p class="POD_TEXT">
-What happens when we load the same object twice? Consider:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="multiple_loads">Multiple loads</a></h2>
+<p>What happens when we load the same object twice? Consider:</p>
+<pre>
     my $person = $storage-&gt;remote( 'NaturalPerson' );
-    my @simpsons = $storage-&gt;select( $person, $person-&gt;{name} eq 'Simpson' );
-
-    my @people = $storage-&gt;select( 'NaturalPerson' );
-</pre>
-<p class="POD_TEXT">
-Obviously Homer Simpson will be retrieved by both selects. Are there
+    my @simpsons = $storage-&gt;select( $person, $person-&gt;{name} eq 'Simpson' );</pre>
+<pre>
+    my @people = $storage-&gt;select( 'NaturalPerson' );</pre>
+<p>Obviously Homer Simpson will be retrieved by both selects. Are there
 two Homers in memory now? Fortunately not. There is only one copy of
 Homer in memory. When Tangram load an object, it checks whether an
 object with the same ID is alredy present. If yes, it keeps the old
-copy, which is desirable, since we may have changed it already.
-</p>
-<p class="POD_TEXT">
-Incidentally, this explains why a Storage will hold objects in memory
+copy, which is desirable, since we may have changed it already.</p>
+<p>Incidentally, this explains why a Storage will hold objects in memory
 - until disconnected (again, this will change when Perl supports weak
-references).
+references).</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="Transactions">Transactions</a></h3>
-<p class="POD_TEXT">
-Tangram wraps database transactions in a object-oriented interface:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="transactions">Transactions</a></h2>
+<p>Tangram wraps database transactions in a object-oriented interface:</p>
+<pre>
     $storage-&gt;tx_start();
     $homer-&gt;{partner} = $marge;
     $marge-&gt;{partner} = $homer;
     $storage-&gt;update( $homer, $marge );
-    $storage-&gt;tx_commit();
-</pre>
-<p class="POD_TEXT">
-Both Marge and Homer will be updated, or none will. tx_rollback() drops
-the changes.
-</p>
-<p class="POD_TEXT">
-Tangram does not emulate transactions for databases that do not
-support them (like earlier versions of mySql).
-</p>
-<p class="POD_TEXT">
-Unlike DBI, Tangram allows the nested transactions:
-</p>
-<pre class="POD_VERBATIM">
-    $storage-&gt;tx_start();
-
+    $storage-&gt;tx_commit();</pre>
+<p>Both Marge and Homer will be updated, or none will. <code>tx_rollback()</code> drops
+the changes.</p>
+<p>Tangram does not emulate transactions for databases that do not
+support them (like earlier versions of mySql).</p>
+<p>Unlike DBI, Tangram allows the nested transactions:</p>
+<pre>
+    $storage-&gt;tx_start();</pre>
+<pre>
     {
         $storage-&gt;tx_start();
         $patty-&gt;{partner} = $selma;
         $selma-&gt;{partner} = $patty;
         $storage-&gt;tx_commit();
-    }
-
+    }</pre>
+<pre>
     $homer-&gt;{partner} = $marge;
     $marge-&gt;{partner} = $homer;
-    $storage-&gt;update( $homer, $marge );
-
-    $storage-&gt;tx_commit();
-</pre>
-<p class="POD_TEXT">
-Tangram uses a single database transaction, but commits it only when
+    $storage-&gt;update( $homer, $marge );</pre>
+<pre>
+    $storage-&gt;tx_commit();</pre>
+<p>Tangram uses a single database transaction, but commits it only when
 the tx_commit()s exactly balance the tx_start()s. Thanks to this
 feature any piece of code can open all the transactions it needs and
 still cooperate smoothly with the rest of the application.  If a DBI
 transaction is already active, it will be reused; otherwise a new one
-will be started.
-</p>
-<p class="POD_TEXT">
-Tangram offer a more robust alternative to the start/commit code
-sandwich.  tx_do() calls CODEREF in a transaction. If the CODEREF
+will be started.</p>
+<p>Tangram offer a more robust alternative to the start/commit code
+sandwich.  <code>tx_do()</code> calls CODEREF in a transaction. If the CODEREF
 dies, the transaction is rolled back; otherwise it's committed.  The
-first example can be rewritten:
-</p>
-<pre class="POD_VERBATIM">
+first example can be rewritten:</p>
+<pre>
     $storage-&gt;tx_do( sub {
         $homer-&gt;{partner} = $marge;
         $marge-&gt;{partner} = $homer;
         $storage-&gt;update( $homer, $marge };
-        } );
-</pre>
-<p class="POD_TEXT">
-For more information on transactions, see the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage.
-</p>
-<hr>
-<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
-<!--#include virtual="/footer.html"-->
+        } );</pre>
+<p>For more information on transactions, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

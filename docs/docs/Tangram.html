@@ -1,104 +1,289 @@
-<!--#set var="title" value="Documentation: Tangram"-->
-<!--#include virtual="/header.html"-->
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Tangram</h1>
-<hr>
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram - Store pure objects in standard relational databases</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
 <ul>
-<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
-<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
-<li><a class="POD_NAVLINK" href="#COMPATIBILITY">COMPATIBILITY</a>
-<li><a class="POD_NAVLINK" href="#LICENSE_WARRANTY">LICENSE &amp; WARRANTY</a>
-<li><a class="POD_NAVLINK" href="#SUPPORT">SUPPORT</a>
-<li><a class="POD_NAVLINK" href="#AUTHORS">AUTHORS</a>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#documentation_index">DOCUMENTATION INDEX</a></li>
+	<li><a href="#contents">CONTENTS</a></li>
+	<li><a href="#compatibility">COMPATIBILITY</a></li>
+	<li><a href="#license___warranty">LICENSE &amp; WARRANTY</a></li>
+	<li><a href="#support">SUPPORT</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
 </ul>
-<hr>
-<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
-<p class="POD_TEXT">
-Tangram - Orthogonal Object Persistence in Relational Databases
+<!-- INDEX END -->
+
+<hr />
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
-<p class="POD_TEXT">
-Tangram is an object-relational mapper. It makes objects persist in
-relational databases, and provides powerful facilities for retrieving
-and filtering them.  Tangram fully supports object-oriented
-programming, including polymorphism, multiple inheritance and
-collections.  It does so in an orthogonal fashion, that is, it doesn't
-require your classes to implement support functions nor inherit from a
-utility class.
+<h1><a name="name">NAME</a></h1>
+<p>Tangram - Store pure objects in standard relational databases</p>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="COMPATIBILITY">COMPATIBILITY</a></h2>
-<p class="POD_TEXT">
-Tangram is known to run in the following environments, however,
-Tangram uses standard SQL and should be usable with any SQL-83
-compliant database.
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<p>See <a href="/pod/./Tangram/Tour.html">the Tangram::Tour manpage</a></p>
+<p>
 </p>
-<p class="POD_TEXT">
-Note that some functions (e.g. transactions and subselects) may not be
-available in some environments. This is reported during the test suite.
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Tangram is an <em>object-relational mapper</em>.  It is <em>orthogonal</em>,
+meaning that it does not require anything of the objects stored in it
+(other than the common convention that base objects be based upon
+HASHes; individual columns can be anything).</p>
+<p>It consists of a <em>schema language</em> that can describe or be built
+around an object structure, or so as to closely match an existing SQL
+schema (with some limitations).  This schema language is rich enough
+to express such common RDBMS features as links, foreign keys, and link
+tables.</p>
+<p>It also consists of a <em>relational database storage</em> engine, which
+based on the schema structure, will make Perl structures persist in a
+relational (SQL compliant) database.  References to other objects (or
+collections, as represented with foreign keys and link tables) may be
+loaded using <em>on demand references</em> that `lazily' load data when it
+is needed.</p>
+<p>As of Tangram 2.08, the schema need not describe every single object
+property, so that you can map only the columns you intend to query.
+The rest of the object is then stored in a column via a serialiser,
+like <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a>, <a href="/pod/./Tangram/YAML.html">the YAML manpage</a> or <a href="/pod/./Tangram/Storable.html">the Storable manpage</a>.  These structures
+themselves may contain arbitrary references to other objects in
+storage.</p>
+<p>Tangram has soundly engineered transaction support, without
+sacrificing excellent data caching abilities.  The general
+optimisation strategy of the code makes it most suited for OLTP (aka
+application servers) and other situations where it is better to select
+and update whole rows than to worry about which columns to
+retrieve/update or not retrieve/update.</p>
+<p>Once your object are persistent, you can build query expressions to
+find them in terms of the schema language that you used to put them
+in.  Therefore, the schema data structure does not describe a data
+structure, it describes a <em>data access pattern</em>.</p>
+<p>If you are not picky about which accessor module to use, preferring to
+specify the schema once only, then you can use the seperately
+distributed <a href="/pod/Class/Tangram/Generator.html">the Class::Tangram::Generator manpage</a> to make a set of classes from
+a Tangram schema structure.</p>
+<p>If you are looking for a tool that implements <em>SQL abstraction</em> only,
+you have probably missed the point (of this module, anyway), and a
+well-supported module like <a href="/pod/Class/DBI.html">the Class::DBI manpage</a>, or an interactive SQL
+modeller like Alzabo will likely suit your needs better.</p>
+<p>Tangram is beginning to include preliminary support for aggregation
+functions, and currently supports grouping, summing and counting.
+Joins must currently be in terms of integer primary key columns, to
+extend past this would require extra mapping types to be developed.
+Basic support for alternative join types is present, but in its
+infancy.</p>
+<p>Tangram currently contains no support for database-side updates (ie,
+<code>UPDATE foo SET bar = 'baz' where frop = 'blarg'</code>), but support is
+planned.</p>
+<p>There is no support for creating views based on existing classes to
+make new derived classes; you have to use your database SQL and create
+corresponding Tangram classes manually to do that.</p>
+<p>
 </p>
+<hr />
+<h1><a name="documentation_index">DOCUMENTATION INDEX</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="contents">CONTENTS</a></h1>
+<dl>
+<dt><strong><a name="item_tangram_3a_3atour"><a href="/pod/./Tangram/Tour.html">the Tangram::Tour manpage</a></a></strong><br />
+</dt>
+<dd>
+The original ``Guided Tour'' of the features of Tangram, by the author
+of Tangram versions 1 through 2.04 (and a somewhat divergant version 3
+;-)), Jean-Louis LeRoy.
+</dd>
 <p></p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="_"></a>
-<p class="POD_TEXT">
-Perl 5.00503
+<dt><strong><a name="item_tangram_3a_3aintro"><a href="/pod/./Tangram/Intro.html">the Tangram::Intro manpage</a></a></strong><br />
+</dt>
+<dd>
+The humble beginnings of a new guided tour, based on the
+next-generation features found in Tangram 2.08.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3aspringfield"><a href="/pod/./Tangram/Springfield.html">the Tangram::Springfield manpage</a></a></strong><br />
+</dt>
+<dd>
+The classes and schema used in the Guided Tour(s).
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3astorage"><a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a></a></strong><br />
+</dt>
+<dd>
+The main database handle class.  Includes details on query syntax.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3acursor"><a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a></a></strong><br />
+</dt>
+<dd>
+Return an iterator that retrieves persistent objects in a result set
+one by one.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3aschema"><a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a></a></strong><br />
+</dt>
+<dd>
+The Tangram schema structure - representing your data model so that
+Tangram can map it.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3arelational_3a_3amappings"><a href="/pod/./Tangram/Relational/Mappings.html">the Tangram::Relational::Mappings manpage</a></a></strong><br />
+</dt>
+<dd>
+An informative text on exactly how Object Relational Mapping is
+accomplished by the Tangram::Relational back-end, what the different
+styles of mapping are, and how each is selected.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3atype"><a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a></a></strong><br />
+</dt>
+<dd>
+What Tangram types are available.  This page is an index of other
+manual pages that express the data and relationship types available in
+Tangram.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3atype_3a_3aextending"><a href="/pod/./Tangram/Type/Extending.html">the Tangram::Type::Extending manpage</a></a></strong><br />
+</dt>
+<dd>
+How to write your own custom types for Tangram.
+</dd>
+<p></p>
+<dt><strong><a name="item_tangram_3a_3adialect"><a href="/pod/Tangram/Dialect.html">the Tangram::Dialect manpage</a></a></strong><br />
+</dt>
+<dd>
+Database-specific extensions to Tangram, such as <a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> and
+<a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a>.  These extensions only add functionality, and are
+not required for core operation of Tangram.
+</dd>
+<p></p></dl>
+<p>
 </p>
-<li class="POD_ITEM"><a name="_1"></a>
-<p class="POD_TEXT">
-Set::Object 1.02
-</p>
-<li class="POD_ITEM"><a name="_2"></a>
-<p class="POD_TEXT">
+<hr />
+<h1><a name="compatibility">COMPATIBILITY</a></h1>
+<p>Tangram has been known to run in the following environments, however,
+Tangram uses standard SQL and should be usable with any SQL-83
+compliant database.  Most of the requirements are simply avoiding the
+worst bugs.</p>
+<p>Note that some functions (e.g. transactions and subselects) may not be
+available in some environments. This is reported during the test
+suite.</p>
+<ul>
+<li></li>
+Perl 5.005_03+, 5.6.1+, 5.8.1+ (5.8.0 had a nasty bug and doesn't work
+with Tangram)
+<p></p>
+<li></li>
+Set::Object 1.04 (though the latest version is highly recommended)
+<p></p>
+<li></li>
 DBI 1.14
-</p>
-<li class="POD_ITEM"><a name="_3"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 DBD::mysql 2.0402
-</p>
-<li class="POD_ITEM"><a name="_4"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 DBD::Oracle 1.06
-</p>
-<li class="POD_ITEM"><a name="_5"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
 DBD::Sybase 0.21
-</p>
-<li class="POD_ITEM"><a name="_6"></a>
-<p class="POD_TEXT">
+<p></p>
+<li></li>
+DBD::SQLite 1.07
+<p></p>
+<li></li>
 DBD::Pg 0.93
+<p></p></ul>
+<p>
 </p>
-</ul>
-<h2 class="POD_HEAD1"><a name="LICENSE_WARRANTY">LICENSE &amp; WARRANTY</a></h2>
-<p class="POD_TEXT">
-You may use Tangram, free of charge, under the terms of the GPL.
-You can obtain a commercial license from Sound Object Logic, see
-http://www.soundobjectlogic.com/tangram/licenses.html.
+<hr />
+<h1><a name="license___warranty">LICENSE &amp; WARRANTY</a></h1>
+<p>You may use Tangram, free of charge, under the terms of the GPL.</p>
+<p>You can obtain a commercial license for old (2.04 and earlier)
+versions of Tangram from Sound Object Logic, see
+<a href="http://www.soundobjectlogic.com/tangram/licenses.html.">http://www.soundobjectlogic.com/tangram/licenses.html.</a></p>
+<p>TANGRAM COMES WITHOUT ANY WARRANTY OF ANY KIND.  IT DOES NOT EVEN COME
+WITH ANY KIND OF VAGUE IMPLICATION THAT IT DOES ANYTHING MORE THAN
+GIVE YOUR COMPUTER HINTS ABOUT HOW TO TRY STIRRING ITS ELECTRONS.  THE
+AUTHORS ARE NOT RESPONSIBLE FOR THE RESULTANT ELECTRON CONFIGURATION
+IN ANY WAY INCLUDING TRANSMUTATIONS OF ELECTRONS INTO OTHER FIELDS
+SUCH AS MAGNETIC MEDIA OR PUNCH CARDS.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-TANGRAM COMES WITHOUT ANY WARRANTY OF ANY KIND.
+<hr />
+<h1><a name="support">SUPPORT</a></h1>
+<p>Please send bug reports directly to the Tangram 2 maintainer's mailing
+list &lt;<a href="mailto:tangram-t2-maintainers@tangram-persistence.org">tangram-t2-maintainers@tangram-persistence.org</a>&gt;, and please CC:
+&lt;<a href="mailto:bug-Tangram@rt.cpan.org">bug-Tangram@rt.cpan.org</a>&gt; so your fault can be tracked accurately.</p>
+<p>Whenever possible, include a short yet complete script demonstrating
+the problem.  (read: if you want it fixed quicker, demonstrate it)</p>
+<p>Questions of general interest should should be posted to the mailing
+list, but not sent to rt.cpan.org.</p>
+<p>Commercial support for Tangram is available, see
+<a href="http://www.soundobjectlogic.com/tangram/support.html.">http://www.soundobjectlogic.com/tangram/support.html.</a></p>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="SUPPORT">SUPPORT</a></h2>
-<p class="POD_TEXT">
-Please send bug reports directly to me (jll@soundobjectlogic.com)
-or to the Tangram mailing list (tangram-users@lists.sourceforge.net).
-</p>
-<p class="POD_TEXT">
-Whenever possible, include a short, complete script demonstrating the
-problem.
-</p>
-<p class="POD_TEXT">
-Questions of general interest should should be posted either to the
-mailing list or to comp.lang.perl.modules, which I monitor daily. Make
-sure to include 'Tangram' in the subject line.
-</p>
-<p class="POD_TEXT">
-Commercial support for Tangram is available, see
-http://www.soundobjectlogic.com/tangram/support.html.
-</p>
-<h2 class="POD_HEAD1"><a name="AUTHORS">AUTHORS</a></h2>
-<p class="POD_TEXT">
-Except where noted, all the code and documentation was written by
-Jean-Louis Leroy (jll@soundobjectlogic.com) and Sound Object Logic.
-</p>
-<hr>
-<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
-<!--#include virtual="/footer.html"-->
+<hr />
+<h1><a name="authors">AUTHORS</a></h1>
+<p>Except where noted, all the code and documentation was written by
+Jean-Louis Leroy (<a href="mailto:jll@soundobjectlogic.com">jll@soundobjectlogic.com</a>) and Sound Object Logic.</p>
+<p>Sam Vilain &lt;<a href="mailto:sam@vilain.net">sam@vilain.net</a>&gt; is the current humble maintainer.</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

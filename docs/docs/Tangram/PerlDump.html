@@ -1,27 +1,80 @@
-<!--#set var="title" value="Documentation: Tangram::PerlDump"-->
-<!--#include virtual="/header.html"-->
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Tangram::PerlDump</h1>
-<hr>
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram::PerlDump - map any Perl object as scalar dump</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
 <ul>
-<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
-<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
-<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
-<li><a class="POD_NAVLINK" href="#AUTHOR">AUTHOR</a>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#author">AUTHOR</a></li>
 </ul>
-<hr>
-<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
-<p class="POD_TEXT">
-Tangram::PerlDump - map any Perl object as scalar dump
+<!-- INDEX END -->
+
+<hr />
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
-<pre class="POD_VERBATIM">
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::PerlDump - map any Perl object as scalar dump</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
    use Tangram::Core;
-   use Tangram::PerlDump; # always
-
+   use Tangram::PerlDump; # always</pre>
+<pre>
    $schema = Tangram::Schema-&gt;new(
-      classes =&gt; { NaturalPerson =&gt; { fields =&gt; {
-
+      classes =&gt; { NaturalPerson =&gt; { fields =&gt; {</pre>
+<pre>
       perl_dump =&gt;
       {
          diary =&gt; # diary is a perl hash 
@@ -31,58 +84,58 @@ Tangram::PerlDump - map any Perl object as scalar dump
             indent =&gt; 0,
             terse =&gt; 1,
             purity =&gt; 0
-         },
-
+         },</pre>
+<pre>
          lucky_numbers =&gt; 'int', # use defaults
-      }
-</pre>
-<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
-<p class="POD_TEXT">
-Maps arbitrary Perl data structures by serializing to a string
-representation. The persistent fields are grouped in a hash under the
-<code>perl_dump</code> key in the field hash.
+      }</pre>
+<p>
 </p>
-<p class="POD_TEXT">
-Serialization is done by the <u>Data::Dumper</u> manpage, which traverses the Perl
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>Maps arbitrary Perl data structures by serializing to a string
+representation. The persistent fields are grouped in a hash under the
+<code>perl_dump</code> key in the field hash.</p>
+<p>Serialization is done by <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a>, which traverses the Perl
 data structure and creates a string representation of it. The
 resulting string will be mapped to the DBMS as a scalar value. During
-restore, the scalar value will be the <u>eval</u> manpage'd to reconstruct the
-original data structure.
-</p>
-<p class="POD_TEXT">
-As the <u>Data::Dumper</u> manpage might not handle persistent references correctly,
-the data structure may only contain &quot;normal&quot; Perl references.
-</p>
-<p class="POD_TEXT">
-The field names are passed in a hash that associates a field name with
+restore, the scalar value will be <em>eval</em>'d to reconstruct the
+original data structure.</p>
+<p>As of Tangram 2.07.1, persistent references are safely handled via the
+<a href="/pod/./Tangram/Dump.html">the Tangram::Dump manpage</a> utility class.</p>
+<p>The field names are passed in a hash that associates a field name with
 a field descriptor. The field descriptor may be either a hash or a
-string. The hash uses the following fields:
-</p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="col"><p>col</p></a>
-<li class="POD_ITEM"><a name="sql"><p>sql</p></a>
-<li class="POD_ITEM"><a name="indent"><p>indent</p></a>
-<li class="POD_ITEM"><a name="terse"><p>terse</p></a>
-<li class="POD_ITEM"><a name="purity"><p>purity</p></a>
+string. The hash uses the following fields:</p>
+<ul>
+<li><strong><a name="item_col">col</a></strong><br />
+</li>
+<li><strong><a name="item_sql">sql</a></strong><br />
+</li>
+<li><strong><a name="item_indent">indent</a></strong><br />
+</li>
+<li><strong><a name="item_terse">terse</a></strong><br />
+</li>
+<li><strong><a name="item_purity">purity</a></strong><br />
+</li>
 </ul>
-<p class="POD_TEXT">
-The optional fields <code>col</code> and <code>sql</code> specify the column name and the
+<p>The optional fields <a href="#item_col"><code>col</code></a> and <a href="#item_sql"><code>sql</code></a> specify the column name and the
 column type for the scalar value in the database. If not present,
-<code>col</code> defaults to the field name and <code>sql</code> defaults to VARCHAR(255).
-Values will be always quoted as they are passed to the database.
-</p>
-<p class="POD_TEXT">
-The remaining optional fields control the serialization process. They
-will be passed down to the <u>Data::Dumper</u> manpage as values to the corresponding
-the <u>Data::Dumper</u> manpage options. The default settings are: no indentation
+<a href="#item_col"><code>col</code></a> defaults to the field name and <a href="#item_sql"><code>sql</code></a> defaults to VARCHAR(255).
+Values will be always quoted as they are passed to the database.</p>
+<p>The remaining optional fields control the serialization process. They
+will be passed down to <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
+<a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
 (<code>indent=0</code>), compact format (<code>terse=1</code>), and quick dump
-(<code>purity=0</code>).
+(<code>purity=0</code>).</p>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="AUTHOR">AUTHOR</a></h2>
-<p class="POD_TEXT">
-This mapping was contributed by Gabor Herr
-&lt;herr@iti.informatik.tu-darmstadt.de&gt;
-</p>
-<hr>
-<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
-<!--#include virtual="/footer.html"-->
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>This mapping was contributed by Gabor Herr
+&lt;<a href="mailto:herr@iti.informatik.tu-darmstadt.de">herr@iti.informatik.tu-darmstadt.de</a>&gt;</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

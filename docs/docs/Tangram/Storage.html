@@ -1,153 +1,228 @@
-<!--#set var="title" value="Documentation: Tangram::Storage"-->
-<!--#include virtual="/header.html"-->
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Tangram::Storage</h1>
-<hr>
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram::Storage - persistent object database</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
 <ul>
-<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
-<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
-<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
-<li><a class="POD_NAVLINK" href="#MEMORY_MANAGEMENT">MEMORY MANAGEMENT</a>
-<li><a class="POD_NAVLINK" href="#INTERNAL_CONNECTION">INTERNAL CONNECTION</a>
-<li><a class="POD_NAVLINK" href="#CLASS_METHODS">CLASS METHODS</a>
-<ul>
-<li><a class="POD_NAVLINK" href="#connect">connect</a>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#memory_management">MEMORY MANAGEMENT</a></li>
+	<li><a href="#internal_connection">INTERNAL CONNECTION</a></li>
+	<li><a href="#class_methods">CLASS METHODS</a></li>
+	<ul>
+
+		<li><a href="#connect">connect</a></li>
+	</ul>
+
+	<li><a href="#instance_methods">INSTANCE METHODS</a></li>
+	<ul>
+
+		<li><a href="#insert">insert</a></li>
+		<li><a href="#update">update</a></li>
+		<li><a href="#id">id</a></li>
+		<li><a href="#oid_isa">oid_isa</a></li>
+		<li><a href="#load">load</a></li>
+		<li><a href="#remote">remote</a></li>
+		<li><a href="#select">select</a></li>
+		<li><a href="#sum___expr____filter___">sum( $expr, [$filter] )</a></li>
+		<li><a href="#count___expr____filter___">count( $expr, [$filter] )</a></li>
+		<li><a href="#cursor">cursor</a></li>
+		<li><a href="#prefetch">prefetch</a></li>
+		<li><a href="#erase">erase</a></li>
+		<li><a href="#tx_start">tx_start</a></li>
+		<li><a href="#tx_commit">tx_commit</a></li>
+		<li><a href="#tx_rollback">tx_rollback</a></li>
+		<li><a href="#tx_do">tx_do</a></li>
+		<li><a href="#unload">unload</a></li>
+		<li><a href="#unload_all_____notify_method___">unload_all( [ $notify_method ])</a></li>
+		<li><a href="#disconnect">disconnect</a></li>
+	</ul>
+
 </ul>
-<li><a class="POD_NAVLINK" href="#INSTANCE_METHODS">INSTANCE METHODS</a>
-<ul>
-<li><a class="POD_NAVLINK" href="#insert">insert</a>
-<li><a class="POD_NAVLINK" href="#update">update</a>
-<li><a class="POD_NAVLINK" href="#id">id</a>
-<li><a class="POD_NAVLINK" href="#load">load</a>
-<li><a class="POD_NAVLINK" href="#remote">remote</a>
-<li><a class="POD_NAVLINK" href="#select">select</a>
-<li><a class="POD_NAVLINK" href="#cursor">cursor</a>
-<li><a class="POD_NAVLINK" href="#erase">erase</a>
-<li><a class="POD_NAVLINK" href="#tx_start">tx_start</a>
-<li><a class="POD_NAVLINK" href="#tx_commit">tx_commit</a>
-<li><a class="POD_NAVLINK" href="#tx_rollback">tx_rollback</a>
-<li><a class="POD_NAVLINK" href="#tx_do">tx_do</a>
-<li><a class="POD_NAVLINK" href="#unload">unload</a>
-<li><a class="POD_NAVLINK" href="#disconnect">disconnect</a>
-</ul>
-</ul>
-<hr>
-<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
-<p class="POD_TEXT">
-Tangram::Storage - persistent object database
+<!-- INDEX END -->
+
+<hr />
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
-<pre class="POD_VERBATIM">
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Storage - persistent object database</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
    use Tangram;
-
+   
    $storage = Tangram::Storage-&gt;connect( $schema,
-      $data_source, $username, $password );
-
+      $data_source, $username, $password );</pre>
+<pre>
    $oid = $storage-&gt;insert( $obj );
-   @oids = $storage-&gt;insert( @objs );
-
+   @oids = $storage-&gt;insert( @objs );</pre>
+<pre>
    $storage-&gt;update( $obj );
-   $storage-&gt;update( @objs );
-
+   $storage-&gt;update( @objs );</pre>
+<pre>
    $obj = $storage-&gt;load( $oid );
-   @objs = $storage-&gt;load( @oids );
-
+   @objs = $storage-&gt;load( @oids );</pre>
+<pre>
    @objs = $storage-&gt;select( $class );
-   @objs = $storage-&gt;select( $remote, $filter );
-
-   $cursor = $storage-&gt;cursor( $remote, $filter );
-
-   $storage-&gt;disconnect();
-</pre>
-<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
-<p class="POD_TEXT">
-A Tangram::Storage object is a connection to a database configured for
-use with Tangram.
+   @objs = $storage-&gt;select( $remote, $filter );</pre>
+<pre>
+   $cursor = $storage-&gt;cursor( $remote, $filter );</pre>
+<pre>
+   if ($storage-&gt;oid_isa($oid, &quot;ClassName&quot;)) {
+       # oid $oid is a ClassName
+   }</pre>
+<pre>
+   $storage-&gt;disconnect();</pre>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="MEMORY_MANAGEMENT">MEMORY MANAGEMENT</a></h2>
-<p class="POD_TEXT">
-Starting with version 1.18, Tangram attempts to use the support for
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>A Tangram::Storage object is a connection to a database configured for
+use with Tangram.</p>
+<p>
+</p>
+<hr />
+<h1><a name="memory_management">MEMORY MANAGEMENT</a></h1>
+<p>Starting with version 1.18, Tangram attempts to use the support for
 weak reference that was introduced in Perl 5.6. Whether that support
 is found or not has a major impact on how Storage influences object
-lifetime.
+lifetime.</p>
+<p>If weakref support <em>is</em> available, Storage uses weak references to
+keep track of objects that have already been loaded. This does <em>not</em>
+prevent the objects from being reclaimed by Perl. IOW, the <em>client</em>
+code decides how long an object remains in memory.</p>
+<p>If weakref support <em>is not</em> available, Storage uses normal, 'strong'
+references. Storage will pin in memory all the objects that have been
+loaded <em>and</em> inserted through it, until you call <a href="#disconnect">disconnect</a> or
+<a href="#unload">unload</a>.</p>
+<p>In either case, Tangram will <em>not</em> break circular structures for you.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-If weakref support <i>is</i> available, Storage uses weak references
-to keep track of objects that have already been loaded. This does
-<i>not</i> prevent the objects from being reclaimed by Perl. IOW, the
-<i>client</i> code decides how long an object remains in memory.
+<hr />
+<h1><a name="internal_connection">INTERNAL CONNECTION</a></h1>
+<p>Except in the implementation of cursor(), Tangram uses a single DBI
+connection in its operations.  That connection is called the
+'internal' connection. Since, in general, database managers do not
+allow multiple result sets on the same connection, the internal
+connection can be used only to carray a single task at a time.</p>
+<p><a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a>s returned by <code>cursor()</code> do not suffer from this
+limitation because they use a separate DBI connection.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-If weakref support <i>is not</i> available, Storage uses normal, 'strong'
-references. Storage will pin in memory all the objects that have been loaded
-<i>and</i> inserted through it, until you call the section on <a class="POD_LINK" href="#disconnect">disconnect</a> elsewhere in this document or
-the section on <a class="POD_LINK" href="#unload">unload</a> elsewhere in this document.
+<hr />
+<h1><a name="class_methods">CLASS METHODS</a></h1>
+<p>
 </p>
-<p class="POD_TEXT">
-In either case, Tangram will <i>not</i> break circular structures for you.
-</p>
-<h2 class="POD_HEAD1"><a name="INTERNAL_CONNECTION">INTERNAL CONNECTION</a></h2>
-<p class="POD_TEXT">
-Except in the implementation of cursor(), Tangram uses a single DBI connection in its operations.
-That connection is called the 'internal' connection. Since, in general, database managers
-do not allow multiple result sets on the same connection, the internal connection can be used
-only to carray a single task at a time.
-</p>
-<p class="POD_TEXT">
-the <a class="POD_LINK" href="../Tangram/Cursor.html">Tangram::Cursor</a> manpages returned by cursor() do not suffer from this limitation
-because they use a separate DBI connection.
-</p>
-<h2 class="POD_HEAD1"><a name="CLASS_METHODS">CLASS METHODS</a></h2>
-<h3 class="POD_HEAD2"><a name="connect">connect</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="connect">connect</a></h2>
+<pre>
    $storage = connect( $schema,
-      $data_source, $username, $auth, \%options )
-</pre>
-<p class="POD_TEXT">
-Connects to a storage and return a handle object. Dies in case of failure.
-</p>
-<p class="POD_TEXT">
-$schema is an the <a class="POD_LINK" href="../Tangram/Schema.html">Tangram::Schema</a> manpage object consistent with the database.
-</p>
-<p class="POD_TEXT">
-$data_source, $username and $auth are passed directly to
-DBI::connect().
-</p>
-<p class="POD_TEXT">
-\%options is a reference to a hash that may contain the following
-fields:
-</p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="dbh"><p>dbh</p></a>
-</ul>
-<p class="POD_TEXT">
-All fields are optional.
-</p>
-<p class="POD_TEXT">
-<code>dbh</code> can be used to connect a Storage via an existing DBI
+      $data_source, $username, $auth, \%options )</pre>
+<p>Connects to a storage and return a handle object. Dies in case of failure.</p>
+<p>$schema is an <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a> object consistent with the database.</p>
+<p>$data_source, $username and $auth are passed directly to
+DBI::connect().</p>
+<p>\%options is a reference to a hash that may contain the following
+fields:</p>
+<ul>
+<li><strong><a name="item_dbh">dbh</a></strong><br />
+</li>
+Pass in an already connected DBI handle
+<p></p>
+<li><strong><a name="item_no_tx">no_tx</a></strong><br />
+</li>
+Specify explicitly whether or not transactions are possible.  If they
+are not, then Tangram can guarantee consistency by serialising
+transaction updates - which guarantees poor performance and means that
+you can never use <code>$storage-&gt;rollback</code>.
+<p>If you are using MySQL, you should consider using the InnoDB table
+type to avoid this problem.  Also note that you will explicitly have
+to set this option if you have InnoDB tables configured, as there is
+no real way of telling if transactions are available for any given
+query without either trying to do a rollback, or querying the table
+types for every table.  Which I don't think it's Tangram's duty to do!</p>
+<p></p>
+<li><strong><a name="item_no_subselects">no_subselects</a></strong><br />
+</li>
+Functions that need to perform sub-selects will die immediately or
+attempt to emulate the functionality required, rather than relying on
+the RDBMS to return a failure.
+<p>This is currently ignored, but that's not functionally relevant :-).
+It can be read as <code>$storage-&gt;{no_subselects}</code> however, as the
+correct value is automatically detected on connection.</p>
+<p></p></ul>
+<p>All fields are optional.</p>
+<p><a href="#item_dbh"><code>dbh</code></a> can be used to connect a Storage via an existing DBI
 handle. $data_source, $username and $auth are still needed because
-Tangram may need to open extra connections (see below).
+Tangram may need to open extra connections (see below).</p>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="INSTANCE_METHODS">INSTANCE METHODS</a></h2>
-<h3 class="POD_HEAD2"><a name="insert">insert</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;insert( @objs );
-</pre>
-<p class="POD_TEXT">
-Inserts objects in storage. Returns the ID(s) assigned to the object(s).
-This method is valid in both the <u>scalar and list contexts</u> entry elsewhere in this document.
+<hr />
+<h1><a name="instance_methods">INSTANCE METHODS</a></h1>
+<p>
 </p>
-<p class="POD_TEXT">
-The inserted objects must be of a class described in the schema associated to the storage.
-</p>
-<p class="POD_TEXT">
-Attempting to insert an object that is already persistent in the storage is an error.
-</p>
-<p class="POD_TEXT">
-Tangram will automatically insert any object that is refered by $obj if it is not
-already present in storage. In the following example:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="insert">insert</a></h2>
+<pre>
+   $storage-&gt;insert( @objs );</pre>
+<p>Inserts objects in storage. Returns the <code>ID(s)</code> assigned to the
+object(s).  This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
+<p>The inserted objects must be of a class described in the schema
+associated to the storage.</p>
+<p>Attempting to insert an object that is already persistent in the
+storage is an error.</p>
+<p>Tangram will automatically insert any object that is refered by $obj
+if it is not already present in storage. In the following example:</p>
+<pre>
    my $homer = NaturalPerson-&gt;new(
       firstName =&gt; 'Homer', name =&gt; 'Simpson',
       children =&gt; Set::Object-&gt;new(
@@ -157,324 +232,394 @@ already present in storage. In the following example:
             firstName =&gt; 'Lisa', name =&gt; 'Simpson' ),
          NaturalPerson-&gt;new(
             firstName =&gt; 'Maggie', name =&gt; 'Simpson'
-      ) ) );
-
-   $storage-&gt;insert( $homer );
-</pre>
-<p class="POD_TEXT">
-...Tangram automatically inserts the kids along with Homer.
+      ) ) );</pre>
+<pre>
+   $storage-&gt;insert( $homer );</pre>
+<p>...Tangram automatically inserts the kids along with Homer.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="update">update</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;update( @objs );
-</pre>
-<p class="POD_TEXT">
-Save objects to storage.
-This method is valid in both the <u>scalar and list contexts</u> entry elsewhere in this document.
-</p>
-<p class="POD_TEXT">
-The objects must be of a class described in the schema associated to the storage.
-</p>
-<p class="POD_TEXT">
-Attempting to update an object that is not already present in the storage is an error.
-</p>
-<p class="POD_TEXT">
-Tangram will automatically insert any object that is refered by an inserted object if it is not
-already present in storage. It will not automatically update the refered objects that are already
-stored. In the following example:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="update">update</a></h2>
+<pre>
+   $storage-&gt;update( @objs );</pre>
+<p>Save objects to storage.  This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
+<p>The objects must be of a class described in the schema associated to
+the storage.</p>
+<p>Attempting to update an object that is not already present in the
+storage is an error.</p>
+<p>Tangram will automatically insert any object that is refered by an
+inserted object if it is not already present in storage. It will not
+automatically update the refered objects that are already stored. In
+the following example:</p>
+<pre>
    my $homer = NaturalPerson-&gt;new(
       firstName =&gt; 'Homer', name =&gt; 'Simpson' );
-   $storage-&gt;insert( $homer );
-
+   $storage-&gt;insert( $homer );</pre>
+<pre>
    my $marge = NaturalPerson-&gt;new(
       firstName =&gt; 'Marge', name =&gt; 'Simpson',
       age =&gt; 34 );
-   $storage-&gt;insert( $marge );
-
-   $marge-&gt;{age} = 35;
-
-   $homer-&gt;{partner} = $marge;
-
+   $storage-&gt;insert( $marge );</pre>
+<pre>
+   $marge-&gt;{age} = 35;</pre>
+<pre>
+   $homer-&gt;{partner} = $marge;</pre>
+<pre>
    $homer-&gt;{children} = Set::Object-&gt;new(
       NaturalPerson-&gt;new(
          firstName =&gt; 'Bart', name =&gt; 'Simpson' ),
       NaturalPerson-&gt;new(
          firstName =&gt; 'Lisa', name =&gt; 'Simpson' ),
       NaturalPerson-&gt;new(
-         firstName =&gt; 'Maggie', name =&gt; 'Simpson' ) );
-
-   $storage-&gt;update( $homer );
-</pre>
-<p class="POD_TEXT">
-...Tangram automatically inserts the kids when their father is updated. OTOH, $marge will not be
-automatically inserted nor updated; her age will remain '34' in persistent storage.
+         firstName =&gt; 'Maggie', name =&gt; 'Simpson' ) );</pre>
+<pre>
+   $storage-&gt;update( $homer );</pre>
+<p>...Tangram automatically inserts the kids when their father is
+updated. OTOH, $marge will not be automatically inserted nor updated;
+her age will remain '34' in persistent storage.</p>
+<p>Tangram does not perform any deadlock detection on updates.  You have
+to rely on your database back-end for that.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="id">id</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="id">id</a></h2>
+<pre>
    $id = $storage-&gt;id( $obj );
-   @id = $storage-&gt;id( @obj );
-</pre>
-<p class="POD_TEXT">
-Returns the IDs of the given objects. If an object is not persistent in storage yet, its
-corresponding ID is undef().
+   @id = $storage-&gt;id( @obj );</pre>
+<p>Returns the IDs of the given objects. If an object is not persistent
+in storage yet, its corresponding ID is undef().</p>
+<p>This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-This method is valid in both the <u>scalar and list contexts</u> entry elsewhere in this document.
+<h2><a name="oid_isa">oid_isa</a></h2>
+<pre>
+   if ($storage-&gt;oid_isa($id, &quot;ClassName&quot;)) {
+      ...
+   }</pre>
+<p>Checks that the passed Object ID, <code>$id</code>, is a ``ClassName'' according
+to the schema.  This check relies solely on the information in the
+schema, not Perl's idea of <code>-&gt;isa</code> relationships.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="load">load</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="load">load</a></h2>
+<pre>
    $obj = $storage-&gt;load( $id );
-   @obj = $storage-&gt;load( @id );
-</pre>
-<p class="POD_TEXT">
-Returns a list of objects given their IDs.
-Dies if any ID has no corresponding persistent object in storage.
+   @obj = $storage-&gt;load( @id );</pre>
+<p>Returns a list of objects given their IDs.
+Dies if any ID has no corresponding persistent object in storage.</p>
+<p>This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-This method is valid in both the <u>scalar and list contexts</u> entry elsewhere in this document.
+<h2><a name="remote">remote</a></h2>
+<pre>
+   @remote = $storage-&gt;remote( @classes );</pre>
+<p>Returns a list of <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a> objects of given classes.
+This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="remote">remote</a></h3>
-<pre class="POD_VERBATIM">
-   @remote = $storage-&gt;remote( @classes );
-</pre>
-<p class="POD_TEXT">
-Returns a list of the <a class="POD_LINK" href="../Tangram/Remote.html">Tangram::Remote</a> manpage objects of given classes.
-This method is valid in both the <u>scalar and list contexts</u> entry elsewhere in this document.
-</p>
-<h3 class="POD_HEAD2"><a name="select">select</a></h3>
-<pre class="POD_VERBATIM">
-   @objs = select( $remote );
-
-   @objs = select( $remote, $filter );
-
+<h2><a name="select">select</a></h2>
+<pre>
+   @objs = select( $remote );</pre>
+<pre>
+   @objs = select( $remote, $filter );</pre>
+<pre>
    @objs = select( $remote,
-      opt1 =&gt; val1, opt2 =&gt; val2, ...);
-</pre>
-<p class="POD_TEXT">
-Valid only in list context. Returns a list containing all the objects
-that satisfy $filter.
-</p>
-<p class="POD_TEXT">
-$remote can be either a Remote object of an array of Remote
+      opt1 =&gt; val1, opt2 =&gt; val2, ...);</pre>
+<p>Valid only in list context. Returns a list containing all the objects
+that satisfy $filter.</p>
+<p>$remote can be either a Remote object of an array of Remote
 objects. If it is a single Remote, a list of objects is returned. If
-it is an array, a list of array of objects is returned.
-</p>
-<p class="POD_TEXT">
-If one argument is passed, return all the objects of the given type.
-</p>
-<p class="POD_TEXT">
-If two arguments are passed, the second argument must be a
-Filter. select() returns the objects that satisfy $filter and are
-type-compatible with the corresponding Remote.
-</p>
-<p class="POD_TEXT">
-If more than two arguments are passed, the arguments after $remote<br>&nbsp;are treated as key/value pairs. Currently Tangram recognizes the following
-directives:
-</p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="filter"><p>filter</p></a>
-<li class="POD_ITEM"><a name="distinct"><p>distinct</p></a>
-<li class="POD_ITEM"><a name="order"><p>order</p></a>
-<li class="POD_ITEM"><a name="desc"><p>desc</p></a>
-<li class="POD_ITEM"><a name="distinct1"><p>distinct</p></a>
+it is an array, a list of array of objects is returned.</p>
+<p>If one argument is passed, return all the objects of the given type.</p>
+<p>If two arguments are passed, the second argument must be a
+Filter. <code>select()</code> returns the objects that satisfy $filter and are
+type-compatible with the corresponding Remote.</p>
+<p>If more than two arguments are passed, the arguments after $remote
+ are treated as key/value pairs. Currently Tangram recognizes the following
+directives:</p>
+<ul>
+<li><strong><a name="item_filter">filter</a></strong><br />
+</li>
+<li><strong><a name="item_distinct">distinct</a></strong><br />
+</li>
+<li><strong><a name="item_order">order</a></strong><br />
+</li>
+<li><strong><a name="item_desc">desc</a></strong><br />
+</li>
+<li><strong>distinct</strong><br />
+</li>
+<li><strong><a name="item_limit">limit</a></strong><br />
+</li>
 </ul>
-<p class="POD_TEXT">
-<code>filter</code> specifies a Filter that can be used to restrict the result
-set.
+<p><a href="#item_filter"><code>filter</code></a> specifies a Filter that can be used to restrict the result
+set.</p>
+<p><a href="#item_distinct"><code>distinct</code></a> specifies that each object in the result set must be
+unique (Tangram generates a SELECT DISTINCT).</p>
+<p><a href="#item_order"><code>order</code></a> specifies attributes in terms of one or more of the remote
+objects - any that are being selected, or any that appear in the
+filter.</p>
+<p><a href="#item_desc"><code>desc</code></a> specifies that the order should be descending.  Order of which
+of the columns in the <a href="#item_order"><code>order</code></a> category, you might ask?  The last one
+for now :-}.  This syntax is therefore deprecated, to be replaced with
+a unary <code>-</code> operator to order columns in some future Tangram release.</p>
+<p><a href="#item_distinct"><code>distinct</code></a> is a boolean; a true value specifies that the same object
+should ocur only once in the result set.  In general, this is a good
+idea;</p>
+<p><a href="#item_limit"><code>limit</code></a> is a maximum number of rows to retrieve; in fact, with some
+databases you can give two numbers to this to get the rows between N
+and M of a select.  See your RDBMS manual for more.  If you want to
+specify more than one number, you may use the following syntax:</p>
+<pre>
+   $storage-&gt;select( $object, filter =&gt; (...),
+                     limit =&gt; [ 5, 10 ] );</pre>
+<p>The above example would return rows 6 through 15 on a MySQL database.</p>
+<p>The select method is valid only in list context.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-<code>distinct</code> specifies that each object in the result set must be
-unique (Tangram generates a SELECT DISTINCT).
+<h2><a name="sum___expr____filter___">sum( $expr, [$filter] )</a></h2>
+<p>Returns the total of the remote expression ($expr) for all rows that
+match $filter, as summed by the RDBMS.  $filter is optional, and if
+not passed the implication is to sum the value for ALL objects of that
+type.</p>
+<pre>
+   my $r_thing = $storage-&gt;remote(&quot;Thing&quot;);
+   $sum = $storage-&gt;sum( $r_thing-&gt;{field},
+                         ($r_thing-&gt;{foo} eq &quot;bar&quot;) );</pre>
+<p>It is also possible to pass a list of fields to sum, as an array ref:</p>
+<pre>
+   ($sum_expr1, $sum_expr2)
+       = $storage-&gt;sum( [ $expr1, $expr2 ], $filter );</pre>
+<p>
 </p>
-<p class="POD_TEXT">
-<code>order</code> THIS OPTION IS DEPRECATED!
+<h2><a name="count___expr____filter___">count( $expr, [$filter] )</a></h2>
+<p>Works as <strong>sum()</strong>, but returns the count of the given objects or
+columns instead of the sum.</p>
+<p>This function does <em>not</em> support counting multiple columns by passing
+an array ref.  However, this can be achieved using the
+<code>-&gt;count()</code> remote expression function (see <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a>).</p>
+<p>
 </p>
-<p class="POD_TEXT">
-<code>desc</code> THIS OPTION IS DEPRECATED!
-</p>
-<p class="POD_TEXT">
-<code>distinct</code> is a boolean; a true value specifies that the same object
-should ocur only once in the result set.
-</p>
-<p class="POD_TEXT">
-Valid only in list context.
-</p>
-<h3 class="POD_HEAD2"><a name="cursor">cursor</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="cursor">cursor</a></h2>
+<pre>
    $cursor = $storage-&gt;cursor( $remote );
    $cursor = $storage-&gt;cursor( $remote, $filter );
    $cursor = cursor( $remote,
-      opt1 =&gt; val1, op2 =&gt; val2, ...);
-</pre>
-<p class="POD_TEXT">
-Valid only in scalar context.
-</p>
-<p class="POD_TEXT">
-Returns a Cursor on the objects that are type-compatible with $remote.
-</p>
-<p class="POD_TEXT">
-If one argument is passed, the cursor returns all the objects of the given type.
-</p>
-<p class="POD_TEXT">
-If two arguments are passed, the second argument must be a
+      opt1 =&gt; val1, op2 =&gt; val2, ...);</pre>
+<p>Valid only in scalar context.</p>
+<p>Returns a Cursor on the objects that are type-compatible with $remote.</p>
+<p>If one argument is passed, the cursor returns all the objects of the given type.</p>
+<p>If two arguments are passed, the second argument must be a
 Filter. The cursor returns the objects that satisfy $filter and are
-type-compatible with the corresponding Remote.
-</p>
-<p class="POD_TEXT">
-If more than two arguments are passed, the arguments after $remote
+type-compatible with the corresponding Remote.</p>
+<p>If more than two arguments are passed, the arguments after $remote
 are treated as key/value pairs. Currently Tangram recognizes the following
-directives:
-</p>
-<ul class="POD_LIST">
-<li class="POD_ITEM"><a name="filter1"><p>filter</p></a>
-<li class="POD_ITEM"><a name="order1"><p>order</p></a>
-<li class="POD_ITEM"><a name="desc1"><p>desc</p></a>
-<li class="POD_ITEM"><a name="distinct2"><p>distinct</p></a>
-<li class="POD_ITEM"><a name="retrieve"><p>retrieve</p></a>
+directives:</p>
+<ul>
+<li><strong>filter</strong><br />
+</li>
+<li><strong>order</strong><br />
+</li>
+<li><strong>desc</strong><br />
+</li>
+<li><strong>distinct</strong><br />
+</li>
+<li><strong><a name="item_retrieve">retrieve</a></strong><br />
+</li>
 </ul>
-<p class="POD_TEXT">
-For options <code>filter</code>, <code>order</code>, <code>desc</code> and <code>distinct</code>, see <code>select</code>.
+<p>For options <a href="#item_filter"><code>filter</code></a>, <a href="#item_order"><code>order</code></a>, <a href="#item_desc"><code>desc</code></a> and <a href="#item_distinct"><code>distinct</code></a>, see <code>select</code>.</p>
+<p>Option <a href="#item_retrieve"><code>retrieve</code></a> is an array of Expr, to be retrieved in addition to
+the object itself.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-Option <code>retrieve</code> is an array of Expr, to be retrieved in addition to
-the object itself.
+<h2><a name="prefetch">prefetch</a></h2>
+<pre>
+   $storage-&gt;prefetch(&quot;Class&quot;, &quot;collection&quot;, $filter);</pre>
+<p>This method fetches all the ``collection'' collections from ``Class'',
+where $filter.</p>
+<p>You need to be very careful with your filter - it is quite easy to end
+up with a filter that will include a single table twice with no join.</p>
+<p>You <strong>should not</strong> include an expression in the filter that matches the
+type of object that you are prefetching, unless that is a *different*
+object to the one you want to load.</p>
+<p>You <strong>should</strong> replace the text ``Class'' with a Tangram::Remote object
+from your <code>$filter</code> if it appears in the expression.</p>
+<p>This code is OK:</p>
+<pre>
+   my $r_parent = $storage-&gt;remote( &quot;NaturalPerson&quot; );
+   my $filter = ($r_parent-&gt;{age} &gt; 40);</pre>
+<pre>
+   my @parent = $storage-&gt;select($r_parent, $filter);
+   $storage-&gt;prefetch($r_parent, &quot;children&quot; $filter);</pre>
+<p>But this code has the problem:</p>
+<pre>
+   my $r_parent = $storage-&gt;remote( &quot;NaturalPerson&quot; );
+   my $r_child  = $storage-&gt;remote( &quot;NaturalPerson&quot; );</pre>
+<pre>
+   my $filter = (
+                 ($r_parent-&gt;{age} &gt; 40) &amp;;
+                  $r_parent-&gt;{children}-&gt;includes($r_child)
+                );</pre>
+<pre>
+   my @parent = $storage-&gt;select($r_parent, $filter);
+   my @children = $storage-&gt;select($r_child, $filter);</pre>
+<pre>
+   $storage-&gt;prefetch($r_parent, &quot;children&quot;, $filter);</pre>
+<p>Because <code>$filter</code> contains an extra `unnecessary' relationship with
+<code>$r_child</code>, the filter that Tangram builds internally ends up looking
+like:</p>
+<pre>
+    (
+     ($r_parent-&gt;{age} &gt; 40) &amp;
+     $r_parent-&gt;{children}-&gt;includes($r_child) &amp;
+     $r_parent-&gt;{children}-&gt;includes($r_child2) &amp;
+    );</pre>
+<p>So, you end up including extra tables without joining them.  This
+situation does not make any sense, but unfortunately because of the
+definition of how RDBMS' work, it is required behaviour for it to give
+you a permutation of all of the unjoined tables.  &lt;sigh&gt;</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="erase">erase</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;erase( @obj );
-</pre>
-<p class="POD_TEXT">
-Removes objects from persistent storage. The objects remain present in transient storage.
+<h2><a name="erase">erase</a></h2>
+<pre>
+   $storage-&gt;erase( @obj );</pre>
+<p>Removes objects from persistent storage. The objects remain present in transient storage.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="tx_start">tx_start</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;tx_start();
-</pre>
-<p class="POD_TEXT">
-Starts a new Tangram transaction.
-</p>
-<p class="POD_TEXT">
-Tangram transactions can be nested.
-</p>
-<p class="POD_TEXT">
-Tangram maintains a transaction nesting count for each storage and commits the operations only
-when that count reaches zero. This scheme makes it easy for a function to collaborate with its caller
-in the management of the the <u>internal connection</u> entry elsewhere in this document.
-</p>
-<p class="POD_TEXT">
-Example:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="tx_start">tx_start</a></h2>
+<pre>
+   $storage-&gt;tx_start();</pre>
+<p>Starts a new Tangram transaction.  Tangram transactions can be nested,
+but currently this does not actually make SQL <code>SAVEPOINT</code>'s (for
+partial transaction rollback).</p>
+<p>Instead, tangram maintains a transaction nesting count for each
+storage object and commits the operations only when that count reaches
+zero. This scheme makes it easy for a function to collaborate with its
+caller in the management of the <a href="#internal_connection">internal connection</a>.</p>
+<p>Example:</p>
+<pre>
    sub f
    {
       $storage-&gt;tx_start();
       $storage-&gt;update( $homer );
       $storage-&gt;tx_commit(); # or perhaps rollback()
-   }
-
+   }</pre>
+<pre>
    sub g
    {
       $storage-&gt;tx_start();
       f();
       $storage-&gt;update( $marge );
       $storage-&gt;tx_commit(); # or perhaps rollback()
-   }
-
+   }</pre>
+<pre>
    f(); # 1
-   g(); # 2
-</pre>
-<p></p>
-<p class="POD_TEXT">
-In (1), f() commits the changes to $homer directly to the database.
+   g(); # 2</pre>
+<p>In (1), <code>f()</code> commits the changes to $homer directly to the database.</p>
+<p>In (2), <code>f()</code> transparently reuses the transaction opened by g().
+Changes to both $homer and $marge are commited to the database when
+<code>g()</code> calls tx_commit().</p>
+<p>By default with ACID compliant database back-ends (such as Pg,
+MySQL/InnoDB, Oracle and pretty much any commercial RDBMS), the first
+time you open a database connection, you are beginning a transaction.
+However, this is not the case with the <a href="/pod/./Tangram/SQLite.html">the Tangram::SQLite manpage</a> or
+<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> back-ends, both of which do not implement
+transaction isolation; therefore it is not good to assume that the
+database can handle concurrent writing efficiently.</p>
+<p>To be run safely on these non-compliant back-ends, you should
+explicitly <code>tx_start()</code> at the beginning of transaction blocks rather
+than relying on the default behaviour.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-In (2), f() transparently reuses the transaction opened by g().\
-Changes to both $homer and $marge are commited to the database when g() calls tx_commit().
+<h2><a name="tx_commit">tx_commit</a></h2>
+<pre>
+   $storage-&gt;tx_commit();</pre>
+<p>Commits the current Tangram transaction for this storage.  If the
+transaction being commited is the outermost transaction for this
+storage, the DBI transaction is also commited.</p>
+<p>When using the <a href="/pod/./Tangram/SQLite.html">the SQLite manpage</a> back-end, when the DBI transaction is
+committed, the connection is also marked read-only (ie, AutoCommit is
+enabled).</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="tx_commit">tx_commit</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;tx_commit();
-</pre>
-<p class="POD_TEXT">
-Commits the current Tangram transaction for this storage.
-If the transaction being commited is the outermost transaction for this storage, the DBI
-transaction is also commited.
-</p>
-<h3 class="POD_HEAD2"><a name="tx_rollback">tx_rollback</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;tx_rollback();
-</pre>
-<p class="POD_TEXT">
-Rolls back the current Tangram transaction for this storage.
+<h2><a name="tx_rollback">tx_rollback</a></h2>
+<pre>
+   $storage-&gt;tx_rollback();</pre>
+<p>Rolls back the current Tangram transaction for this storage.
 If the transaction being rolled back is the outermost transaction for this storage, the DBI
-transaction is also rolled back.
+transaction is also rolled back.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="tx_do">tx_do</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;tx_do( sub { ... } );
-</pre>
-<p class="POD_TEXT">
-Executes CODEREF under the protection of a Tangram transaction and
-pass it @args in the argument list.
-</p>
-<p class="POD_TEXT">
-Rolls back the transaction if CODEREF dies; in which case the
-exception is re-thrown.
-</p>
-<p class="POD_TEXT">
-Returns the results of CODEREF, either as a scalar or as a list
-depending on the context in which tx_do was called.
-</p>
-<p class="POD_TEXT">
-Example:
-</p>
-<pre class="POD_VERBATIM">
+<h2><a name="tx_do">tx_do</a></h2>
+<pre>
+   $storage-&gt;tx_do( sub { ... } );</pre>
+<p>Executes CODEREF under the protection of a Tangram transaction and
+pass it @args in the argument list.</p>
+<p>Rolls back the transaction if CODEREF dies; in which case the
+exception is re-thrown.</p>
+<p>Returns the results of CODEREF, either as a scalar or as a list
+depending on the context in which tx_do was called.</p>
+<p>Example:</p>
+<pre>
    $storage-&gt;tx_do(
       sub
       {
          $storage-&gt;update( $homer );
          # do things, die perhaps
          $storage-&gt;update( $marge );
-      } );
-</pre>
-<p class="POD_TEXT">
-Both $homer and $marge will be updated, or none will, depending on
-whether the anonymous subroutine passed to tx_do() dies.
+      } );</pre>
+<p>Both $homer and $marge will be updated, or none will, depending on
+whether the anonymous subroutine passed to <code>tx_do()</code> dies.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="unload">unload</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;unload( @obj );
-</pre>
-<p class="POD_TEXT">
-Drops references to persistent objects present in memory. @objs may
+<h2><a name="unload">unload</a></h2>
+<pre>
+   $storage-&gt;unload( @obj );</pre>
+<p>Drops references to persistent objects present in memory. @objs may
 contain both objects and object ids. If @objs is empty, unloads all
-the objects loaded by this storage.
-</p>
-<p class="POD_TEXT">
-Storage keeps track of all the persistent objects that are present in
+the objects loaded by this storage.</p>
+<p>Storage keeps track of all the persistent objects that are present in
 memory, in order to make sure that loading the same object twice
-results in a single copy of the object.
-</p>
-<p class="POD_TEXT">
-As a consequence, these objects will not be reclaimed by Perl's
-automatic memory management mechanism until either disconnect() or
-unload() is called.
-</p>
-<p class="POD_TEXT">
-unload() should be called only when no other references exist to
+results in a single copy of the object.</p>
+<p>As a consequence, these objects will not be reclaimed by Perl's
+automatic memory management mechanism until either <code>disconnect()</code> or
+<code>unload()</code> is called.</p>
+<p><code>unload()</code> should be called only when no other references exist to
 persistent objects, otherwise the same object (in the database) may
-end up having two copies in transient storage.
+end up having two copies in transient storage, or vice versa!</p>
+<p>In most cases, you never want to use this function - letting objects
+pass out of scope and be cleaned up is a much more natural way to let
+the object cache take care of itself.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="disconnect">disconnect</a></h3>
-<pre class="POD_VERBATIM">
-   $storage-&gt;disconnect();
-</pre>
-<p class="POD_TEXT">
-Disconnects from the database. Drops references to persistent
-objects present in memory (see <code>unload</code>).
+<h2><a name="unload_all_____notify_method___">unload_all( [ $notify_method ])</a></h2>
+<p>Drops references to all objects in the object cache.  If you pass a
+notify method, then this will be passed to all objects as they are
+dumped (so long as they <code>-&gt;can()</code> handle it).  This can be used,
+for instance, with Class::Tangram objects to make sure all circular
+references in cached objects are cleared, if you pass <code>clear_refs</code> as
+the <code>$notify_method</code>.</p>
+<p>Similar warnings apply to this function as <code>$storage-&gt;unload()</code>.</p>
+<p>This function is particularly useful in OLTP (online transaction
+processing) servers.  In those, it should be called before the first
+<code>$storage-&gt;tx_start()</code>, so that all objects are known to be
+``fresh'' in the current transaction.  Due to ACID guarantees of
+consistent reads etc (not on MySQL/MyISAM!), you should then not have
+the classic ``dirty read'' problem - so long as you wrap the entire
+transaction in a function that catches a failure on
+<code>-e&lt;gt</code>tx_commit()&gt; and attempts a retry (make sure to clear the
+cache again before a retry!).</p>
+<p>You might also want to see your RDBMS manual under the topic of
+``transaction isolation'', in particular the SQL command <code>SET
+TRANSACTION ISOLATION LEVEL</code>.</p>
+<p>
 </p>
-<hr>
-<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
-<!--#include virtual="/footer.html"-->
+<h2><a name="disconnect">disconnect</a></h2>
+<pre>
+   $storage-&gt;disconnect();</pre>
+<p>Disconnects from the database. Drops references to persistent
+objects present in memory (see <code>unload</code>).</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

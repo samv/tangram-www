@@ -1,119 +1,174 @@
-<!--#set var="title" value="Documentation: Tangram::Relational"-->
-<!--#include virtual="/header.html"-->
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
-<h1 class="POD_TITLE">Tangram::Relational</h1>
-<hr>
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: POD: Tangram::Relational - Orthogonal Object Persistence in Relational Databases</title>
+    <link type="text/css" rel="stylesheet" href="/tangram.css">
+  </head>
+
+  <body bottommargin="0" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+    <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td background="/gfx/bgdots.png" rowspan="3" width="5"></td><td background="/gfx/bgdots.png" height="6"></td></tr>
+        <tr>
+          <td background="/gfx/bgdots.png" height="30"><img src="/gfx/tangramlogo.png" width="251" height="26" alt="" border="0" hspace="0" vspace="0"></td>
+        </tr>
+        <tr><td height="6" background="/gfx/bgdots.png"></td></tr>
+        <tr>
+          <td></td>
+          <td>
+            <table border="0"  cellpadding="0" cellspacing="0" width="100%" height="20">
+		<tr>
+                  <td align="left">
+                    <table border="0"  cellpadding="2" cellspacing="0">
+                        <tr>
+                          <td class="menuItem"><a href="/" class="menu">Home</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/docs" class="menu">Documentation</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/download" class="menu">Download</td>
+                          <td class="menuItem"> | </td>
+                          <td class="menuItem"><a href="/development" class="menu">Development</td>
+                        </tr>
+                    </table>
+                  </td>
+                  <form method="GET" action="/cgi-bin/search/search.pl">
+                  <td class="menuItem" align="right" height="24">Search <input type="text" name="q"></td>
+                  </form>
+                  <td width="2"></td>
+		</tr>
+            </table>
+          </td>
+        </tr>
+    </table>
+    <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr><td colspan="2" height="5"></td></tr>
+        <tr>
+          <td width="5"></td>
+          <td>
+
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
 <ul>
-<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
-<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
-<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
-<li><a class="POD_NAVLINK" href="#CLASS_METHODS">CLASS METHODS</a>
-<ul>
-<li><a class="POD_NAVLINK" href="#schema">schema</a>
-<li><a class="POD_NAVLINK" href="#deploy">deploy</a>
-<li><a class="POD_NAVLINK" href="#connect">connect</a>
-<li><a class="POD_NAVLINK" href="#retreat">retreat</a>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#class_methods">CLASS METHODS</a></li>
+	<ul>
+
+		<li><a href="#schema">schema</a></li>
+		<li><a href="#deploy">deploy</a></li>
+		<li><a href="#connect">connect</a></li>
+		<li><a href="#retreat">retreat</a></li>
+	</ul>
+
+	<li><a href="#writing_a_vendor_driver">WRITING A VENDOR DRIVER</a></li>
 </ul>
-</ul>
-<hr>
-<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
-<p class="POD_TEXT">
-Tangram::Relational - Orthogonal Object Persistence in Relational Databases
+<!-- INDEX END -->
+
+<hr />
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
-<pre class="POD_VERBATIM">
-   use Tangram;
-
-   $schema = Tangram::Relational-&gt;schema( $hashref );
-
-   Tangram::Relational-&gt;deploy($schema, $dbh);
-
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Relational - Orthogonal Object Persistence in Relational Databases</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+   use Tangram;</pre>
+<pre>
+   $schema = Tangram::Relational-&gt;schema( $hashref );</pre>
+<pre>
+   Tangram::Relational-&gt;deploy($schema, $dbh);</pre>
+<pre>
    $storage = Tangram::Relational-&gt;connect( $schema,
-      $data_source, $username, $password );
-
-   $storage-&gt;disconnect();
-
-   Tangram::Relational-&gt;retreat($schema, $dbh);
-</pre>
-<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
-<p class="POD_TEXT">
-This is the entry point in the vanilla object-relational persistence
+      $data_source, $username, $password );</pre>
+<pre>
+   $storage-&gt;disconnect();</pre>
+<pre>
+   Tangram::Relational-&gt;retreat($schema, $dbh);</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This is the entry point in the vanilla object-relational persistence
 backend. Vendor-specific backends should be used when they
-exist. Currently Mysql and Sybase have such backends; see
-the <a class="POD_LINK" href="../Tangram/mysql.html">Tangram::mysql</a> manpage and the <a class="POD_LINK" href="../Tangram/Sybase.html">Tangram::Sybase</a> manpage.
+exist. Currently Mysql, Sybase and Oracle have such backends; see
+<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a>, <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a> and <a href="/pod/./Tangram/Oracle.html">the Tangram::Oracle manpage</a>.</p>
+<p>More backends could be added in the future; they might implement
+persistence in XML documents, pure object databases, using C database
+libraries to bypass the need for an RDBMS, etc.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-More backends will be added in the future; they will
-implement persistence in XML documents, pure object databases etc.
+<hr />
+<h1><a name="class_methods">CLASS METHODS</a></h1>
+<p>
 </p>
-<h2 class="POD_HEAD1"><a name="CLASS_METHODS">CLASS METHODS</a></h2>
-<h3 class="POD_HEAD2"><a name="schema">schema</a></h3>
-<pre class="POD_VERBATIM">
-   $schema = Tangram::Relational-&gt;schema( $hashref );
-</pre>
-<p class="POD_TEXT">
-Returns a new Schema object. See the <a class="POD_LINK" href="../Tangram/Schema.html">Tangram::Schema</a> manpage.
+<h2><a name="schema">schema</a></h2>
+<pre>
+   $schema = Tangram::Relational-&gt;schema( $hashref );</pre>
+<p>Returns a new Schema object. See <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
+<p>
 </p>
-<h3 class="POD_HEAD2"><a name="deploy">deploy</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="deploy">deploy</a></h2>
+<pre>
    Tangram::Relational-&gt;deploy($schema);
    Tangram::Relational-&gt;deploy($schema, HANDLE);
-   Tangram::Relational-&gt;deploy($schema, @dbi_args);
-</pre>
-<p class="POD_TEXT">
-Writes SQL statements for preparing a database for use with the given
-$schema.
-</p>
-<p class="POD_TEXT">
-Called with a single argument, writes SQL statements to STDOUT.
-</p>
-<p class="POD_TEXT">
-Called with two arguments, writes SQL statements to HANDLE. HANDLE may
-be a DBI connection handle or a file handle.
-</p>
-<p class="POD_TEXT">
-Called with more than two arguments, passes all but the first to
+   Tangram::Relational-&gt;deploy($schema, @dbi_args);</pre>
+<p>Writes SQL statements for preparing a database for use with the given
+$schema.</p>
+<p>Called with a single argument, writes SQL statements to STDOUT.</p>
+<p>Called with two arguments, writes SQL statements to HANDLE. HANDLE may
+be a DBI connection handle or a file handle.</p>
+<p>Called with more than two arguments, passes all but the first to
 DBI::connect() and writes statements to the resulting DBI handle,
-which is automatically closed.
+which is automatically closed.</p>
+<p>The SQL code is only guaranteed to work on newly created databases.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-The SQL code is only guaranteed to work on newly created databases.
-</p>
-<h3 class="POD_HEAD2"><a name="connect">connect</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="connect">connect</a></h2>
+<pre>
    $storage = Tangram::Relational-&gt;connect( $schema,
-      $data_source, $user, $password, \%options )
-</pre>
-<p class="POD_TEXT">
-Connects to a storage and return a handle object. Dies in case of
-failure.
+      $data_source, $user, $password, \%options )</pre>
+<p>Connects to a storage and return a handle object. Dies in case of
+failure.</p>
+<p>$schema is a Schema object describing the system of
+classes stored in the database.</p>
+<p>$data_source, $user and $password are passed directly to
+DBI::connect().</p>
+<p>\%options is a reference to a hash containing connection options. See
+<a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a> for a description of available options.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-$schema is a Schema object describing the system of
-classes stored in the database.
-</p>
-<p class="POD_TEXT">
-$data_source, $user and $password are passed directly to
-DBI::connect().
-</p>
-<p class="POD_TEXT">
-\%options is a reference to a hash containing connection options. See
-the <a class="POD_LINK" href="../Tangram/Storage.html">Tangram::Storage</a> manpage for a description of available options.
-</p>
-<h3 class="POD_HEAD2"><a name="retreat">retreat</a></h3>
-<pre class="POD_VERBATIM">
+<h2><a name="retreat">retreat</a></h2>
+<pre>
    Tangram::Relational-&gt;retreat($schema);
    Tangram::Relational-&gt;retreat($schema, HANDLE);
-   Tangram::Relational-&gt;retreat($schema, @dbi_args);
-</pre>
-<p class="POD_TEXT">
-Remove the tables created by deploy(). Only guaranteed to work against
-a database that was deployed using exactly the same schema.
+   Tangram::Relational-&gt;retreat($schema, @dbi_args);</pre>
+<p>Remove the tables created by deploy(). Only guaranteed to work against
+a database that was deployed using exactly the same schema.</p>
+<p>For an explanation of the possible argument lists, see <a href="#deploy">the deploy manpage</a>.</p>
+<p>
 </p>
-<p class="POD_TEXT">
-For an explanation of the possible argument lists, see the <u>deploy</u> manpage.
-</p>
-<p></p>
-<hr>
-<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
-<!--#include virtual="/footer.html"-->
+<hr />
+<h1><a name="writing_a_vendor_driver">WRITING A VENDOR DRIVER</a></h1>
+<p>Like Charles Moore (inventor of Forth) used to say, ``standards are
+great, everybody should have one!''.</p>
+<p>Tangram can take advantage of extensions available in some SQL
+dialects.</p>
+<p>To create a vendor-specific driver, call it <code>Tangram::Foo</code> (where
+<code>Foo</code> is the name of the DBI driver, as would be selected with the
+DBI connection string <code>dbi:Foo:</code>), and derive <code>Tangram::Relational</code>.</p>
+<p>For now, the existing back-ends should be used as examples of how to
+extend Tangram to support different databases or utilise some of their
+more exotic features.</p>
+
+          <hr class="footer">
+          </td>
+        </tr>
+    </table>
+  </body>
+</html>

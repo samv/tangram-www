@@ -1,0 +1,44 @@
+[% title = 'POD: Tangram::Core - import core Tangram modules' %]
+[% INCLUDE header.tt %]
+
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>
+</p>
+<h1><a name="name">NAME</a></h1>
+<p>Tangram::Core - import core Tangram modules</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+   use Tangram::Core;</pre>
+<pre>
+   # use additional types, e.g.:
+   use Tangram::Array;
+   use Tangram::IntrSet;</pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This module imports only the parts of Tangram that are thought to be
+essential to any app. This includes: Schema, Storage, Cursor, Expr,
+Scalar and Ref. None of the modules that map collections (Array, Hash,
+Set and their intrusive variants) are imported. Neither is Deploy.</p>
+<p>Tangram::Core allows you to reduce script startup time (and executable
+size when perlcc can handle Tangram) by importing only what you
+really need. It also makes it possible to add new mappings to Tangram
+without penalizing apps that don't need them.</p>
+
+[% INCLUDE footer.tt %]
