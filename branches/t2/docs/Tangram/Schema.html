@@ -1,0 +1,313 @@
+<!--#set var="title" value="Documentation: Tangram::Schema"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::Schema</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+<li><a class="POD_NAVLINK" href="#CLASS_METHODS">CLASS METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#new">new</a>
+<li><a class="POD_NAVLINK" href="#Global_properties">Global properties</a>
+<li><a class="POD_NAVLINK" href="#class_registry">class registry</a>
+<li><a class="POD_NAVLINK" href="#field_hash">field hash</a>
+</ul>
+<li><a class="POD_NAVLINK" href="#INSTANCE_METHODS">INSTANCE METHODS</a>
+<ul>
+<li><a class="POD_NAVLINK" href="#deploy">deploy</a>
+<li><a class="POD_NAVLINK" href="#retreat">retreat</a>
+</ul>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram::Schema - describe a system of persistent classes
+</p>
+<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
+<pre class="POD_VERBATIM">
+   use Tangram;
+
+   $schema = Tangram::Schema-&gt;new( $hashref );
+
+   Tangram::Relational-&gt;connect( $schema, ... );
+
+   # write SQL to FILE
+   $schema-&gt;deploy( \*FILE );
+
+   # write SQL to STDOUT
+   $schema-&gt;deploy();
+</pre>
+<p></p>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+A Schema contains all the information about the persistent aspects of
+a system of classes. That information is used to perform the mapping
+between OO constructs and a relational database.
+</p>
+<p class="POD_TEXT">
+Schema objects are initialized from a nested data structure called a
+schema hash. The general structure of the schema hash is described
+here.
+</p>
+<p class="POD_TEXT">
+The resulting Schema object becomes the owner of the schema hash
+passed to new(). The hash may not be modified afterwards, and no
+assumptions can be made regarding its content.
+</p>
+<h2 class="POD_HEAD1"><a name="CLASS_METHODS">CLASS METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="new">new</a></h3>
+<pre class="POD_VERBATIM">
+   $schema = Tangram::Schema-&gt;new( $hash );
+</pre>
+<p class="POD_TEXT">
+Returns a new Schema object.
+</p>
+<p class="POD_TEXT">
+The newly created Schema object becomes the owner of the hash,
+which can no longer be modified nor reused by client code.
+</p>
+<p class="POD_TEXT">
+The schema hash describes the persistent aspects of a system of
+classes. It is a multilevel data structure.
+</p>
+<ol class="POD_LIST">
+<li class="POD_ITEM"><a name="_"></a>
+<p class="POD_TEXT">
+The first level of the hash contains information that is relevant to
+the system as a whole.
+</p>
+<li class="POD_ITEM"><a name="_1"></a>
+<p class="POD_TEXT">
+The second level contains information on a per-class basis.
+</p>
+<li class="POD_ITEM"><a name="_2"></a>
+<p class="POD_TEXT">
+The third level contains information about the individual fields in a
+class. That information depends on the type of the field and is not
+documented here; see the <a class="POD_LINK" href="#field_hash">field hash</a> entry elsewhere in this document for a list of predefined
+persistent types.
+</p>
+</ol>
+<h3 class="POD_HEAD2"><a name="Global_properties">Global properties</a></h3>
+<p class="POD_TEXT">
+The first level of the schema hash describes aspects that are global
+to a system of persistent classes. It has the following aspect:
+</p>
+<pre class="POD_VERBATIM">
+   {
+      classes =&gt;
+     [
+        Identity =&gt;
+         {
+            table =&gt; 'IdentityState',
+         abstract =&gt; 1
+         },
+
+         NaturalPerson =&gt;
+         {
+            bases =&gt; [ qw( Identity ) ],
+         },
+
+         LegalPerson =&gt;
+         {
+            bases =&gt; [ qw( Identity ) ],
+         },
+      ],
+
+      make_object =&gt; sub { ... },
+      set_id =&gt; sub { ... }
+      get_id =&gt; sub { ... }
+      normalize =&gt; sub { ... },
+
+      control =&gt; '...'
+
+      sql =&gt; { ... },
+   }
+</pre>
+<p class="POD_TEXT">
+<code>classes</code> is an array called the the <a class="POD_LINK" href="#class_registry">class registry</a> entry elsewhere in this document. It contains a
+description of each persistent class.
+</p>
+<p class="POD_TEXT">
+<code>make_object</code> contains a reference to a closure that returns a
+new object of a given class. This field is optional: by default,
+Tangram calls class method new().
+</p>
+<p class="POD_TEXT">
+<code>set_id</code> and <code>get_id</code> are used together to associate an object ID
+with a persistent object. By default, Tangram converts a reference to
+an object to a unique integer value by evaluating the expression <code>0
++ $obj</code>. The result is used as a key in a hash contained in the
+Storage object. The values in that hash are the object IDs.
+</p>
+<p class="POD_TEXT">
+If any of your classes use overloading, this approach will not work
+and you will need to supply your own get/set_id methods.
+</p>
+<p class="POD_TEXT">
+<code>control</code> is the name of a table that has a single row, containing
+the major and minor version numbers of the Tangram that created
+the storage, and the highest allocated object id. It defaults
+to 'Tangram'.
+</p>
+<p class="POD_TEXT">
+Optional field <code>normalize</code> contains a subroutine that's called to
+transform classnames and fieldnames into table and column names. The
+function is called with two arguments; the name to be transformed, and
+a 'type' argument (currently one of 'tablename' or 'fieldname'). The
+return value should be the transformed string.
+</p>
+<p class="POD_TEXT">
+Note that it is expected that the normalize sub will return identical
+strings with identical arguments, that
+<code>normalize(normalize($string, $flag), $flag) eq normalize($string, $flag)</code>
+</p>
+<p class="POD_TEXT">
+Optional field <code>sql</code> contains a hash that can be used to customize
+some of the SQL generated by Tangram. That hash has the following
+fields:
+</p>
+<ul class="POD_LIST">
+<li class="POD_ITEM"><a name="default_null"><p>default_null</p></a>
+<li class="POD_ITEM"><a name="id"><p>id</p></a>
+<li class="POD_ITEM"><a name="cid"><p>cid</p></a>
+<li class="POD_ITEM"><a name="cid_size"><p>cid_size</p></a>
+<li class="POD_ITEM"><a name="oid"><p>oid</p></a>
+</ul>
+<p class="POD_TEXT">
+All the fields are optional.
+</p>
+<p class="POD_TEXT">
+<code>default_null</code> can be used to deal with those databases that don't
+support the explicit 'NULL' specifier in column definitions. Defaults
+to 'NULL'.
+</p>
+<p class="POD_TEXT">
+The other fields are related to the SQL types that Tangram uses to
+store meta-information.
+</p>
+<p class="POD_TEXT">
+Object ids encode the type of the object. Tangram assigns a class id
+to each persistent concrete class within a Schema. When an object is
+inserted, Tangram allocates a unique integer from a class-specific
+allocator, then appends the class id to it. Thus the object id for a
+NaturalPerson may look like <code>270005</code>, where <code>0005</code> is the class
+id.
+</p>
+<p class="POD_TEXT">
+Field <code>id</code> contains the SQL type that is used to map an entire object
+id. It defaults to 'INTEGER'.
+</p>
+<p class="POD_TEXT">
+Field <code>cid</code> contains the SQL type that is used to map a class id. It
+defaults to 'INTEGER'.
+</p>
+<p class="POD_TEXT">
+Field <code>cid_size</code> contains the number of decimal positions that the class id
+occupies within the object id. It defaults to '4'.
+</p>
+<p class="POD_TEXT">
+Field <code>oid</code> contains the SQL type that is used to store the class-specific
+object counters that are used in the id generation process. It
+defaults to 'INTEGER'.
+</p>
+<h3 class="POD_HEAD2"><a name="class_registry">class registry</a></h3>
+<p class="POD_TEXT">
+The class registry is a hash containing one entry per persistent
+class. The key is the class name, the value is a reference to a hash
+called the class hash. It contains information on how to map the
+class.
+</p>
+<p class="POD_TEXT">
+The class hash has the following fields:
+</p>
+<ul class="POD_LIST">
+<li class="POD_ITEM"><a name="abstract"><p>abstract</p></a>
+<li class="POD_ITEM"><a name="bases"><p>bases</p></a>
+<li class="POD_ITEM"><a name="fields"><p>fields</p></a>
+<li class="POD_ITEM"><a name="table"><p>table</p></a>
+<li class="POD_ITEM"><a name="id1"><p>id</p></a>
+</ul>
+<p class="POD_TEXT">
+Field <code>abstract</code> contains a boolean that should be true if the class
+is abstract. If this field is not present, the class is considered to
+be concrete.
+</p>
+<p class="POD_TEXT">
+Field <code>bases</code> contains a reference to an array of base classes.
+</p>
+<p class="POD_TEXT">
+Field <code>fields</code> contains a reference to the the <a class="POD_LINK" href="#field_hash">field hash</a> entry elsewhere in this document.
+</p>
+<p class="POD_TEXT">
+Field <code>table</code> sets the name of the table that Tangram should use to store
+the state of objects pertaining to this class. This field is optional:
+it defaults to the class name. If the class name is not an acceptable
+SQL table identifier, you will need to set this field.
+</p>
+<p class="POD_TEXT">
+Field <code>id</code> contains an integer identifier for this class. That
+identifier must be unique within the same schema. If this field
+is not present, Tangram sets it to the last class id plus one.
+</p>
+<h3 class="POD_HEAD2"><a name="field_hash">field hash</a></h3>
+<p class="POD_TEXT">
+Each persistent type is identified by a 'typetag', e.g. <code>int</code>, <code>string</code>
+or <code>array</code>.
+</p>
+<p class="POD_TEXT">
+All the persistent fields of a given type are grouped
+together inside the field hash, where the typetag is used as a
+key. The individual fields are specified in an array or a hash, whose
+layout is type-dependant. For example:
+</p>
+<pre class="POD_VERBATIM">
+   fields =&gt;
+   {
+      string   =&gt; [ qw( firstName name ) ],
+      int      =&gt; [ qw( age ) ],
+      ref      =&gt; { partner =&gt; { null =&gt; 1 } },
+      array    =&gt; { children =&gt; 'NaturalPerson' },
+   },
+</pre>
+<p class="POD_TEXT">
+The typetag not only specifies the type of a field, but also the way
+in which it should be mapped to SQL constructs. Sometimes the same
+Perl type lends itself to more than one mapping, for example there are
+at least two plausible ways of mapping a Perl array
+(see the <a class="POD_LINK" href="../Tangram/Array.html">Tangram::Array</a> manpage and the <a class="POD_LINK" href="../Tangram/IntrArray.html">Tangram::IntrArray</a> manpage).
+</p>
+<p class="POD_TEXT">
+Tangram's persistent type system is extensible, allowing you to mount
+your own types and make them persistent. All you have to do is to
+register your type and provide mapping code. See the <a class="POD_LINK" href="../Tangram/Type.html">Tangram::Type</a> manpage.
+</p>
+<p class="POD_TEXT">
+Tangram comes with built-in support for the following types:
+</p>
+<p class="POD_TEXT">
+* string, int, real: see the <a class="POD_LINK" href="../Tangram/Scalar.html">Tangram::Scalar</a> manpage
+</p>
+<p class="POD_TEXT">
+* reference : see the <a class="POD_LINK" href="../Tangram/Ref.html">Tangram::Ref</a> manpage
+</p>
+<p class="POD_TEXT">
+* array : see the <a class="POD_LINK" href="../Tangram/Array.html">Tangram::Array</a> manpage, the <a class="POD_LINK" href="../Tangram/IntrArray.html">Tangram::IntrArray</a> manpage
+</p>
+<p class="POD_TEXT">
+* Set::Object : see the <a class="POD_LINK" href="../Tangram/Set.html">Tangram::Set</a> manpage, the <a class="POD_LINK" href="../Tangram/IntrSet.html">Tangram::IntrSet</a> manpage
+</p>
+<h2 class="POD_HEAD1"><a name="INSTANCE_METHODS">INSTANCE METHODS</a></h2>
+<h3 class="POD_HEAD2"><a name="deploy">deploy</a></h3>
+<p class="POD_TEXT">
+This method is deprecated. See the <a class="POD_LINK" href="../Tangram/Relational.html">Tangram::Relational</a> manpage.
+</p>
+<h3 class="POD_HEAD2"><a name="retreat">retreat</a></h3>
+<p class="POD_TEXT">
+This method is deprecated. See the <a class="POD_LINK" href="../Tangram/Relational.html">Tangram::Relational</a> manpage.
+</p>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->

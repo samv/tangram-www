@@ -1,0 +1,82 @@
+<!--#set var="title" value="Documentation: Tangram::DateTime"-->
+<!--#include virtual="/header.html"-->
+<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<h1 class="POD_TITLE">Tangram::DateTime</h1>
+<hr>
+<ul>
+<li><a class="POD_NAVLINK" href="#NAME">NAME</a>
+<li><a class="POD_NAVLINK" href="#SYNOPSIS">SYNOPSIS</a>
+<li><a class="POD_NAVLINK" href="#DESCRIPTION">DESCRIPTION</a>
+</ul>
+<hr>
+<h2 class="POD_HEAD1"><a name="NAME">NAME</a></h2>
+<p class="POD_TEXT">
+Tangram::DateTime - map date &amp; time fields
+</p>
+<h2 class="POD_HEAD1"><a name="SYNOPSIS">SYNOPSIS</a></h2>
+<pre class="POD_VERBATIM">
+   use Tangram;
+
+   # any of:
+   use Tangram::RawDate;
+   use Tangram::RawTime;
+   use Tangram::RawDateTime;
+   use Tangram::DMDateTime;
+
+   Tangram::Schema-&gt;new(
+      classes =&gt; { NaturalPerson =&gt; { fields =&gt; {
+         rawdatetime =&gt; [ qw( birth death ) ],
+         rawdate =&gt; [ qw( depart return ) ],
+         rawtime =&gt; [ qw( breakfast lunch dinner ) ],
+         dmdatetime =&gt; [ qw( attack retreat ) ],
+</pre>
+<p></p>
+<h2 class="POD_HEAD1"><a name="DESCRIPTION">DESCRIPTION</a></h2>
+<p class="POD_TEXT">
+These classes are responsible for mapping strings to SQL date or time
+types. These classes are not imported by Tangram.pm, thus they must be
+explicitly imported via a <code>use</code> directive.
+</p>
+<p class="POD_TEXT">
+The three typetags <code>rawdate</code>, <code>rawtime</code> and <code>rawdatetime</code> are for
+mapping strings to SQL date/time types. 'Raw' means that Tangram
+doesn't attempt to interpret the strings, it merely passes them down
+to DBI.
+</p>
+<p class="POD_TEXT">
+<code>dmdatetime</code> is like <code>rawdatetime</code> except that the date is converted
+to the Date::Manip internal format (ISO-8601, see the <u>Date::Manip</u> manpage) when
+in memory, and written out to the database in SQL datetime format
+(<code>YYYY-MM-DD HH:MM:SS</code>). This mapping was contributed by Sam Vilain
+&lt;sam@vilain.net&gt;.
+</p>
+<p class="POD_TEXT">
+The persistent fields may be specified either as a hash or as an array
+of field names.
+</p>
+<p class="POD_TEXT">
+In the hash form, each entry consists in a field name and an
+associated option hash. The option hash may contain the following
+fields:
+</p>
+<ul class="POD_LIST">
+<li class="POD_ITEM"><a name="col"><p>col</p></a>
+<li class="POD_ITEM"><a name="sql"><p>sql</p></a>
+</ul>
+<p class="POD_TEXT">
+<code>col</code> sets the name of the column used to store the field's
+value. This field is optional, it defaults to the persistent field
+name. Override if the field name is not an acceptable SQL column name.
+</p>
+<p class="POD_TEXT">
+<code>sql</code> sets the SQL type of the column. Used by Schema::deploy() when
+initializing a database. Defaults to 'VARCHAR(255) NULL' for strings,
+'INT NULL' for ints and 'REAL NULL' for reals.
+</p>
+<p class="POD_TEXT">
+The persistent fields may also be specified as an array of strings, in
+which case the defaults are used.
+</p>
+<hr>
+<a class="POD_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<!--#include virtual="/footer.html"-->
