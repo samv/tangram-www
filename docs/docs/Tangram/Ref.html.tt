@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Ref - map references to persistent objects' %]
 [% INCLUDE header.tt %]
 

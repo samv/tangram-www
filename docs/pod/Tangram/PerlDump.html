@@ -3,7 +3,7 @@
 <head>
 <title>Tangram::PerlDump - map any Perl object as scalar dump</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -56,13 +56,13 @@
 <p>Maps arbitrary Perl data structures by serializing to a string
 representation. The persistent fields are grouped in a hash under the
 <code>perl_dump</code> key in the field hash.</p>
-<p>Serialization is done by <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a>, which traverses the Perl
+<p>Serialization is done by <a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a>, which traverses the Perl
 data structure and creates a string representation of it. The
 resulting string will be mapped to the DBMS as a scalar value. During
 restore, the scalar value will be <em>eval</em>'d to reconstruct the
 original data structure.</p>
 <p>As of Tangram 2.07.1, persistent references are safely handled via the
-<a href="/pod/./Tangram/Dump.html">the Tangram::Dump manpage</a> utility class.</p>
+<a href="/docs/Tangram/Dump.html">the Tangram::Dump manpage</a> utility class.</p>
 <p>The field names are passed in a hash that associates a field name with
 a field descriptor. The field descriptor may be either a hash or a
 string. The hash uses the following fields:</p>
@@ -83,8 +83,8 @@ column type for the scalar value in the database. If not present,
 <a href="#item_col"><code>col</code></a> defaults to the field name and <a href="#item_sql"><code>sql</code></a> defaults to VARCHAR(255).
 Values will be always quoted as they are passed to the database.</p>
 <p>The remaining optional fields control the serialization process. They
-will be passed down to <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
-<a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
+will be passed down to <a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
+<a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
 (<code>indent=0</code>), compact format (<code>terse=1</code>), and quick dump
 (<code>purity=0</code>).</p>
 <p>

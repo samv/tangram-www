@@ -1,14 +1,15 @@
 
 
 
+
 <html>
   <head>
     <title>Tangram Orthogonal Persistence: POD: Tangram::FlatHash - map Perl hash of scalar keys and values</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="./tangram.css">
+    <link type="text/css" rel="stylesheet" href="../../tangram.css">
 	<style type="text/css" language="css"><!--
 		#sitelogo {
-			background-image: url('./gfx/bgdots.png');
+			background-image: url('../../gfx/bgdots.png');
 			background-repeat: repeat-both;
 		}
 	--></style>
@@ -19,40 +20,40 @@
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
     <div id="sitelogo">
-	<a href="./">
-	  <img id="t2logo" src="./gfx/t2.png" border="0" />
-	  <img id="tangramlogo" src="./gfx/tangramlogo.png" border="0" />
+	<a href="../../">
+	  <img id="t2logo" src="../../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../../gfx/tangramlogo.png" border="0" />
 	</a>
     </div>
     <div id="navbar">
 <div id="navsearch">
-   <form style="display: inline" action="./search.html" >
+   <form style="display: inline" action="../../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
    </form>
 </div>
 
 <div class="menuItem">
-  <a href="./index.html" class="menu">Home</a>
+  <a href="../../index.html" class="menu">Home</a>
 </div>
 
 <div class="menuItem">
-  <a href="./download/index.html" class="menu">Download</a>
+  <a href="../../download/index.html" class="menu">Download</a>
 </div>
 
 <div class="menuItem">
-  <a href="./docs/index.html" class="menu">Documentation</a>
+  <a href="../../docs/index.html" class="menu">Documentation</a>
 </div>
 
 <div class="menuItem">
-  <a href="./development/index.html" class="menu">Development</a>
+  <a href="../../development/index.html" class="menu">Development</a>
 </div>
 
 	
 <div style="clear: both"></div>
 </div>
 
-<div id="body">
+<div class="body">
 
 
 
@@ -104,7 +105,7 @@
 a hash under the <code>flat_hash</code> key in the field hash.</p>
 <p>The hash may contain as keys and values only 'simple' scalars like
 integers, strings or real numbers. It may not contain references. For
-hashs of objects, see <a href="/pod/./Tangram/Hash.html">the Tangram::Hash manpage</a> and <a href="/pod/./Tangram/IntrHash.html">the Tangram::IntrHash manpage</a>.</p>
+hashs of objects, see <a href="/docs/Tangram/Hash.html">the Tangram::Hash manpage</a> and <a href="/docs/Tangram/IntrHash.html">the Tangram::IntrHash manpage</a>.</p>
 <p>Tangram uses a table to save the state of the collection. The table
 has three columns, which contain</p>
 <ul>
@@ -138,7 +139,7 @@ exactly equivalent to specifying <code>string</code>.</p>
 elements. This defaults to 'C_F', where C is the class of the
 containing object and F is the field name.</p>
 <p>The optional fields <a href="#item_key_sql"><code>key_sql</code></a> and <a href="#item_sql"><code>sql</code></a> specify the type that
-<code>deploy()</code> (see <a href="/pod/./Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing
+<code>deploy()</code> (see <a href="/docs/Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing
 the key and value of the hash. If this field is not present, the SQL
 type is derived from the <a href="#item_type"><code>type</code></a> field: if <a href="#item_type"><code>type</code></a> is <code>string</code> (or is
 absent) <code>VARCHAR(255)</code> is used; otherwise, the <a href="#item_type"><code>type</code></a> field is
@@ -156,9 +157,9 @@ interpreted as a SQL type.</p>
 
 <div id="footer">
    <hr>
-   <a href="copyright.html">copyright info</a> |
-   <a href="credits.html">credits</a> |
-   <a href="map.html">site map</a>
+   <a href="../../copyright.html">copyright info</a> |
+   <a href="../../credits.html">credits</a> |
+   <a href="../../map.html">site map</a>
 
 </div>
 

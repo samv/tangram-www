@@ -38,10 +38,10 @@ chdir $cwd;
 ( chdir $srcdir ) or barf "source $destdir: $!";
 $srcdir=cwd;
 
-crawl($srcdir, $destdir);
+crawl(1, $srcdir, $destdir);
 
 sub crawl {
-  my ($srcdir, $destdir) = @_;
+  my ($depth, $srcdir, $destdir) = @_;
 
   unless (-e $srcdir) {
     barf "$srcdir doesn't exist" unless $srcdir and $destdir;
@@ -71,10 +71,12 @@ sub crawl {
 
     $file =~ m(<title>(.*)</title>);
     my $title = $1;
-    my $header = "[% title = 'POD: $title' %]\n[% INCLUDE header.tt %]\n";
+    my $top = "../" x $depth;
+    $title =~ s{(['\\])}{\\$1}g;
+    my $header = "[% top = '$top' %]\n[% title = 'POD: $title' %]\n[% INCLUDE header.tt %]\n";
     my $footer = "[% INCLUDE footer.tt %]\n";
-    $file =~ s(.*<body>)($header)s;
-    $file =~ s(</body>.*)($footer)s;
+    $file =~ s(.*<body>)($header)si;
+    $file =~ s(</body>.*)($footer)si;
 
     chdir $destdir or die "can't chdir $destdir: $!";
     open(FILE, ">$_.tt") or die $!;
@@ -85,19 +87,21 @@ sub crawl {
 
   }
 
+  $depth++;
   foreach (@dirs) {
-    print STDERR "crawl($srcdir/$_, $destdir/$_)\n";
-    crawl($srcdir."/".$_, $destdir."/".$_);
+    print STDERR "crawl($depth, $srcdir/$_, $destdir/$_)\n";
+    crawl($depth, $srcdir."/".$_, $destdir."/".$_);
   }
 }
 
 undef $/;
-open(FILE, $destdir."/podtoc.html") or die "can't open $destdir/podtoc.html: $!";
+open(FILE, "podtoc.html") or die "can't open podtoc.html: $!";
 my $podtoc = <FILE>;
 close(FILE);
 
-$podtoc =~ s(</table>)(<tr><td colspan="2">&nbsp;</td></tr><tr><td class="PODTOC_NAME"><a class="POD_NAVLINK" href="podindex.html">Documentation index</a></td><td class="PODTOC_DESC"></td></tr></table>)s;
+$podtoc =~ s{</table>.*}{<table><tr><td colspan="2">&nbsp;</td></tr><tr><td class="PODTOC_NAME"><a class="POD_NAVLINK" href="podindex.html">Documentation index</a></td><td class="PODTOC_DESC"></td></tr></table>}s;
+$podtoc =~ s{.*<table>}{}s;
 
-open(FILE, ">".$destdir."/index.html") or die "can't open $destdir/podtoc.html: $!";
+open(FILE, ">".$destdir."/podtoc.tt") or die "can't open $destdir/podtoc.html: $!";
 print FILE $podtoc;
 close(FILE);

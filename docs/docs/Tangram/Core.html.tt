@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Core - import core Tangram modules' %]
 [% INCLUDE header.tt %]
 

@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::IntrSet - map Set::Object using a foreign key' %]
 [% INCLUDE header.tt %]
 

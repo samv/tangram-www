@@ -3,7 +3,7 @@
 <head>
 <title>Tangram - Store pure objects in standard relational databases</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 </p>
 <hr />
 <h1><a name="synopsis">SYNOPSIS</a></h1>
-<p>See <a href="/pod/./Tangram/Tour.html">the Tangram::Tour manpage</a></p>
+<p>See <a href="/docs/Tangram/Tour.html">the Tangram::Tour manpage</a></p>
 <p>
 </p>
 <hr />
@@ -57,7 +57,7 @@ is needed.</p>
 <p>As of Tangram 2.08, the schema need not describe every single object
 property, so that you can map only the columns you intend to query.
 The rest of the object is then stored in a column via a serialiser,
-like <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a>, <a href="/pod/./Tangram/YAML.html">the YAML manpage</a> or <a href="/pod/./Tangram/Storable.html">the Storable manpage</a>.  These structures
+like <a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a>, <em>YAML</em> or <em>Storable</em>.  These structures
 themselves may contain arbitrary references to other objects in
 storage.</p>
 <p>Tangram has soundly engineered transaction support, without
@@ -72,12 +72,12 @@ in.  Therefore, the schema data structure does not describe a data
 structure, it describes a <em>data access pattern</em>.</p>
 <p>If you are not picky about which accessor module to use, preferring to
 specify the schema once only, then you can use the seperately
-distributed <a href="/pod/Class/Tangram/Generator.html">the Class::Tangram::Generator manpage</a> to make a set of classes from
+distributed <a href="/docs/Class/Tangram/Generator.html">the Class::Tangram::Generator manpage</a> to make a set of classes from
 a Tangram schema structure.</p>
 <p>If you are looking for a tool that implements <em>SQL abstraction</em> only,
 you have probably missed the point (of this module, anyway), and a
-well-supported module like <a href="/pod/Class/DBI.html">the Class::DBI manpage</a>, or an interactive SQL
-modeller like Alzabo will likely suit your needs better.</p>
+well-supported module like <a href="/docs/Class/DBI.html">the Class::DBI manpage</a>, or an interactive SQL
+modeller like <em>Alzabo</em> will likely suit your needs better.</p>
 <p>Tangram is beginning to include preliminary support for aggregation
 functions, and currently supports grouping, summing and counting.
 Joins must currently be in terms of integer primary key columns, to
@@ -99,7 +99,7 @@ corresponding Tangram classes manually to do that.</p>
 <hr />
 <h1><a name="contents">CONTENTS</a></h1>
 <dl>
-<dt><strong><a name="item_tangram_3a_3atour"><a href="/pod/./Tangram/Tour.html">the Tangram::Tour manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3atour"><a href="/docs/Tangram/Tour.html">the Tangram::Tour manpage</a></a></strong><br />
 </dt>
 <dd>
 The original ``Guided Tour'' of the features of Tangram, by the author
@@ -107,40 +107,40 @@ of Tangram versions 1 through 2.04 (and a somewhat divergant version 3
 ;-)), Jean-Louis LeRoy.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3aintro"><a href="/pod/./Tangram/Intro.html">the Tangram::Intro manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3aintro"><a href="/docs/Tangram/Intro.html">the Tangram::Intro manpage</a></a></strong><br />
 </dt>
 <dd>
 The humble beginnings of a new guided tour, based on the
 next-generation features found in Tangram 2.08.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3aspringfield"><a href="/pod/./Tangram/Springfield.html">the Tangram::Springfield manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3aspringfield"><a href="/docs/Tangram/Springfield.html">the Tangram::Springfield manpage</a></a></strong><br />
 </dt>
 <dd>
 The classes and schema used in the Guided Tour(s).
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3astorage"><a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3astorage"><a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a></a></strong><br />
 </dt>
 <dd>
 The main database handle class.  Includes details on query syntax.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3acursor"><a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3acursor"><a href="/docs/Tangram/Cursor.html">the Tangram::Cursor manpage</a></a></strong><br />
 </dt>
 <dd>
 Return an iterator that retrieves persistent objects in a result set
 one by one.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3aschema"><a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3aschema"><a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a></a></strong><br />
 </dt>
 <dd>
 The Tangram schema structure - representing your data model so that
 Tangram can map it.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3arelational_3a_3amappings"><a href="/pod/./Tangram/Relational/Mappings.html">the Tangram::Relational::Mappings manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3arelational_3a_3amappings"><a href="/docs/Tangram/Relational/Mappings.html">the Tangram::Relational::Mappings manpage</a></a></strong><br />
 </dt>
 <dd>
 An informative text on exactly how Object Relational Mapping is
@@ -148,7 +148,7 @@ accomplished by the Tangram::Relational back-end, what the different
 styles of mapping are, and how each is selected.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3atype"><a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3atype"><a href="/docs/Tangram/Type.html">the Tangram::Type manpage</a></a></strong><br />
 </dt>
 <dd>
 What Tangram types are available.  This page is an index of other
@@ -156,17 +156,17 @@ manual pages that express the data and relationship types available in
 Tangram.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3atype_3a_3aextending"><a href="/pod/./Tangram/Type/Extending.html">the Tangram::Type::Extending manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3atype_3a_3aextending"><a href="/docs/Tangram/Type/Extending.html">the Tangram::Type::Extending manpage</a></a></strong><br />
 </dt>
 <dd>
 How to write your own custom types for Tangram.
 </dd>
 <p></p>
-<dt><strong><a name="item_tangram_3a_3adialect"><a href="/pod/Tangram/Dialect.html">the Tangram::Dialect manpage</a></a></strong><br />
+<dt><strong><a name="item_tangram_3a_3adialect"><a href="/docs/Tangram/Dialect.html">the Tangram::Dialect manpage</a></a></strong><br />
 </dt>
 <dd>
-Database-specific extensions to Tangram, such as <a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> and
-<a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a>.  These extensions only add functionality, and are
+Database-specific extensions to Tangram, such as <a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a> and
+<a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a>.  These extensions only add functionality, and are
 not required for core operation of Tangram.
 </dd>
 <p></p></dl>

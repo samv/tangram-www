@@ -1,14 +1,15 @@
 
 
 
+
 <html>
   <head>
     <title>Tangram Orthogonal Persistence: POD: Tangram::Complicity - How to make Tangram-friendly classes</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="./tangram.css">
+    <link type="text/css" rel="stylesheet" href="../../tangram.css">
 	<style type="text/css" language="css"><!--
 		#sitelogo {
-			background-image: url('./gfx/bgdots.png');
+			background-image: url('../../gfx/bgdots.png');
 			background-repeat: repeat-both;
 		}
 	--></style>
@@ -19,40 +20,40 @@
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
     <div id="sitelogo">
-	<a href="./">
-	  <img id="t2logo" src="./gfx/t2.png" border="0" />
-	  <img id="tangramlogo" src="./gfx/tangramlogo.png" border="0" />
+	<a href="../../">
+	  <img id="t2logo" src="../../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../../gfx/tangramlogo.png" border="0" />
 	</a>
     </div>
     <div id="navbar">
 <div id="navsearch">
-   <form style="display: inline" action="./search.html" >
+   <form style="display: inline" action="../../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
    </form>
 </div>
 
 <div class="menuItem">
-  <a href="./index.html" class="menu">Home</a>
+  <a href="../../index.html" class="menu">Home</a>
 </div>
 
 <div class="menuItem">
-  <a href="./download/index.html" class="menu">Download</a>
+  <a href="../../download/index.html" class="menu">Download</a>
 </div>
 
 <div class="menuItem">
-  <a href="./docs/index.html" class="menu">Documentation</a>
+  <a href="../../docs/index.html" class="menu">Documentation</a>
 </div>
 
 <div class="menuItem">
-  <a href="./development/index.html" class="menu">Development</a>
+  <a href="../../development/index.html" class="menu">Development</a>
 </div>
 
 	
 <div style="clear: both"></div>
 </div>
 
-<div id="body">
+<div class="body">
 
 
 
@@ -107,7 +108,7 @@ B, this method operates ``in-place''.</p>
 <p>So, therefore it is necessary for the reference type used in the
 return value, to be the same as the one in the real object.  This is
 explained later under <a href="#reftype_mismatch">reftype mismatch</a>.</p>
-<p>So - for instance, for <a href="/pod/Set/Object.html">the Set::Object manpage</a> objects, which have a
+<p>So - for instance, for <a href="/docs/Set/Object.html">the Set::Object manpage</a> objects, which have a
 <code>px_freeze</code> method of:</p>
 <pre>
   sub px_freeze {
@@ -119,14 +120,14 @@ explained later under <a href="#reftype_mismatch">reftype mismatch</a>.</p>
       my $class = shift;
       return $class-&gt;new(@_);
   }</pre>
-<p>[ note: This differs from the <a href="/pod/./Tangram/Storable.html">the Storable manpage</a> API (<code>STORABLE_freeze</code> and
+<p>[ note: This differs from the <em>Storable</em> API (<code>STORABLE_freeze</code> and
 <code>STORABLE_thaw</code>).  This interface is actually reasonably sane - the
 Storable API required custom XS magic for Set::Object, for instance.
 Which has been implemented, but we've learned the lesson now :) ]</p>
 <p>In essence, the <code>px_freeze</code> method means ``marshall yourself to pure
 Perl data types''.  Note that different serialisation tools will treat
 ties, overload and magic remaining on the structure in their own way -
-so, create your own type of magic (a la <a href="/pod/Pixie/Info.html">the Pixie::Info manpage</a>) if you really
+so, create your own type of magic (a la <a href="/docs/Pixie/Info.html">the Pixie::Info manpage</a>) if you really
 want to hang out-of-band information off them.</p>
 <p>
 </p>
@@ -167,9 +168,9 @@ Set::Object's).</p>
 
 <div id="footer">
    <hr>
-   <a href="copyright.html">copyright info</a> |
-   <a href="credits.html">credits</a> |
-   <a href="map.html">site map</a>
+   <a href="../../copyright.html">copyright info</a> |
+   <a href="../../credits.html">credits</a> |
+   <a href="../../map.html">site map</a>
 
 </div>
 

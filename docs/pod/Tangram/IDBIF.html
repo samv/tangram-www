@@ -3,7 +3,7 @@
 <head>
 <title>Tangram::IDBIF - Intuitive DataBase InterFace</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -58,8 +58,8 @@
 <hr />
 <h1><a name="description">DESCRIPTION</a></h1>
 <p>The <strong>idbif</strong> mapping type collates multiple data members into a single
-<strong>perl_dump</strong> (see <a href="/pod/./Tangram/PerlDump.html">the Tangram::PerlDump manpage</a>), <strong>storable</strong> (see
-<a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a>) or <strong>yaml</strong> (see <a href="/pod/./Tangram/YAML.html">the Tangram::YAML manpage</a>) column.</p>
+<strong>perl_dump</strong> (see <a href="/docs/Tangram/PerlDump.html">the Tangram::PerlDump manpage</a>), <strong>storable</strong> (see
+<a href="/docs/Tangram/Storable.html">the Tangram::Storable manpage</a>) or <strong>yaml</strong> (see <a href="/docs/Tangram/YAML.html">the Tangram::YAML manpage</a>) column.</p>
 <p>For instance, with the schema definition in the example, all the
 columns in the example would be serialised via Data::Dumper.</p>
 <p>If you stored an object like this:</p>
@@ -95,7 +95,7 @@ and the data that was returned by the class' <code>px_freeze</code> method.  To
 be reconstituted, it is called as:</p>
 <pre>
   SomeClass-&gt;px_thaw(@data)</pre>
-<p>See <a href="/pod/./Tangram/Dump.html">the Tangram::Dump manpage</a> for more details on the complicity API.</p>
+<p>See <a href="/docs/Tangram/Dump.html">the Tangram::Dump manpage</a> for more details on the complicity API.</p>
 <p>Please set RETVAL to be the thawed object.  (that is, return a single
 scalar).</p>
 <p>

@@ -3,7 +3,7 @@
 <head>
 <title>Tangram::Relational - Orthogonal Object Persistence in Relational Databases</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -58,7 +58,7 @@
 <p>This is the entry point in the vanilla object-relational persistence
 backend. Vendor-specific backends should be used when they
 exist. Currently Mysql, Sybase and Oracle have such backends; see
-<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a>, <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a> and <a href="/pod/./Tangram/Oracle.html">the Tangram::Oracle manpage</a>.</p>
+<a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a>, <a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a> and <a href="/docs/Tangram/Oracle.html">the Tangram::Oracle manpage</a>.</p>
 <p>More backends could be added in the future; they might implement
 persistence in XML documents, pure object databases, using C database
 libraries to bypass the need for an RDBMS, etc.</p>
@@ -71,7 +71,7 @@ libraries to bypass the need for an RDBMS, etc.</p>
 <h2><a name="schema">schema</a></h2>
 <pre>
    $schema = Tangram::Relational-&gt;schema( $hashref );</pre>
-<p>Returns a new Schema object. See <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
+<p>Returns a new Schema object. See <a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
 <p>
 </p>
 <h2><a name="deploy">deploy</a></h2>
@@ -101,7 +101,7 @@ classes stored in the database.</p>
 <p>$data_source, $user and $password are passed directly to
 DBI::connect().</p>
 <p>\%options is a reference to a hash containing connection options. See
-<a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a> for a description of available options.</p>
+<a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a> for a description of available options.</p>
 <p>
 </p>
 <h2><a name="retreat">retreat</a></h2>

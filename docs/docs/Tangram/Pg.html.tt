@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Pg - Orthogonal Object Persistence in PostgreSQL databases' %]
 [% INCLUDE header.tt %]
 
@@ -50,21 +51,21 @@ persistence backend.</p>
 <hr />
 <h1><a name="methods">METHODS</a></h1>
 <p>This backend does not add any methods; for a description of
-available methods, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>.</p>
+available methods, see <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>.</p>
 <p>
 </p>
 <hr />
 <h1><a name="errata">ERRATA</a></h1>
-<p><a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a> objects are first encoded with <a href="/pod/MIME/Base64.html">the MIME::Base64 manpage</a>,
+<p><a href="/docs/Tangram/Storable.html">the Tangram::Storable manpage</a> objects are first encoded with <a href="/docs/MIME/Base64.html">the MIME::Base64 manpage</a>,
 because Tangram does not currently have an easy mechanism for calling
 <code>DBI-&gt;bind_param()</code> at the appropriate time to flag the column as
 binary.</p>
-<p><a href="/pod/./Tangram/PerlDump.html">the Tangram::PerlDump manpage</a> objects are stored as <code>BYTEA</code> columns, which as
-of <a href="/pod/DBD/Pg.html">the DBD::Pg manpage</a> 1.31, also do not get correctly escaped by the DBD
+<p><a href="/docs/Tangram/PerlDump.html">the Tangram::PerlDump manpage</a> objects are stored as <code>BYTEA</code> columns, which as
+of <a href="/docs/DBD/Pg.html">the DBD::Pg manpage</a> 1.31, also do not get correctly escaped by the DBD
 driver.  This also affects the (as-yet not fully functional)
-<a href="/pod/./Tangram/YAML.html">the Tangram::YAML manpage</a> back-end, which might put <code>\</code> characters into a YAML
+<a href="/docs/Tangram/YAML.html">the Tangram::YAML manpage</a> back-end, which might put <code>\</code> characters into a YAML
 document.</p>
-<p>It is recommended to use the <code>storable</code> type with <a href="/pod/./Tangram/IDBIF.html">the Tangram::IDBIF manpage</a>
+<p>It is recommended to use the <code>storable</code> type with <a href="/docs/Tangram/IDBIF.html">the Tangram::IDBIF manpage</a>
 for this reason.</p>
 
 [% INCLUDE footer.tt %]

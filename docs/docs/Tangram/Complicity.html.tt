@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Complicity - How to make Tangram-friendly classes' %]
 [% INCLUDE header.tt %]
 
@@ -53,7 +54,7 @@ B, this method operates ``in-place''.</p>
 <p>So, therefore it is necessary for the reference type used in the
 return value, to be the same as the one in the real object.  This is
 explained later under <a href="#reftype_mismatch">reftype mismatch</a>.</p>
-<p>So - for instance, for <a href="/pod/Set/Object.html">the Set::Object manpage</a> objects, which have a
+<p>So - for instance, for <a href="/docs/Set/Object.html">the Set::Object manpage</a> objects, which have a
 <code>px_freeze</code> method of:</p>
 <pre>
   sub px_freeze {
@@ -65,14 +66,14 @@ explained later under <a href="#reftype_mismatch">reftype mismatch</a>.</p>
       my $class = shift;
       return $class-&gt;new(@_);
   }</pre>
-<p>[ note: This differs from the <a href="/pod/./Tangram/Storable.html">the Storable manpage</a> API (<code>STORABLE_freeze</code> and
+<p>[ note: This differs from the <em>Storable</em> API (<code>STORABLE_freeze</code> and
 <code>STORABLE_thaw</code>).  This interface is actually reasonably sane - the
 Storable API required custom XS magic for Set::Object, for instance.
 Which has been implemented, but we've learned the lesson now :) ]</p>
 <p>In essence, the <code>px_freeze</code> method means ``marshall yourself to pure
 Perl data types''.  Note that different serialisation tools will treat
 ties, overload and magic remaining on the structure in their own way -
-so, create your own type of magic (a la <a href="/pod/Pixie/Info.html">the Pixie::Info manpage</a>) if you really
+so, create your own type of magic (a la <a href="/docs/Pixie/Info.html">the Pixie::Info manpage</a>) if you really
 want to hang out-of-band information off them.</p>
 <p>
 </p>

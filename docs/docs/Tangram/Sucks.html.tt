@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Sucks - what there is to be improved in Tangram' %]
 [% INCLUDE header.tt %]
 

@@ -1,14 +1,15 @@
 
 
 
+
 <html>
   <head>
     <title>Tangram Orthogonal Persistence: POD: Tangram::Storage - persistent object database</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="./tangram.css">
+    <link type="text/css" rel="stylesheet" href="../../tangram.css">
 	<style type="text/css" language="css"><!--
 		#sitelogo {
-			background-image: url('./gfx/bgdots.png');
+			background-image: url('../../gfx/bgdots.png');
 			background-repeat: repeat-both;
 		}
 	--></style>
@@ -19,40 +20,40 @@
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
     <div id="sitelogo">
-	<a href="./">
-	  <img id="t2logo" src="./gfx/t2.png" border="0" />
-	  <img id="tangramlogo" src="./gfx/tangramlogo.png" border="0" />
+	<a href="../../">
+	  <img id="t2logo" src="../../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../../gfx/tangramlogo.png" border="0" />
 	</a>
     </div>
     <div id="navbar">
 <div id="navsearch">
-   <form style="display: inline" action="./search.html" >
+   <form style="display: inline" action="../../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
    </form>
 </div>
 
 <div class="menuItem">
-  <a href="./index.html" class="menu">Home</a>
+  <a href="../../index.html" class="menu">Home</a>
 </div>
 
 <div class="menuItem">
-  <a href="./download/index.html" class="menu">Download</a>
+  <a href="../../download/index.html" class="menu">Download</a>
 </div>
 
 <div class="menuItem">
-  <a href="./docs/index.html" class="menu">Documentation</a>
+  <a href="../../docs/index.html" class="menu">Documentation</a>
 </div>
 
 <div class="menuItem">
-  <a href="./development/index.html" class="menu">Development</a>
+  <a href="../../development/index.html" class="menu">Development</a>
 </div>
 
 	
 <div style="clear: both"></div>
 </div>
 
-<div id="body">
+<div class="body">
 
 
 
@@ -165,7 +166,7 @@ connection in its operations.  That connection is called the
 'internal' connection. Since, in general, database managers do not
 allow multiple result sets on the same connection, the internal
 connection can be used only to carray a single task at a time.</p>
-<p><a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a>s returned by <code>cursor()</code> do not suffer from this
+<p><a href="/docs/Tangram/Cursor.html">the Tangram::Cursor manpage</a>s returned by <code>cursor()</code> do not suffer from this
 limitation because they use a separate DBI connection.</p>
 <p>
 </p>
@@ -178,7 +179,7 @@ limitation because they use a separate DBI connection.</p>
    $storage = connect( $schema,
       $data_source, $username, $auth, \%options )</pre>
 <p>Connects to a storage and return a handle object. Dies in case of failure.</p>
-<p>$schema is an <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a> object consistent with the database.</p>
+<p>$schema is an <a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a> object consistent with the database.</p>
 <p>$data_source, $username and $auth are passed directly to
 DBI::connect().</p>
 <p>\%options is a reference to a hash that may contain the following
@@ -320,7 +321,7 @@ Dies if any ID has no corresponding persistent object in storage.</p>
 <h2><a name="remote">remote</a></h2>
 <pre>
    @remote = $storage-&gt;remote( @classes );</pre>
-<p>Returns a list of <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a> objects of given classes.
+<p>Returns a list of <a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a> objects of given classes.
 This method is valid in both <a href="#scalar_and_list_contexts">scalar and list contexts</a>.</p>
 <p>
 </p>
@@ -403,7 +404,7 @@ type.</p>
 columns instead of the sum.</p>
 <p>This function does <em>not</em> support counting multiple columns by passing
 an array ref.  However, this can be achieved using the
-<code>-&gt;count()</code> remote expression function (see <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a>).</p>
+<code>-&gt;count()</code> remote expression function (see <a href="/docs/Tangram/Expr.html">the Tangram::Expr manpage</a>).</p>
 <p>
 </p>
 <h2><a name="cursor">cursor</a></h2>
@@ -528,8 +529,8 @@ Changes to both $homer and $marge are commited to the database when
 <p>By default with ACID compliant database back-ends (such as Pg,
 MySQL/InnoDB, Oracle and pretty much any commercial RDBMS), the first
 time you open a database connection, you are beginning a transaction.
-However, this is not the case with the <a href="/pod/./Tangram/SQLite.html">the Tangram::SQLite manpage</a> or
-<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> back-ends, both of which do not implement
+However, this is not the case with the <a href="/docs/Tangram/SQLite.html">the Tangram::SQLite manpage</a> or
+<a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a> back-ends, both of which do not implement
 transaction isolation; therefore it is not good to assume that the
 database can handle concurrent writing efficiently.</p>
 <p>To be run safely on these non-compliant back-ends, you should
@@ -543,7 +544,7 @@ than relying on the default behaviour.</p>
 <p>Commits the current Tangram transaction for this storage.  If the
 transaction being commited is the outermost transaction for this
 storage, the DBI transaction is also commited.</p>
-<p>When using the <a href="/pod/./Tangram/SQLite.html">the SQLite manpage</a> back-end, when the DBI transaction is
+<p>When using the <em>SQLite</em> back-end, when the DBI transaction is
 committed, the connection is also marked read-only (ie, AutoCommit is
 enabled).</p>
 <p>
@@ -630,9 +631,9 @@ objects present in memory (see <code>unload</code>).</p>
 
 <div id="footer">
    <hr>
-   <a href="copyright.html">copyright info</a> |
-   <a href="credits.html">credits</a> |
-   <a href="map.html">site map</a>
+   <a href="../../copyright.html">copyright info</a> |
+   <a href="../../credits.html">credits</a> |
+   <a href="../../map.html">site map</a>
 
 </div>
 

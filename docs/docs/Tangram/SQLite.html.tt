@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::SQLite - Orthogonal Object Persistence in SQLite databases' %]
 [% INCLUDE header.tt %]
 
@@ -47,8 +48,8 @@ persistence backend.</p>
 </p>
 <hr />
 <h1><a name="errata">ERRATA</a></h1>
-<p>For reasons similar to the <a href="/pod/./Tangram/Pg.html">the Tangram::Pg manpage</a> module, this back-end
-automatically encodes <a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a> objects via <a href="/pod/MIME/Base64.html">the MIME::Base64 manpage</a>
+<p>For reasons similar to the <a href="/docs/Tangram/Pg.html">the Tangram::Pg manpage</a> module, this back-end
+automatically encodes <a href="/docs/Tangram/Storable.html">the Tangram::Storable manpage</a> objects via <a href="/docs/MIME/Base64.html">the MIME::Base64 manpage</a>
 to avoid truncation of values on NUL bytes.</p>
 <p>Also, note that despite what is mentioned on the front page of
 <em>www.sqlite.org</em>, SQLite is not actually an ACID database; any writer

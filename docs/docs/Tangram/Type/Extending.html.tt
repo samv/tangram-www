@@ -1,3 +1,4 @@
+[% top = '../../../' %]
 [% title = 'POD: Tangram::Type::Extending - teaching Tangram about new types' %]
 [% INCLUDE header.tt %]
 

@@ -3,7 +3,7 @@
 <head>
 <title>Tangram::FlatHash - map Perl hash of scalar keys and values</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 a hash under the <code>flat_hash</code> key in the field hash.</p>
 <p>The hash may contain as keys and values only 'simple' scalars like
 integers, strings or real numbers. It may not contain references. For
-hashs of objects, see <a href="/pod/./Tangram/Hash.html">the Tangram::Hash manpage</a> and <a href="/pod/./Tangram/IntrHash.html">the Tangram::IntrHash manpage</a>.</p>
+hashs of objects, see <a href="/docs/Tangram/Hash.html">the Tangram::Hash manpage</a> and <a href="/docs/Tangram/IntrHash.html">the Tangram::IntrHash manpage</a>.</p>
 <p>Tangram uses a table to save the state of the collection. The table
 has three columns, which contain</p>
 <ul>
@@ -90,7 +90,7 @@ exactly equivalent to specifying <code>string</code>.</p>
 elements. This defaults to 'C_F', where C is the class of the
 containing object and F is the field name.</p>
 <p>The optional fields <a href="#item_key_sql"><code>key_sql</code></a> and <a href="#item_sql"><code>sql</code></a> specify the type that
-<code>deploy()</code> (see <a href="/pod/./Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing
+<code>deploy()</code> (see <a href="/docs/Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing
 the key and value of the hash. If this field is not present, the SQL
 type is derived from the <a href="#item_type"><code>type</code></a> field: if <a href="#item_type"><code>type</code></a> is <code>string</code> (or is
 absent) <code>VARCHAR(255)</code> is used; otherwise, the <a href="#item_type"><code>type</code></a> field is

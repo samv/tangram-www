@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Set - maps Set::Object using a link table' %]
 [% INCLUDE header.tt %]
 

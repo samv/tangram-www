@@ -3,7 +3,7 @@
 <head>
 <title>Tangram::Expr - represent expressions on database server side</title>
 <link rel="stylesheet" href="/styles/pod.css" type="text/css" />
-<link rev="made" href="mailto:root@localhost" />
+<link rev="made" href="mailto:sam@vilain.net" />
 </head>
 
 <body>
@@ -68,8 +68,8 @@ the database server side.</p>
 <p>Expression objects fall into one of the following categories: numeric,
 string, reference or collection.</p>
 <p>Many of the methods in Expr are needed only by people extending
-Tangram.  See also <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>, and the source the
-<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> and <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a> for examples on how these
+Tangram.  See also <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>, and the source the
+<a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a> and <a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a> for examples on how these
 functions are intercepted to allow RDBMS-specific expressions.</p>
 <p>
 </p>
@@ -131,10 +131,10 @@ limitation).  The result is another predicate.</p>
 <h2><a name="new__type___expr___remotes_">new($type, $expr, @remotes)</a></h2>
 <p>Returns a new instance.</p>
 <p>$type is a Type object corresponding to this expression (see
-<a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a>).</p>
+<a href="/docs/Tangram/Type.html">the Tangram::Type manpage</a>).</p>
 <p>$expr is a SQL expression. It will eventually become part of a
 WHERE-CLAUSE.</p>
-<p>@remotes contains the Remote objects (see <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>) that
+<p>@remotes contains the Remote objects (see <a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>) that
 participate in the expression. Tangram uses this list to insert the
 corresponding tables in the FROM clause and conditions in the
 WHERE-CLAUSE.</p>
@@ -148,8 +148,8 @@ WHERE-CLAUSE.</p>
 <p>Returns the SQL equivalent for this expression.</p>
 <p>
 </p>
-<h2><a name="type__"><a href="/pod/./Tangram/FlatArray.html#item_type"><code>type()</code></a></a></h2>
-<p>Returns the Type (see <a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a>) corresponding  to this
+<h2><a name="type__"><code>type()</code></a></h2>
+<p>Returns the Type (see <a href="/docs/Tangram/Type.html">the Tangram::Type manpage</a>) corresponding  to this
 expression.</p>
 <p>
 </p>
@@ -197,7 +197,7 @@ expression.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>, <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a>, <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a></p>
+<p><a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>, <a href="/docs/Tangram/Expr.html">the Tangram::Expr manpage</a>, <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a></p>
 
 </body>
 

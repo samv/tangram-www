@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Sybase - Orthogonal Object Persistence in Sybase databases' %]
 [% INCLUDE header.tt %]
 
@@ -51,6 +52,6 @@ backend disables the usage of prepared statements.</p>
 <hr />
 <h1><a name="methods">METHODS</a></h1>
 <p>This backend does not add any methods; for a description of
-available methods, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>.</p>
+available methods, see <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>.</p>
 
 [% INCLUDE footer.tt %]

@@ -4,7 +4,7 @@ body {
 	margin: 0;
 }
 
-div#body {
+div.body {
 	margin: 0.5em 1em 0em 1em;
 	max-width: 80em;
 	font-weight: normal;
@@ -17,7 +17,7 @@ body {
 .head, .head1, h1, .head2, h2, .menuItem, #navbar, #navsearch, INPUT {
 	font-family : "Nimbus Sans L", Arial, sans-serif;
 }
-div#body, p, #footer, td {
+div.body, p, #footer, td {
 	font-family: "FreeSans", Verdana, Helvetica, sans-serif;
 	color: #60416e;
 }
@@ -26,6 +26,7 @@ div#body, p, #footer, td {
 }
 tt, pre, samp, .mono {
 	font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
+	font-size: 8pt;
 }
 
 /* logo */
@@ -69,7 +70,7 @@ tt, pre, samp, .mono {
 
 
 /* body */
-body #body p {
+body .body p {
 	margin-left: 1em;
 }
 body p, ul, dl, ol {

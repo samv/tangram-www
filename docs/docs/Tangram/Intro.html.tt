@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Intro - an introduction to Tangram' %]
 [% INCLUDE header.tt %]
 

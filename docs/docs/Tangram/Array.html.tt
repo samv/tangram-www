@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Array - map Perl arrays using a link table' %]
 [% INCLUDE header.tt %]
 

@@ -128,7 +128,6 @@ HR {
 	top: 40px;
 }
 
-#footer {
 	text-align: center;
 	color: grey;
 	padding: 0.3em;

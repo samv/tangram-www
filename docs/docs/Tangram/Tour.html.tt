@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram - Guided Tour' %]
 [% INCLUDE header.tt %]
 
@@ -76,7 +77,7 @@ name (a string) and a manager (a NaturalPerson).</p>
 <p><strong>Note that Tangram does <em>not</em> create the corresponding Perl
 packages!</strong>. That's up to the user. However, to facilitate
 experimentation, Tangram comes with a module that implements the
-necessary classes. For more information see <a href="/pod/./Tangram/Springfield.html">the Tangram::Springfield manpage</a>.</p>
+necessary classes. For more information see <a href="/docs/Tangram/Springfield.html">the Tangram::Springfield manpage</a>.</p>
 <p>Before we can actually store objects we must complete two steps:</p>
 <ol>
 <li></li>
@@ -145,8 +146,8 @@ application, in general not all classes will need to persist. A class
 may have both persistent and non-persistent bases.  As for attributes,
 Perl's most typical representation for objects - a hash - even allows
 two objects of the same class to have a different set of attributes.</p>
-<p>For more information on creating Schemas, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>
-and  <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
+<p>For more information on creating Schemas, see <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>
+and  <a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
 <p>
 </p>
 <h2><a name="setting_up_a_database">Setting up a database</a></h2>
@@ -167,8 +168,8 @@ specification.</p>
 <p>Tangram also comes with vendor-specific backends for Mysql and
 Sybase. When a vendor-specific backend exists, it should be used in
 place of the vanilla backend.</p>
-<p>For more information, see <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>, <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a>
-and <a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a>.</p>
+<p>For more information, see <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>, <a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a>
+and <a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a>.</p>
 <p>
 </p>
 <h2><a name="connecting_to_a_database">Connecting to a database</a></h2>
@@ -184,8 +185,8 @@ object that will be used to communicate with the database.</p>
         @cp );</pre>
 <p>connects to a database named Springfield via the vanilla Relational
 backend, using a specific account and password.</p>
-<p>For more information on connecting to databases, see  <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a> and
-<a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on connecting to databases, see  <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a> and
+<a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="inserting_objects">Inserting objects</a></h2>
@@ -230,7 +231,7 @@ addresses and the kids), and inserts them automatically. Note that
 Tangram can handle cycles: Homer and Marge refer to each other.</p>
 <p><code>insert()</code> returns an object id, or a list of object ids, that uniquely
 identify the <code>object(s)</code> that have been inserted.</p>
-<p>For more information on inserting objects, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on inserting objects, see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="updating_objects">Updating objects</a></h2>
@@ -246,7 +247,7 @@ identify the <code>object(s)</code> that have been inserted.</p>
 <p>Here again Tangram detects that Maggie is not already persistent in
 $storage and automatically inserts it. Note that we need to update
 Marge explicitly because she was already persistent.</p>
-<p>For more information on updating objects, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on updating objects, see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="memory_management">Memory management</a></h2>
@@ -262,7 +263,7 @@ don't leak objects:</p>
 what version of Perl you use. If it's prior to 5.6, you <em>must</em>
 disconnect the storage explicitly (or at least call <code>unload())</code>
 otherwise the Storage will prevent the objects it controls from being
-reclaimed by Perl. For more information see see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+reclaimed by Perl. For more information see see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="finding_objects">Finding objects</a></h2>
@@ -298,7 +299,7 @@ IDs are numbers that uniquely identify objects in the database.
 <pre>
     $ned = $storage-&gt;load( $ned_id );
     @sisters = $storage-&gt;load( @sisters_id );</pre>
-<p>For more information on loading objects by id, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on loading objects by id, see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="obtaining_objects_from_other_objects">Obtaining objects from other objects</a></h2>
@@ -317,9 +318,9 @@ other persistent objects, it doesn't retrieve the referenced objects
 immediately. Marge is retrieved only when Homer's 'partner' field is
 accessed.  This mechanism is almost totally transparent, we'd have to
 use <code>tied</code> to observe a non-present collection or reference.</p>
-<p>For more information on relationships, see <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>,
-<a href="/pod/./Tangram/Ref.html">the Tangram::Ref manpage</a>, <a href="/pod/./Tangram/Array.html">the Tangram::Array manpage</a>, <a href="/pod/./Tangram/IntrArray.html">the Tangram::IntrArray manpage</a>,
-<a href="/pod/./Tangram/Set.html">the Tangram::Set manpage</a> and <a href="/pod/./Tangram/IntrSet.html">the Tangram::IntrSet manpage</a>.</p>
+<p>For more information on relationships, see <a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a>,
+<a href="/docs/Tangram/Ref.html">the Tangram::Ref manpage</a>, <a href="/docs/Tangram/Array.html">the Tangram::Array manpage</a>, <a href="/docs/Tangram/IntrArray.html">the Tangram::IntrArray manpage</a>,
+<a href="/docs/Tangram/Set.html">the Tangram::Set manpage</a> and <a href="/docs/Tangram/IntrSet.html">the Tangram::IntrSet manpage</a>.</p>
 <p>
 </p>
 <h2><a name="select">select</a></h2>
@@ -338,7 +339,7 @@ LegalPerson:</p>
 single call to select(), passing it the base class name:</p>
 <pre>
     my @all = $storage-&gt;select( 'Person' );</pre>
-<p>For more information on select(), see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on select(), see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 <p>
 </p>
 <h2><a name="filtering">Filtering</a></h2>
@@ -435,7 +436,7 @@ using &amp;&amp; or || in place of &amp; or | is not even a syntax error :(</p>
         $parent-&gt;{children}-&gt;includes($child) );</pre>
 <p>@pairs contains a list of references to arrays of size two; each array
 contains a pair of parent and child.</p>
-<p>For more information on filters, see <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a> and <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
+<p>For more information on filters, see <a href="/docs/Tangram/Expr.html">the Tangram::Expr manpage</a> and <a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
 <p>
 </p>
 <h2><a name="cursors">Cursors</a></h2>
@@ -464,8 +465,8 @@ explicitly close the cursor.</p>
 <p>Each Cursor uses a separate connection to the database. Consequently you can
 have several cursors open at the same, all with pending results. Of course,
 mixing reads and writes to the same tables can result in deadlocks.</p>
-<p>For more information on cursors, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a> and
-<a href="/pod/./Tangram/Cursor.html">the Tangram::Cursor manpage</a>.</p>
+<p>For more information on cursors, see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a> and
+<a href="/docs/Tangram/Cursor.html">the Tangram::Cursor manpage</a>.</p>
 <p>
 </p>
 <h2><a name="remote_objects">Remote objects</a></h2>
@@ -495,7 +496,7 @@ that take a persistent object, a Remote object or an ID.</p>
 <p>The result of comparing Exprs (or calling <code>include</code>) is a
 Tangram::Filter that will translate into part of the SQL where-clause
 that will be passed to the RDBMS.</p>
-<p>For more information on remote objects, see <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
+<p>For more information on remote objects, see <a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>.</p>
 <p>
 </p>
 <h2><a name="multiple_loads">Multiple loads</a></h2>
@@ -559,6 +560,6 @@ first example can be rewritten:</p>
         $marge-&gt;{partner} = $homer;
         $storage-&gt;update( $homer, $marge };
         } );</pre>
-<p>For more information on transactions, see <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
+<p>For more information on transactions, see <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a>.</p>
 
 [% INCLUDE footer.tt %]

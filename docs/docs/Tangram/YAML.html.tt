@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::YAML - serialise fields of an object via YAML to a column' %]
 [% INCLUDE header.tt %]
 

@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::FlatArray - map Perl array of strings or numbers' %]
 [% INCLUDE header.tt %]
 
@@ -47,7 +48,7 @@
 a hash under the <code>array</code> key in the field hash.</p>
 <p>The array may contain only 'simple' scalars like integers, strings
 or real numbers. It may not contain references. For arrays of
-objects, see <a href="/pod/./Tangram/Array.html">the Tangram::Array manpage</a> and <a href="/pod/./Tangram/IntrArray.html">the Tangram::IntrArray manpage</a>.</p>
+objects, see <a href="/docs/Tangram/Array.html">the Tangram::Array manpage</a> and <a href="/docs/Tangram/IntrArray.html">the Tangram::IntrArray manpage</a>.</p>
 <p>Tangram uses a table to save the state of the collection. The table
 has three columns, which contain</p>
 <ul>
@@ -77,7 +78,7 @@ specifying <code>string</code>.</p>
 elements. This defaults to 'C_F', where C is the class of the
 containing object and F is the field name.</p>
 <p>Optional field <a href="#item_sql"><code>sql</code></a> specifies the type that <code>deploy()</code> (see
-<a href="/pod/./Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing the
+<a href="/docs/Tangram/Deploy.html">the Tangram::Deploy manpage</a>) should use for the column containing the
 elements. If this field is not present, the SQL type is derived from
 the <a href="#item_type"><code>type</code></a> field: if <a href="#item_type"><code>type</code></a> is <code>string</code> (or is absent) <code>VARCHAR(255)</code>
 is used; otherwise, the <a href="#item_type"><code>type</code></a> field is interpreted as a SQL type.</p>

@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::IntrArray - map Perl arrays using a foreign key' %]
 [% INCLUDE header.tt %]
 

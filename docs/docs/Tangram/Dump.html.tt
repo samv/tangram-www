@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Dump - Handy functions for Pixie-like dumping of data' %]
 [% INCLUDE header.tt %]
 

@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Storable - map any Perl object as scalar dump via Storable' %]
 [% INCLUDE header.tt %]
 
@@ -50,10 +51,10 @@
 <p>Maps arbitrary Perl data structures by serializing to a string
 representation. The persistent fields are grouped in a hash under the
 <code>storable</code> key in the field hash.</p>
-<p>Serialization is done by <a href="/pod/Storable/freeze.html">the Storable::freeze manpage</a>, which traverses the Perl
+<p>Serialization is done by <a href="/docs/Storable/freeze.html">the Storable::freeze manpage</a>, which traverses the Perl
 data structure and creates a binary representation of it. The
 resulting string will be mapped to the DBMS as a scalar value. During
-restore, the scalar value will be restored with <a href="/pod/Storable/thaw.html">the Storable::thaw manpage</a> to
+restore, the scalar value will be restored with <a href="/docs/Storable/thaw.html">the Storable::thaw manpage</a> to
 reconstruct the original data structure.</p>
 <p>The structure should be able to contain pretty much anything that may
 be safely dumped by Storable.  However, be aware that
@@ -81,8 +82,8 @@ column type for the scalar value in the database. If not present,
 <a href="#item_col"><code>col</code></a> defaults to the field name and <a href="#item_sql"><code>sql</code></a> defaults to VARCHAR(255).
 Values will be always quoted as they are passed to the database.</p>
 <p>The remaining optional fields control the serialization process. They
-will be passed down to <a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
-<a href="/pod/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
+will be passed down to <a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a> as values to the corresponding
+<a href="/docs/Data/Dumper.html">the Data::Dumper manpage</a> options. The default settings are: no indentation
 (<code>indent=0</code>), compact format (<code>terse=1</code>), and quick dump
 (<code>purity=0</code>).</p>
 <p>

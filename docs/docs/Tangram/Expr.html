@@ -1,14 +1,15 @@
 
 
 
+
 <html>
   <head>
     <title>Tangram Orthogonal Persistence: POD: Tangram::Expr - represent expressions on database server side</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="./tangram.css">
+    <link type="text/css" rel="stylesheet" href="../../tangram.css">
 	<style type="text/css" language="css"><!--
 		#sitelogo {
-			background-image: url('./gfx/bgdots.png');
+			background-image: url('../../gfx/bgdots.png');
 			background-repeat: repeat-both;
 		}
 	--></style>
@@ -19,40 +20,40 @@
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
     <div id="sitelogo">
-	<a href="./">
-	  <img id="t2logo" src="./gfx/t2.png" border="0" />
-	  <img id="tangramlogo" src="./gfx/tangramlogo.png" border="0" />
+	<a href="../../">
+	  <img id="t2logo" src="../../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../../gfx/tangramlogo.png" border="0" />
 	</a>
     </div>
     <div id="navbar">
 <div id="navsearch">
-   <form style="display: inline" action="./search.html" >
+   <form style="display: inline" action="../../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
    </form>
 </div>
 
 <div class="menuItem">
-  <a href="./index.html" class="menu">Home</a>
+  <a href="../../index.html" class="menu">Home</a>
 </div>
 
 <div class="menuItem">
-  <a href="./download/index.html" class="menu">Download</a>
+  <a href="../../download/index.html" class="menu">Download</a>
 </div>
 
 <div class="menuItem">
-  <a href="./docs/index.html" class="menu">Documentation</a>
+  <a href="../../docs/index.html" class="menu">Documentation</a>
 </div>
 
 <div class="menuItem">
-  <a href="./development/index.html" class="menu">Development</a>
+  <a href="../../development/index.html" class="menu">Development</a>
 </div>
 
 	
 <div style="clear: both"></div>
 </div>
 
-<div id="body">
+<div class="body">
 
 
 
@@ -116,8 +117,8 @@ the database server side.</p>
 <p>Expression objects fall into one of the following categories: numeric,
 string, reference or collection.</p>
 <p>Many of the methods in Expr are needed only by people extending
-Tangram.  See also <a href="/pod/./Tangram/Relational.html">the Tangram::Relational manpage</a>, and the source the
-<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a> and <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a> for examples on how these
+Tangram.  See also <a href="/docs/Tangram/Relational.html">the Tangram::Relational manpage</a>, and the source the
+<a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a> and <a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a> for examples on how these
 functions are intercepted to allow RDBMS-specific expressions.</p>
 <p>
 </p>
@@ -179,10 +180,10 @@ limitation).  The result is another predicate.</p>
 <h2><a name="new__type___expr___remotes_">new($type, $expr, @remotes)</a></h2>
 <p>Returns a new instance.</p>
 <p>$type is a Type object corresponding to this expression (see
-<a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a>).</p>
+<a href="/docs/Tangram/Type.html">the Tangram::Type manpage</a>).</p>
 <p>$expr is a SQL expression. It will eventually become part of a
 WHERE-CLAUSE.</p>
-<p>@remotes contains the Remote objects (see <a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>) that
+<p>@remotes contains the Remote objects (see <a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>) that
 participate in the expression. Tangram uses this list to insert the
 corresponding tables in the FROM clause and conditions in the
 WHERE-CLAUSE.</p>
@@ -196,8 +197,8 @@ WHERE-CLAUSE.</p>
 <p>Returns the SQL equivalent for this expression.</p>
 <p>
 </p>
-<h2><a name="type__"><a href="/pod/./Tangram/FlatArray.html#item_type"><code>type()</code></a></a></h2>
-<p>Returns the Type (see <a href="/pod/./Tangram/Type.html">the Tangram::Type manpage</a>) corresponding  to this
+<h2><a name="type__"><code>type()</code></a></h2>
+<p>Returns the Type (see <a href="/docs/Tangram/Type.html">the Tangram::Type manpage</a>) corresponding  to this
 expression.</p>
 <p>
 </p>
@@ -245,15 +246,15 @@ expression.</p>
 </p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
-<p><a href="/pod/./Tangram/Remote.html">the Tangram::Remote manpage</a>, <a href="/pod/./Tangram/Expr.html">the Tangram::Expr manpage</a>, <a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a></p>
+<p><a href="/docs/Tangram/Remote.html">the Tangram::Remote manpage</a>, <a href="/docs/Tangram/Expr.html">the Tangram::Expr manpage</a>, <a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a></p>
 
 </div>
 
 <div id="footer">
    <hr>
-   <a href="copyright.html">copyright info</a> |
-   <a href="credits.html">credits</a> |
-   <a href="map.html">site map</a>
+   <a href="../../copyright.html">copyright info</a> |
+   <a href="../../credits.html">credits</a> |
+   <a href="../../map.html">site map</a>
 
 </div>
 

@@ -19,46 +19,96 @@
 
    <hr>
 
-<a name="pres"></a><table>
-<tr><td colspan="2" class="head2">Presentations</td></tr>
-<tr><td colspan="2">Whilst not often readable without somebody speaking on their way through, presentation files can be a good insight into what people are saying about a topic.  You will need <a href="http://www.openoffice.org/">OpenOffice</a> 1.0 or later to open the presentation files.</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="tut/Tangram-UML-YAPC2003.tar.gz">POOP with Tangram and UML</a>,<br />Sam Vilain.</td><td class="DOCTOC_DESC">POOP stands for <a href="http://poop.sourceforge.net">Perl Object-Oriented Persistence</a>, and UML stands for the <a href="http://www.omg.org/uml">Unified Modeling Language</a> - an OMG standard.  Given at YAPC::Europe 2003 in Paris.<br />This tarball contains an information pack, which includes some notes and example code.</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="tut/perrin_oscon_2003.sxi">Object-Relational Mapping<br />Tools for Perl</a>,<br />Perrin Harkins.</td><td class="DOCTOC_DESC">Perrin compares Tangram with Class::DBI and SPOPS, two alternative modules for storing object classes in a database.</td></tr>
-<tr><td colspan="2"><hr /></td></tr>
+<a name="pres"></a>
 
+<h2>Presentations</h2>
 
-<a class="POD_NAVLINK" name="Pod_TOP_OF_PAGE"></a>
+<p>Presentation files can sometimes be a good insight
+into what people are saying about a topic even if you don't have the
+person to explain what the slides are saying.  You will need <a
+href="http://www.openoffice.org/">OpenOffice</a> 1.0 or later to open
+the presentation files.</p>
 
-<tr><td colspan="2" class="head2"><a name="man"></a>Module Manual Pages</td></tr>
-<tr><td colspan="2">These manual pages have been extracted from the POD documentation inside the code.  Several manual pages contain tutorial or overview information, not just usage information.  These are <span class="DOCTOC_DESC_IMP">highlighted</span>.</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram.html">Tangram</a></td><td class="DOCTOC_DESC_IMP">Tangram - Orthogonal Object Persistence in Relational Databases</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Array.html">Tangram::Array</a></td><td class="DOCTOC_DESC">Tangram::Array - map Perl arrays using a link table</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Core.html">Tangram::Core</a></td><td class="DOCTOC_DESC">Tangram::Core - import core Tangram modules</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Cursor.html">Tangram::Cursor</a></td><td class="DOCTOC_DESC">Tangram::Cursor - traverse a result set</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/DateTime.html">Tangram::DateTime</a></td><td class="DOCTOC_DESC">Tangram::DateTime - map date &amp; time fields</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Deploy.html">Tangram::Deploy</a></td><td class="DOCTOC_DESC">Tangram::Deploy - obsolete</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Dialect.html">Tangram::Dialect</a></td><td class="DOCTOC_DESC">Tangram::Dialect - support for SQL dialects and extensions</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Expr.html">Tangram::Expr</a></td><td class="DOCTOC_DESC">Tangram::Expr - manipulate expressions on database server side</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/FlatArray.html">Tangram::FlatArray</a></td><td class="DOCTOC_DESC">Tangram::FlatArray - map Perl array of strings or numbers</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/FlatHash.html">Tangram::FlatHash</a></td><td class="DOCTOC_DESC">Tangram::FlatHash - map Perl hash of scalar keys and values</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/IntrArray.html">Tangram::IntrArray</a></td><td class="DOCTOC_DESC">Tangram::IntrArray - map Perl arrays using a foreign key</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/IntrSet.html">Tangram::IntrSet</a></td><td class="DOCTOC_DESC">Tangram::IntrSet - map Set::Object using a foreign key</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/mysql.html">Tangram::mysql</a></td><td class="DOCTOC_DESC">Tangram::mysql - Orthogonal Object Persistence in Mysql databases</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/PerlDump.html">Tangram::PerlDump</a></td><td class="DOCTOC_DESC">Tangram::PerlDump - map any Perl object as scalar dump</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Ref.html">Tangram::Ref</a></td><td class="DOCTOC_DESC">Tangram::Ref - map references to persistent objects</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Relational.html">Tangram::Relational</a></td><td class="DOCTOC_DESC">Tangram::Relational - Orthogonal Object Persistence in Relational Databases</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Relational/Mappings.html">Tangram::Relational::Mappings</a></td><td class="DOCTOC_DESC_IMP">Tangram - Mapping inheritance</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Remote.html">Tangram::Remote</a></td><td class="DOCTOC_DESC">Tangram::Remote - represent persistent objects in client space</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Scalar.html">Tangram::Scalar</a></td><td class="DOCTOC_DESC">Tangram::Scalar - map scalar fields</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Schema.html">Tangram::Schema</a></td><td class="DOCTOC_DESC">Tangram::Schema - describe a system of persistent classes</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Set.html">Tangram::Set</a></td><td class="DOCTOC_DESC">Tangram::Set - maps Set::Object using a link table</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Springfield.html">Tangram::Springfield</a></td><td class="DOCTOC_DESC_IMP">Tangram::Springfield - classes and schema used in the Guided Tour</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Storage.html">Tangram::Storage</a></td><td class="DOCTOC_DESC">Tangram::Storage - persistent object database</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Sybase.html">Tangram::Sybase</a></td><td class="DOCTOC_DESC">Tangram::Sybase - Orthogonal Object Persistence in Sybase databases</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Tour.html">Tangram::Tour</a></td><td class="DOCTOC_DESC_IMP">Tangram - Guided Tour</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Type.html">Tangram::Type</a></td><td class="DOCTOC_DESC_IMP">Tangram::Type - mapping individual fields</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="Tangram/Type/Extending.html">Tangram::Type::Extending</a></td><td class="DOCTOC_DESC">Tangram::Type::Extending - teaching Tangram about new types</td></tr>
-<tr><td colspan="2">&nbsp;</td></tr><tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="podindex.html">Manual page index</a></td><td class="DOCTOC_DESC"></td></tr></table>
-<hr>
-<a class="DOC_NAVLINK" href="#Pod_TOP_OF_PAGE">[Top]</a>
+<p>
+<table>
+<dl>
+
+  <dt><a href="tut/Tangram-UML-YAPC2003.tar.gz">POOP with Tangram and
+    UML</a>,<br />Sam Vilain. </dt>
+
+  <dd>POOP stands for <a href="http://poop.sourceforge.net">Perl
+    Object-Oriented Persistence</a>, and UML stands for the <a
+    href="http://www.omg.org/uml">Unified Modeling Language</a> - an
+    OMG standard.  Given at YAPC::Europe 2003 in Paris.<br />This
+    tarball contains an information pack, which includes some notes
+    and example code.</dd>
+
+  <dt><a href="tut/perrin_oscon_2003.sxi">Object-Relational Mapping<br
+    />Tools for Perl</a>,<br />Perrin Harkins.</dt>
+
+  <dd>Perrin compares Tangram with Class::DBI and SPOPS, two
+    alternative modules for storing object classes in a database.</dd>
+
+</dl>
+
+<a name="man"></a><h2>Manual pages</h2>
+
+<p>Recommended entry points:</p>
+
+<dl>
+  <dt><a href="Tangram/Tour.html">Tangram::Tour</a></dt>
+
+  <dd>The original ``Guided Tour'' of the features of Tangram, by 
+    Jean-Louis LeRoy. </dd>
+
+  <dt><a href="Tangram/Intro.html">Tangram::Intro</a></dt>
+
+  <dd>The humble beginnings of a new guided tour, based on the
+     next-generation features found in Tangram 2.08.
+
+  <dt><a href="Tangram/Springfield.html">Tangram::Springfield</a></dt>
+
+    <dd>The classes and schema used in the Guided Tour(s). 
+
+  <dt><a href="Tangram/Storage.html">Tangram::Storage</a></dt>
+
+    <dd>The main database handle class. Includes details on query
+      syntax.
+
+  <dt><a href="Tangram/Cursor.html">Tangram::Cursor</a></dt>
+
+    <dd>Return an iterator that retrieves persistent objects in a
+      result set one by one.
+
+  <dt><a href="Tangram/Schema.html">Tangram::Schema</a></dt>
+
+    <dd>The Tangram schema structure - representing your data model so
+      that Tangram can map it.
+
+  <dt><a href="Tangram/Relational/Mappings.html">Tangram::Relational::Mappings</a></dt>
+
+    <dd>An informative text on exactly how Object Relational Mapping
+       is accomplished by the Tangram::Relational back-end, what the
+       different styles of mapping are, and how each is selected.
+
+  <dt><a href="Tangram/Type.html">Tangram::Type</a></dt>
+
+    <dd>What Tangram types are available. This page is an index of
+      other manual pages that express the data and relationship types
+      available in Tangram.
+
+  <dt><a href="Tangram/Type/Extending.html">Tangram::Type::Extending</a></dt>
+
+    <dd>How to write your own custom types for Tangram. 
+
+  <dt><a href="Tangram/Relational.html">Tangram::Relational</a></dt>
+
+    <dd>Database-specific extensions to Tangram, such as <a
+      href="Tangram/mysql.html">Tangram::mysql</a> and <a
+      href="Tangram/Oracle.html">Tangram::Oracle</a>. These extensions
+      mainly add compatibility, and are not required for core
+      operation of Tangram.
+
+</dl>
+
 [% INCLUDE footer.tt %]

@@ -1,14 +1,15 @@
 
 
 
+
 <html>
   <head>
     <title>Tangram Orthogonal Persistence: POD: Tangram::Relational - Orthogonal Object Persistence in Relational Databases</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="./tangram.css">
+    <link type="text/css" rel="stylesheet" href="../../tangram.css">
 	<style type="text/css" language="css"><!--
 		#sitelogo {
-			background-image: url('./gfx/bgdots.png');
+			background-image: url('../../gfx/bgdots.png');
 			background-repeat: repeat-both;
 		}
 	--></style>
@@ -19,40 +20,40 @@
 
   <body onload="document.getElementById('search').value = 'Site/List Search'">
     <div id="sitelogo">
-	<a href="./">
-	  <img id="t2logo" src="./gfx/t2.png" border="0" />
-	  <img id="tangramlogo" src="./gfx/tangramlogo.png" border="0" />
+	<a href="../../">
+	  <img id="t2logo" src="../../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../../gfx/tangramlogo.png" border="0" />
 	</a>
     </div>
     <div id="navbar">
 <div id="navsearch">
-   <form style="display: inline" action="./search.html" >
+   <form style="display: inline" action="../../search.html" >
 	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
    </form>
 </div>
 
 <div class="menuItem">
-  <a href="./index.html" class="menu">Home</a>
+  <a href="../../index.html" class="menu">Home</a>
 </div>
 
 <div class="menuItem">
-  <a href="./download/index.html" class="menu">Download</a>
+  <a href="../../download/index.html" class="menu">Download</a>
 </div>
 
 <div class="menuItem">
-  <a href="./docs/index.html" class="menu">Documentation</a>
+  <a href="../../docs/index.html" class="menu">Documentation</a>
 </div>
 
 <div class="menuItem">
-  <a href="./development/index.html" class="menu">Development</a>
+  <a href="../../development/index.html" class="menu">Development</a>
 </div>
 
 	
 <div style="clear: both"></div>
 </div>
 
-<div id="body">
+<div class="body">
 
 
 
@@ -106,7 +107,7 @@
 <p>This is the entry point in the vanilla object-relational persistence
 backend. Vendor-specific backends should be used when they
 exist. Currently Mysql, Sybase and Oracle have such backends; see
-<a href="/pod/./Tangram/mysql.html">the Tangram::mysql manpage</a>, <a href="/pod/./Tangram/Sybase.html">the Tangram::Sybase manpage</a> and <a href="/pod/./Tangram/Oracle.html">the Tangram::Oracle manpage</a>.</p>
+<a href="/docs/Tangram/mysql.html">the Tangram::mysql manpage</a>, <a href="/docs/Tangram/Sybase.html">the Tangram::Sybase manpage</a> and <a href="/docs/Tangram/Oracle.html">the Tangram::Oracle manpage</a>.</p>
 <p>More backends could be added in the future; they might implement
 persistence in XML documents, pure object databases, using C database
 libraries to bypass the need for an RDBMS, etc.</p>
@@ -119,7 +120,7 @@ libraries to bypass the need for an RDBMS, etc.</p>
 <h2><a name="schema">schema</a></h2>
 <pre>
    $schema = Tangram::Relational-&gt;schema( $hashref );</pre>
-<p>Returns a new Schema object. See <a href="/pod/./Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
+<p>Returns a new Schema object. See <a href="/docs/Tangram/Schema.html">the Tangram::Schema manpage</a>.</p>
 <p>
 </p>
 <h2><a name="deploy">deploy</a></h2>
@@ -149,7 +150,7 @@ classes stored in the database.</p>
 <p>$data_source, $user and $password are passed directly to
 DBI::connect().</p>
 <p>\%options is a reference to a hash containing connection options. See
-<a href="/pod/./Tangram/Storage.html">the Tangram::Storage manpage</a> for a description of available options.</p>
+<a href="/docs/Tangram/Storage.html">the Tangram::Storage manpage</a> for a description of available options.</p>
 <p>
 </p>
 <h2><a name="retreat">retreat</a></h2>
@@ -179,9 +180,9 @@ more exotic features.</p>
 
 <div id="footer">
    <hr>
-   <a href="copyright.html">copyright info</a> |
-   <a href="credits.html">credits</a> |
-   <a href="map.html">site map</a>
+   <a href="../../copyright.html">copyright info</a> |
+   <a href="../../credits.html">credits</a> |
+   <a href="../../map.html">site map</a>
 
 </div>
 

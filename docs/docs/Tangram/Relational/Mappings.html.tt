@@ -1,3 +1,4 @@
+[% top = '../../../' %]
 [% title = 'POD: Tangram::Relational::Mappings - Mapping inheritance' %]
 [% INCLUDE header.tt %]
 

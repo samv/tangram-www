@@ -1,3 +1,4 @@
+[% top = '../../' %]
 [% title = 'POD: Tangram::Type - mapping individual fields' %]
 [% INCLUDE header.tt %]
 
@@ -23,7 +24,7 @@
 <h1><a name="description">DESCRIPTION</a></h1>
 <p>Tangram's persistent type system is extensible, allowing you to mount
 your own types and make them persistent. All you have to do is to
-register your type and provide mapping code. See <a href="/pod/./Tangram/Type/Extending.html">the Tangram::Type::Extending manpage</a>.</p>
+register your type and provide mapping code. See <a href="/docs/Tangram/Type/Extending.html">the Tangram::Type::Extending manpage</a>.</p>
 <p>Tangram comes with built-in support for the following types:</p>
 <dl>
 <dt><strong><a name="item_simple_scalar_types"><strong>Simple Scalar types</strong></a></strong><br />
@@ -33,24 +34,24 @@ Supported are strings, integers, real numbers and dates.  More types
 of this ilk are easily added.
 </dd>
 <dd>
-<p><code>string</code>, <code>int</code>, <code>real</code>: see <a href="/pod/./Tangram/Scalar.html">the Tangram::Scalar manpage</a></p>
+<p><code>string</code>, <code>int</code>, <code>real</code>: see <a href="/docs/Tangram/Scalar.html">the Tangram::Scalar manpage</a></p>
 </dd>
 <dd>
-<p><code>date</code>, <code>time</code>, <code>datetime</code>, <code>dmdatetime</code>: see <a href="/pod/./Tangram/DateTime.html">the Tangram::DateTime manpage</a></p>
+<p><code>date</code>, <code>time</code>, <code>datetime</code>, <code>dmdatetime</code>: see <a href="/docs/Tangram/DateTime.html">the Tangram::DateTime manpage</a></p>
 </dd>
 <p></p>
 <dt><strong><a name="item_compound_structure_types"><strong>Compound Structure types</strong></a></strong><br />
 </dt>
 <dd>
-<code>perl_dump</code>: see <a href="/pod/./Tangram/PerlDump.html">the Tangram::PerlDump manpage</a>.  A <code>perl_dump</code> structure may
+<code>perl_dump</code>: see <a href="/docs/Tangram/PerlDump.html">the Tangram::PerlDump manpage</a>.  A <code>perl_dump</code> structure may
 contain any structure which Data::Dumper can dump successfully.
 </dd>
 <dd>
-<p><code>storable</code>: see <a href="/pod/./Tangram/Storable.html">the Tangram::Storable manpage</a>.  Very much like <code>perl_dump</code>,
+<p><code>storable</code>: see <a href="/docs/Tangram/Storable.html">the Tangram::Storable manpage</a>.  Very much like <code>perl_dump</code>,
 but implemented via the `Storable' serialisation engine.</p>
 </dd>
 <dd>
-<p><code>yaml</code>: see <a href="/pod/./Tangram/YAML.html">the Tangram::YAML manpage</a>.  Very much like <code>perl_dump</code>, but
+<p><code>yaml</code>: see <a href="/docs/Tangram/YAML.html">the Tangram::YAML manpage</a>.  Very much like <code>perl_dump</code>, but
 implemented via the `YAML' serialisation engine.  Doesn't currently
 work, due to inadequacies in the current Perl YAML implementation.</p>
 </dd>
@@ -58,7 +59,7 @@ work, due to inadequacies in the current Perl YAML implementation.</p>
 <p><strong>NEW in Tangram 2.08</strong>:</p>
 </dd>
 <dd>
-<p><code>idbif</code>: see <a href="/pod/./Tangram/IDBIF.html">the Tangram::IDBIF manpage</a>.  Like the above, but can combine
+<p><code>idbif</code>: see <a href="/docs/Tangram/IDBIF.html">the Tangram::IDBIF manpage</a>.  Like the above, but can combine
 multiple object properties into a single database column.</p>
 </dd>
 <p></p>
@@ -70,16 +71,16 @@ on individual fields inside the array/hash - otherwise, the
 <code>perl_dump</code> or <code>idbif</code> mapping is a lot faster and more flexible.
 </dd>
 <dd>
-<p><code>flat_array</code>: see <a href="/pod/./Tangram/FlatArray.html">the Tangram::FlatArray manpage</a></p>
+<p><code>flat_array</code>: see <a href="/docs/Tangram/FlatArray.html">the Tangram::FlatArray manpage</a></p>
 </dd>
 <dd>
-<p><code>flat_hash</code>: see <a href="/pod/./Tangram/FlatHash.html">the Tangram::FlatHash manpage</a></p>
+<p><code>flat_hash</code>: see <a href="/docs/Tangram/FlatHash.html">the Tangram::FlatHash manpage</a></p>
 </dd>
 <p></p>
 <dt><strong><a name="item_references_to_other_objects"><strong>References to other objects</strong></a></strong><br />
 </dt>
 <dd>
-<code>ref</code>: see <a href="/pod/./Tangram/Ref.html">the Tangram::Ref manpage</a> (implementing an <strong>N to 1</strong> relationship,
+<code>ref</code>: see <a href="/docs/Tangram/Ref.html">the Tangram::Ref manpage</a> (implementing an <strong>N to 1</strong> relationship,
 in which any object can be the referant)
 </dd>
 <p></p>
@@ -98,11 +99,11 @@ module.  Sets may not have duplicate elements, and cannot contain
 <em>undef</em> values.</p>
 </dd>
 <dd>
-<p><code>set</code>: see <a href="/pod/./Tangram/Set.html">the Tangram::Set manpage</a> (implementing an <em>unordered</em> <strong>N to N</strong>
+<p><code>set</code>: see <a href="/docs/Tangram/Set.html">the Tangram::Set manpage</a> (implementing an <em>unordered</em> <strong>N to N</strong>
 relationship, with all objects sharing a common base class)</p>
 </dd>
 <dd>
-<p><code>iset</code>: see <a href="/pod/./Tangram/IntrSet.html">the Tangram::IntrSet manpage</a> (implementing an <em>unordered</em> <strong>1 to
+<p><code>iset</code>: see <a href="/docs/Tangram/IntrSet.html">the Tangram::IntrSet manpage</a> (implementing an <em>unordered</em> <strong>1 to
 N</strong> relationship, with all objects sharing a common base class)</p>
 </dd>
 <p></p>
@@ -116,11 +117,11 @@ duplicates (ie, the same element present in seperate places in the
 list).
 </dd>
 <dd>
-<p><code>array</code> : see <a href="/pod/./Tangram/Array.html">the Tangram::Array manpage</a> (implementing an <em>ordered</em> <strong>N to N</strong>
+<p><code>array</code> : see <a href="/docs/Tangram/Array.html">the Tangram::Array manpage</a> (implementing an <em>ordered</em> <strong>N to N</strong>
 relationship, with all objects sharing a common base class)</p>
 </dd>
 <dd>
-<p><code>iarray</code>: see <a href="/pod/./Tangram/IntrArray.html">the Tangram::IntrArray manpage</a> (implementing an <em>ordered</em> <strong>1
+<p><code>iarray</code>: see <a href="/docs/Tangram/IntrArray.html">the Tangram::IntrArray manpage</a> (implementing an <em>ordered</em> <strong>1
 to N</strong> relationship, with all objects sharing a common base class)</p>
 </dd>
 <p></p>
@@ -133,11 +134,11 @@ contain <em>undef</em> values (those are dropped).  The <code>hash</code> type m
 contain duplicate elements.
 </dd>
 <dd>
-<p><code>hash</code> : see <a href="/pod/./Tangram/Hash.html">the Tangram::Hash manpage</a> (implementing a <em>keyed</em> <strong>N to N</strong>
+<p><code>hash</code> : see <a href="/docs/Tangram/Hash.html">the Tangram::Hash manpage</a> (implementing a <em>keyed</em> <strong>N to N</strong>
 relationship, with all objects sharing a common base class)</p>
 </dd>
 <dd>
-<p><code>ihash</code>: see <a href="/pod/./Tangram/IntrHash.html">the Tangram::IntrHash manpage</a> (implementing a <em>keyed</em> <strong>1 to N</strong>
+<p><code>ihash</code>: see <a href="/docs/Tangram/IntrHash.html">the Tangram::IntrHash manpage</a> (implementing a <em>keyed</em> <strong>1 to N</strong>
 relationship, with all objects sharing a common base class)</p>
 </dd>
 <p></p></dl>

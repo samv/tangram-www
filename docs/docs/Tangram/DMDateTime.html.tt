@@ -1,4 +1,5 @@
-[% title = 'POD: ./Tangram/DMDateTime.pm' %]
+[% top = '../../' %]
+[% title = 'POD: Tangram/lib/Tangram/DMDateTime.pm' %]
 [% INCLUDE header.tt %]
 
 
