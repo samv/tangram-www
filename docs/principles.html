@@ -12,9 +12,13 @@
 			background-repeat: repeat-both;
 		}
 	--></style>
+	<script language="javascript" type="text/javascript"><!--
+		var clearedalready = 0;
+	--></script>
   </head>
 
-  <body>
+  <body onload="document.getElementById('search').value = 'Site/List Search'">
+<form>
     <div id="sitelogo">
 	<a href="./">
 	  <img id="t2logo" src="./gfx/t2.png" border="0" />
@@ -23,7 +27,7 @@
     </div>
     <div id="navbar">
 <div class="menuItem right">
-	<input type="text" width="20" name="search" value="Site/List Search"/>
+	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
 </div>
 
@@ -46,6 +50,7 @@
 	
 <div style="clear: both"></div>
 </div>
+</form>
 
 <div id="body">
 
@@ -54,7 +59,7 @@
 
 <p>Whilst the vary to which these principles are supported by
 different languages vary, there are a certain set of principles to the
-
+OO paradigm which I hope to 'encapsulate' here.  This page largely
 serves as a definition of terms and may be refered to from other
 documentation.</p>
 

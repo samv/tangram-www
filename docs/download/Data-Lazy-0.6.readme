@@ -1,0 +1,8 @@
+I never shipped a README with this Data::Lazy.
+
+Basically it was an extension of Data::Lazy to handle overloaded
+return values and attributes, and adding a test suite.
+
+This module is necessary for the current development Tangram.
+
+samv@cpan.org

@@ -7,18 +7,23 @@
 <h1 class="POD_TITLE">Tangram Documentation and Tutorials</h1>
 
   <p>The current maintainers believe in keeping the documentation with
-    the code, so that it is more easily kept up to date.
+    the code, so that it is more easily kept up to date.  So, a large
+    proportion of this section of the site is merely conversions to
+    HTML from the POD included with Tangram.
 
   <p>If you are getting started with Tangram, the best introductory
     piece is still Jean-Louis LeRoy's <a
-    href="Tangram/Tour.html">Guided Tour of Tangram</a>.  However, it
-    is no longer (as of Tangram 2.07_05) necessary to 
+    href="Tangram/Tour.html">Guided Tour of Tangram</a>.  However, as
+    of Tangram 2.07_03, is no longer necessary to map <em>every</em>
+    object property to a column.  This is mentioned briefly on the (as
+    yet incomplete) <a href="Tangram/Intro.html">Tangram
+    Introduction</a>.</p>
 
 <hr>
 <table>
 <tr><td colspan="2" class="head2">Presentations</td></tr>
 <tr><td colspan="2">Whilst not often readable without somebody speaking on their way through, presentation files can be a good insight into what people are saying about a topic.  You will need <a href="http://www.openoffice.org/">OpenOffice</a> 1.0 or later to open the presentation files.</td></tr>
-<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="tut/Tangram-UML-YAPC2003.tar.gz">POOP with Tangram and UML</a>,<br />Sam Vilain.</td><td class="DOCTOC_DESC">POOP stands for <a href="http://poop.sourceforge.net">Perl Object-Oriented Persistence</a>, and UML stands for the <a href="http://www.omg.org/uml">Unified Modeling Language</a> - an OMG standard.  To be given by Sam Vilain at YAPC::Europe 2003 in Paris.<br />This tarball contains the information pack to be provided on the hand-out CD, which includes some notes and example code.</td></tr>
+<tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="tut/Tangram-UML-YAPC2003.tar.gz">POOP with Tangram and UML</a>,<br />Sam Vilain.</td><td class="DOCTOC_DESC">POOP stands for <a href="http://poop.sourceforge.net">Perl Object-Oriented Persistence</a>, and UML stands for the <a href="http://www.omg.org/uml">Unified Modeling Language</a> - an OMG standard.  Given at YAPC::Europe 2003 in Paris.<br />This tarball contains an information pack, which includes some notes and example code.</td></tr>
 <tr><td class="DOCTOC_NAME"><a class="DOC_NAVLINK" href="tut/perrin_oscon_2003.sxi">Object-Relational Mapping<br />Tools for Perl</a>,<br />Perrin Harkins.</td><td class="DOCTOC_DESC">Perrin compares Tangram with Class::DBI and SPOPS, two alternative modules for storing object classes in a database.</td></tr>
 <tr><td colspan="2"><hr /></td></tr>
 <tr><td colspan="2" class="head2">Module Manual Pages</td></tr>

@@ -68,7 +68,15 @@
 
     </ol>
 
-<table class="downloads">
+[% USE date %]
+[% FOR stage = [ "prod", "test" ] %]
+[% IF stage == "test" %]
+  <h2>Development / Test Releases</h2>
+[% ELSE %]
+  <h2>Production / Stable Releases</h2>
+[% END %]
+
+<table class="downloads [% stage %]">
   <thead>
     <tr>
       <th>Filename</th>
@@ -78,14 +86,12 @@
     </tr>
   </thead>
   <tbody>
-[% USE date %]
-[% FOR stage = [ "prod", "test" ] %]
   [% FOR dist = order %]
     [% IF files.$dist.$stage.size;
        dist_name = dist.replace("::", "-") %]
     <tr class="distheading [% stage %]">
       <td colspan="5">
-        [% dist %] [% stage == "test" ? "(Test Release)" : "" %]
+        [% dist %] 
       </td>
     </tr>
     [% FOR version = files.$dist.$stage.reverse;
@@ -105,42 +111,24 @@
        END %]
     <tr class="dist [% stage %][% is_head ? ' head' : '' %]">
       <td><a href="[% filename %]">[% filename %]</a></td>
-      <td>[% date.format(file.mtime, "%d %b %Y") %]</td>
-      <td>[% file.size %]</td>
+      <td>[% date.format(stats.$filename.mtime, "%d %b %Y") %]</td>
+      <td>[% stats.$filename.size %]</td>
       <td><a href="[% readme %]">README</a>,
+	<a href="[% changes %]">ChangeLog</a></td>
       </td>
     </tr>
     [% END %]
     [% END %]
   [% END %]
-[% END %]
   </tbody>
 </table>
-    
-    <div class="head1">Subversion Repository</div>
+[% END %]
 
-    <p>The latest development version of Tangram is available via CVS
-      from the perlfect.com CVS repository.</p>
 
-    <p>To access, you will need to get a working CVS client, such as
-      <a href="http://www.cvshome.org/">command line CVS</a>, or
-      perhaps you would prefer to use a CVS plug-in to your favourite
-      graphical shell, such as <a
-      href="http://cervisia.sourceforge.net/">Cervisia</a>.</p>
+<hr />
+<p>Footnotes:
 
-    <p>The CVSROOT is:
-      <tt>:pserver:anonymous@perlfect.com:/home/cvsroot/</tt>
-
-    <p>If you already have a recent GNU based operating system, you
-      can likely just issue the following commands:</p>
-
-<pre>cvs -d:pserver:anonymous@perlfect.com:/home/cvsroot login
-cvs -z3 -d:pserver:anonymous@perlfect.com:/home/cvsroot checkout t2</pre>
-    
-    <p>There is no password for anonymous access - when prompted for a
-      password, just press enter.</p>
-
-<div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
+   <div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
    Tangram was known to work with Perl 5.005_03.  Compatibility with
    this Perl version for later versions of Tangram will only be 
    included if the person who wants it is willing to test and debug

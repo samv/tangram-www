@@ -1,0 +1,438 @@
+
+
+
+
+<html>
+  <head>
+    <title>Tangram Orthogonal Persistence: Download Tangram</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="../tangram.css">
+	<style type="text/css" language="css"><!--
+		#sitelogo {
+			background-image: url('../gfx/bgdots.png');
+			background-repeat: repeat-both;
+		}
+	--></style>
+	<script language="javascript" type="text/javascript"><!--
+		var clearedalready = 0;
+	--></script>
+  </head>
+
+  <body onload="document.getElementById('search').value = 'Site/List Search'">
+<form>
+    <div id="sitelogo">
+	<a href="../">
+	  <img id="t2logo" src="../gfx/t2.png" border="0" />
+	  <img id="tangramlogo" src="../gfx/tangramlogo.png" border="0" />
+	</a>
+    </div>
+    <div id="navbar">
+<div class="menuItem right">
+	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
+	<input type="submit" value="Go!" />
+</div>
+
+<div class="menuItem">
+  <a href="../index.html" class="menu">Home</a>
+</div>
+
+<div class="menuItem">
+  <a href="../download/index.html" class="menu">Download</a>
+</div>
+
+<div class="menuItem">
+  <a href="../docs/index.html" class="menu">Documentation</a>
+</div>
+
+<div class="menuItem">
+  <a href="../development/index.html" class="menu">Development</a>
+</div>
+
+	
+<div style="clear: both"></div>
+</div>
+</form>
+
+<div id="body">
+
+
+    <div class="head1">Download Tangram</div>
+    
+    <p>To use the latest release of Tangram, you will need:
+
+<style type="text/css" language="css"><!--
+  ol li {
+     padding: 0.3em;
+  }
+--></style>
+    <ol>
+      <li>Perl, version 5.6.1, 5.8.1 or any later 5.8.x release<a
+         href="#fn1"><sup>1</sup></a>.</li>
+
+      <li>A SQL database.  Currently well supported are <a
+         href="http://www.mysql.com/">MySQL/MyISAM</a>, <a
+         href="http://www.innodb.com/index.php">MySQL/InnoDB</a>, <a
+         href="http://www.postgresql.org/">PostgreSQL</a>, <a
+         href="http://www.oracle.com">Oracle</a> and <a
+         href="http://www.sqlite.org/">SQLite</a>.  See <a href="../docs/Tangram/Dialect.html">Tangram::Dialect</a> for the
+         low-down. </li>
+
+      <li>The <a href="http://search.cpan.org/dist/Scalar-List-Utils/lib/Scalar/Util.pm">Scalar::Util</a>
+        module (included with the standard Perl distribution with
+        5.8+)</li>
+
+      <li>If you would like to represent date/time columns, install
+        one of your choice of well-supported Date modules (ie, with a
+        <a href="../docs/Tangram/Type.html">Tangram::Type</a>
+        class written for them): <a
+        href="http://search.cpan.org/dist/DateManip/">Date::Manip</a>
+        (also needed for the generic SQL driver [patches welcome]), <a
+        href="http://search.cpan.org/dist/Class-Date/Date.pod">Class::Date</a>,
+        <a
+        href="http://search.cpan.org/dist/DateTime/lib/DateTime.pm">DateTime</a>
+        or <a
+        href="http://search.cpan.org/dist/Time-Piece/Piece.pm">Time::Piece</a>.
+	</li>
+
+      <li>The modules Tangram, Set::Object and optionally,
+        Class::Tangram - either from CPAN, this web page, or perhaps
+        supplied by your OS distribution of choice.</li>
+
+    </ol>
+
+
+
+
+  <h2>Production / Stable Releases</h2>
+
+
+<table class="downloads prod">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Release Date</th>
+      <th>Size</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    
+    <tr class="distheading prod">
+      <td colspan="5">
+        Tangram 
+      </td>
+    </tr>
+    
+    <tr class="dist prod head">
+      <td><a href="Tangram-2.07.tar.gz">Tangram-2.07.tar.gz</a></td>
+      <td>04 Dec 2003</td>
+      <td>107363</td>
+      <td><a href="Tangram-2.07.readme">README</a>,
+	<a href="Tangram-2.07.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Tangram-2.06.tar.gz">Tangram-2.06.tar.gz</a></td>
+      <td>17 Jul 2003</td>
+      <td>98754</td>
+      <td><a href="Tangram-2.06.readme">README</a>,
+	<a href="Tangram-2.06.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Tangram-2.05.tar.gz">Tangram-2.05.tar.gz</a></td>
+      <td>10 Jul 2003</td>
+      <td>96572</td>
+      <td><a href="Tangram-2.05.readme">README</a>,
+	<a href="Tangram-2.05.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Tangram-2.04.tar.gz">Tangram-2.04.tar.gz</a></td>
+      <td>13 Mar 2001</td>
+      <td>89399</td>
+      <td><a href="Tangram-2.04.readme">README</a>,
+	<a href="Tangram-2.04.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+    
+    <tr class="distheading prod">
+      <td colspan="5">
+        Set::Object 
+      </td>
+    </tr>
+    
+    <tr class="dist prod head">
+      <td><a href="Set-Object-1.08.tar.gz">Set-Object-1.08.tar.gz</a></td>
+      <td>14 Oct 2004</td>
+      <td>15137</td>
+      <td><a href="Set-Object-1.08.readme">README</a>,
+	<a href="Set-Object-1.08.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.07.tar.gz">Set-Object-1.07.tar.gz</a></td>
+      <td>16 Aug 2004</td>
+      <td>16482</td>
+      <td><a href="Set-Object-1.07.readme">README</a>,
+	<a href="Set-Object-1.07.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.06.tar.gz">Set-Object-1.06.tar.gz</a></td>
+      <td>01 May 2004</td>
+      <td>16391</td>
+      <td><a href="Set-Object-1.06.readme">README</a>,
+	<a href="Set-Object-1.06.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.05.tar.gz">Set-Object-1.05.tar.gz</a></td>
+      <td>05 Jan 2004</td>
+      <td>16439</td>
+      <td><a href="Set-Object-1.05.readme">README</a>,
+	<a href="Set-Object-1.05.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.04.tar.gz">Set-Object-1.04.tar.gz</a></td>
+      <td>07 Aug 2003</td>
+      <td>13460</td>
+      <td><a href="Set-Object-1.04.readme">README</a>,
+	<a href="Set-Object-1.04.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.03a.tar.gz">Set-Object-1.03a.tar.gz</a></td>
+      <td>21 May 2003</td>
+      <td>9367</td>
+      <td><a href="Set-Object-1.03a.readme">README</a>,
+	<a href="Set-Object-1.03a.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.02.tar.gz">Set-Object-1.02.tar.gz</a></td>
+      <td>09 May 2000</td>
+      <td>7346</td>
+      <td><a href="Set-Object-1.02.readme">README</a>,
+	<a href="Set-Object-1.02.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.01.tar.gz">Set-Object-1.01.tar.gz</a></td>
+      <td>09 Nov 1999</td>
+      <td>7227</td>
+      <td><a href="Set-Object-1.01.readme">README</a>,
+	<a href="Set-Object-1.01.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Set-Object-1.00.tar.gz">Set-Object-1.00.tar.gz</a></td>
+      <td>28 May 1999</td>
+      <td>6833</td>
+      <td><a href="Set-Object-1.00.readme">README</a>,
+	<a href="Set-Object-1.00.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+    
+  
+    
+    <tr class="distheading prod">
+      <td colspan="5">
+        Data::Lazy 
+      </td>
+    </tr>
+    
+    <tr class="dist prod">
+      <td><a href="Data-Lazy-0.6.tar.gz">Data-Lazy-0.6.tar.gz</a></td>
+      <td>05 Jan 2004</td>
+      <td>6872</td>
+      <td><a href="Data-Lazy-0.6.readme">README</a>,
+	<a href="Data-Lazy-0.6.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+  </tbody>
+</table>
+
+
+  <h2>Development / Test Releases</h2>
+
+
+<table class="downloads test">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Release Date</th>
+      <th>Size</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    
+    <tr class="distheading test">
+      <td colspan="5">
+        Tangram 
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Tangram-2.07_07.tar.gz">Tangram-2.07_07.tar.gz</a></td>
+      <td>25 Dec 2004</td>
+      <td>158128</td>
+      <td><a href="Tangram-2.07_07.readme">README</a>,
+	<a href="Tangram-2.07_07.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Tangram-2.07_06.tar.gz">Tangram-2.07_06.tar.gz</a></td>
+      <td>11 Oct 2004</td>
+      <td>136714</td>
+      <td><a href="Tangram-2.07_06.readme">README</a>,
+	<a href="Tangram-2.07_06.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Tangram-2.07_05.tar.gz">Tangram-2.07_05.tar.gz</a></td>
+      <td>31 May 2004</td>
+      <td>131099</td>
+      <td><a href="Tangram-2.07_05.readme">README</a>,
+	<a href="Tangram-2.07_05.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Tangram-2.07_04.tar.gz">Tangram-2.07_04.tar.gz</a></td>
+      <td>20 May 2004</td>
+      <td>130877</td>
+      <td><a href="Tangram-2.07_04.readme">README</a>,
+	<a href="Tangram-2.07_04.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Tangram-2.07_03.tar.gz">Tangram-2.07_03.tar.gz</a></td>
+      <td>17 May 2004</td>
+      <td>123506</td>
+      <td><a href="Tangram-2.07_03.readme">README</a>,
+	<a href="Tangram-2.07_03.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+    
+    <tr class="distheading test">
+      <td colspan="5">
+        Set::Object 
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Set-Object-1.08_02.tar.gz">Set-Object-1.08_02.tar.gz</a></td>
+      <td>14 Jan 2005</td>
+      <td>21396</td>
+      <td><a href="Set-Object-1.08_02.readme">README</a>,
+	<a href="Set-Object-1.08_02.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="Set-Object-1.08_01.tar.gz">Set-Object-1.08_01.tar.gz</a></td>
+      <td>14 Jan 2005</td>
+      <td>23114</td>
+      <td><a href="Set-Object-1.08_01.readme">README</a>,
+	<a href="Set-Object-1.08_01.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+    
+    <tr class="distheading test">
+      <td colspan="5">
+        T2 
+      </td>
+    </tr>
+    
+    <tr class="dist test head">
+      <td><a href="T2-0.08.tar.gz">T2-0.08.tar.gz</a></td>
+      <td>20 May 2004</td>
+      <td>33866</td>
+      <td><a href="T2-0.08.readme">README</a>,
+	<a href="T2-0.08.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="T2-0.07.tar.gz">T2-0.07.tar.gz</a></td>
+      <td>19 Jan 2004</td>
+      <td>33685</td>
+      <td><a href="T2-0.07.readme">README</a>,
+	<a href="T2-0.07.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    <tr class="dist test">
+      <td><a href="T2-0.06.tar.gz">T2-0.06.tar.gz</a></td>
+      <td>07 Jan 2004</td>
+      <td>34780</td>
+      <td><a href="T2-0.06.readme">README</a>,
+	<a href="T2-0.06.changes">ChangeLog</a></td>
+      </td>
+    </tr>
+    
+    
+  
+    
+  
+  </tbody>
+</table>
+
+
+
+<hr />
+<p>Footnotes:
+
+   <div class="footnote"><a name="fn1"><sup>1</sup></a> Version 2.05 of
+   Tangram was known to work with Perl 5.005_03.  Compatibility with
+   this Perl version for later versions of Tangram will only be 
+   included if the person who wants it is willing to test and debug
+   that platform.  </div>
+
+</div>
+
+<div id="footer">
+   <hr>
+   <a href="../copyright.html">copyright info</a> |
+   <a href="../credits.html">credits</a> |
+   <a href="../map.html">site map</a>
+
+</div>
+
+  </body>
+</html>
+

@@ -12,9 +12,13 @@
 			background-repeat: repeat-both;
 		}
 	--></style>
+	<script language="javascript" type="text/javascript"><!--
+		var clearedalready = 0;
+	--></script>
   </head>
 
-  <body>
+  <body onload="document.getElementById('search').value = 'Site/List Search'">
+<form>
     <div id="sitelogo">
 	<a href="./">
 	  <img id="t2logo" src="./gfx/t2.png" border="0" />
@@ -23,7 +27,7 @@
     </div>
     <div id="navbar">
 <div class="menuItem right">
-	<input type="text" width="20" name="search" value="Site/List Search"/>
+	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
 </div>
 
@@ -46,6 +50,7 @@
 	
 <div style="clear: both"></div>
 </div>
+</form>
 
 <div id="body">
 
@@ -80,11 +85,12 @@
 
     <p>Once you have this schema, you can easily create
       <em>transaction-savvy</em> applications that can perform
-      <em>complex queries</em> on your data base, 
-      <em>without directly coding SQL</em>.  Advanced <em>demand
-      loading</em> combined with a superb <em>data caching model</em>
-      removes the need for a fantastic proportion of queries in a
-      typical program.
+      <em>complex queries</em> on your data base, <em>without directly
+      coding SQL</em>.  Advanced <em>demand loading</em><a
+      href="#fn1"><sup>1</sup></a> combined with a superb <em>data
+      caching model</em><a
+      href="#fn2"><sup>2</sup></a> removes the need for a fantastic proportion
+      of queries in a typical program.
     </p>
 
     <div class="head2">Tangram implements Orthogonal Object
@@ -93,9 +99,9 @@
     <p>That term might not make much sense to a lot of people - no
       doubt including people who have been programming for decades -
       so your first reaction might be, "Oh, no, another Object
-      Orientation Loony!".  If that is your reaction, perhaps one of
-      the other similar tools mentioned on this page will be more your
-      style.</p>
+      Orientated Loony!  Please <tt>$self->fornicate</tt>".  If that is your
+      reaction, perhaps one of the other similar tools mentioned on
+      this page will be more your style.</p>
 
     <p>To explain it piece by piece - <b>Object Persistence</b> in
       this context, means taking Perl objects and saving them
@@ -142,7 +148,7 @@
       used by modules such as <a
       href="http://www.class-dbi.com/cgi-bin/wiki/index.cgi?HomePage">Class::DBI</a>
       or <a
-      href="http://search.cpan.org/dist/Class-Persist/">Class::Persist</a>.</p>
+      href="http://search.cpan.org/dist/Class-Persist/">Class::Persist</a><a href="#fn3"><sup>3</sup></a>.</p>
 
     <p>Tangram can not (always) be used to <b>retro-actively fit a
       database</b> in the way that Alzabo or Class::DBI can.  If you
@@ -172,6 +178,22 @@
       the <a href="download/index.html">downloads section</a>
       of this web site, or directly from the <a href="development/index.html#svn">tangram.utsl.gen.nz Subversion
       repository</a>.</p>
+
+<hr />
+<p>Footnotes:
+
+<div class="footnotes"><a name="fn1"><sup>1</sup></a> With pre-caching
+available for those situations where demand loading would suck.</div>
+
+<div class="footnotes"><a name="fn2"><sup>2</sup></a> With a nice and
+easy way to dump the cache, so you can dump the cache at the beginning
+of each database transaction, thereby avoiding intra-transaction
+"Dirty Read" problems.</div>
+
+<div class="footnotes"><a name="fn3"><sup>3</sup></a> Class::Persist
+perhaps doesn't fit cleanly into this category, but then trying to
+categorise programming libraries into hard and fast categories is a
+mistake in the first place.</div>
 
 </div>
 

@@ -1,0 +1,104 @@
+libt2-perl (0.08) unstable; urgency=low
+
+  * Removed bogus 'use Defer' line
+  * added support for auto-detecting Tangram RDBMS-specific back-ends
+  * Changed many types to use new IDBIF Tangram mapping
+  * Removed crufty module, javascript prototype generators etc.
+
+ -- Sam Vilain <sam@vilain.net>  Mon, 19 Jan 2004 11:19:08 +1300
+
+libt2-perl (0.07) unstable; urgency=low
+
+  * Added T2::DBSetup
+
+ -- Sam Vilain <sam@vilain.net>  Tue, 13 Jan 2004 20:39:05 +1300
+
+libt2-perl (0.06) unstable; urgency=low
+
+  * First CPAN release
+
+ -- Sam Vilain <sam@vilain.net>  Wed,  7 Jan 2004 17:06:49 +1300
+
+libt2-perl (0.05-2) unstable; urgency=low
+
+  * Setters for container types now tolerate being set to null
+
+ -- Sam Vilain <sam@vilain.net>  Wed, 17 Dec 2003 19:23:13 +1300
+
+libt2-perl (0.05-1) unstable; urgency=low
+
+  * Generated prototypes now support setting fields without a seperate
+    call to Object.set()
+  * minor Method -> T2::Method name change fix
+
+ -- Sam Vilain <sam@vilain.net>  Tue, 16 Dec 2003 22:17:13 +1300
+
+libt2-perl (0.04-2) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Thu, 11 Dec 2003 16:35:46 +1300
+
+libt2-perl (0.04-1) unstable; urgency=low
+
+  * Added t2-write-js.pl script, removed cruft bin/*.pl scripts
+
+ -- Sam Vilain <sam@vilain.net>  Wed, 10 Dec 2003 14:50:10 +1300
+
+libt2-perl (0.03-3) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Wed, 10 Dec 2003 14:35:59 +1300
+
+libt2-perl (0.03-2) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Mon,  8 Dec 2003 15:32:45 +1300
+
+libt2-perl (0.03-1) unstable; urgency=low
+
+  * pcvs test build version 0.03-1
+
+ -- Sam Vilain <sam@vilain.net>  Wed, 22 Oct 2003 21:46:05 +0100
+
+libt2-perl (0.02-4) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Wed, 22 Oct 2003 16:21:22 +0100
+
+libt2-perl (0.02-3) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Thu, 25 Sep 2003 12:12:18 +0100
+
+libt2-perl (0.02-2) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Tue,  9 Sep 2003 12:00:46 +0100
+
+libt2-perl (0.02-1) unstable; urgency=low
+
+  * pcvs test build version 0.02-1
+
+ -- Sam Vilain <sam@vilain.net>  Wed,  3 Sep 2003 00:52:56 +0100
+
+libt2-perl (0.01-2) unstable; urgency=low
+
+  * Custom package
+
+ -- Sam Vilain <sam@vilain.net>  Tue,  2 Sep 2003 17:44:06 +0100
+
+libt2-perl (0.01-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Sam Vilain <sam@vilain.net>  Mon, 11 Aug 2003 12:24:52 +0100
+
+Local variables:
+mode: debian-changelog
+End:

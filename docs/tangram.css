@@ -1,8 +1,9 @@
-@import url("/pod.css");
+body {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
 
-body { padding: 0; margin: 0 }
-
-#body {
+div#body {
     margin-left: 1em;
     margin-right: 1em;
     margin-top: 0.5em;
@@ -10,6 +11,12 @@ body { padding: 0; margin: 0 }
     font-family: "FreeSans", Verdana, Helvetica, sans-serif;
     font-weight: normal;
     color: #000000;
+}
+
+body p, ul, dl, ol {
+    margin: 0;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
 }
 
 INPUT {
@@ -20,16 +27,25 @@ INPUT {
     font-family : "Nimbus Sans L", Arial, Helvetica, sans-serif;
     font-size : 16pt;
     font-weight : bold;
+	padding-top: 0.3em;
+	padding-bottom: 0.2em;
 }
 
 .head2, h2 {
     font-family : "Nimbus Sans L", Arial, Helvetica, sans-serif;
       font-size : 13pt;
       font-weight : bold;
+	padding-top: 0.6em;
+	padding-bottom: 0.2em;
 }
 
 tt, pre, samp {
     font-family: "Bitstream Vera Sans Mono", "Andale Mono", monospace;
+}
+
+pre {
+	padding: 0;
+	margin: 0.5em 2em 0.5em 2em;
 }
 
 .menuItem {
@@ -126,11 +142,39 @@ HR {
 }
 
 table.downloads {
-   margin: 2em;
+   margin-left: 2em;
+   margin-right: 2em;
    width: 80%;
 }
 
-table.downloads thead {
+table.downloads.prod thead {
    background: #009900;
    color: white;
 }
+
+table.downloads.test thead {
+   background: #990000;
+   color: white;
+}
+
+table.downloads tr.distheading {
+   font-weight: bold
+}
+
+table.downloads tr.distheading.test {
+}
+
+table.downloads tr.head.prod {
+   background: #ade6ad;
+}
+table.downloads tr.heading {
+}
+table.downloads tr.head {
+   font-weight: bold
+}
+
+ol li, ul li, dl dd {
+   padding-top: 0.2em;
+   padding-bottom: 0.2em;
+}
+

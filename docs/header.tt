@@ -18,9 +18,13 @@
 			background-repeat: repeat-both;
 		}
 	--></style>
+	<script language="javascript" type="text/javascript"><!--
+		var clearedalready = 0;
+	--></script>
   </head>
 
-  <body>
+  <body onload="document.getElementById('search').value = 'Site/List Search'">
+<form action="[% top %]search.html" >
     <div id="sitelogo">
 	<a href="[% top %]">
 	  <img id="t2logo" src="[% top %]gfx/t2.png" border="0" />
@@ -29,7 +33,7 @@
     </div>
     <div id="navbar">
 <div class="menuItem right">
-	<input type="text" width="20" name="search" value="Site/List Search"/>
+	<input id="search" type="text" width="20" name="search" onfocus="if (!(clearedalready++)) {this.value = ''}"/>
 	<input type="submit" value="Go!" />
 </div>
 [% FOR link = navlinks %]
@@ -40,5 +44,6 @@
 	
 <div style="clear: both"></div>
 </div>
+</form>
 
 <div id="body">
