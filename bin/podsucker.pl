@@ -95,7 +95,7 @@ sub crawl {
 }
 
 undef $/;
-open(FILE, "podtoc.html") or die "can't open podtoc.html: $!";
+open(FILE, "$destdir/podtoc.html") or die "can't open podtoc.html: $!";
 my $podtoc = <FILE>;
 close(FILE);
 

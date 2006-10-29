@@ -13,8 +13,8 @@ update-pod.pl [options]
 
 =head1 DESCRIPTION
 
-Builds all of the Perl module documentation on the intranet from POD
-found in the module source and application library directories.
+Builds all of the Perl module documentation for a set of modules
+found under a path into a directory.
 
 =head1 COMMAND LINE OPTIONS
 
@@ -51,10 +51,6 @@ use strict;
 use warnings;
 our $VERSION = '1.00';
 
-use constant DESTDIR => "/home/samv/proj/tangram/website/docs/pod/";
-use constant MODULES => "/home/samv/src";
-#use constant APPS    => "/mv/app/prod";
-
 use constant ROOT    => "/docs";
 use constant CSS     => "/styles/pod.css";
 use File::Find;
@@ -66,43 +62,54 @@ use Pod::Html;
 # where a corresponding .pod exists
 #---------------------------------------------------------------------
 sub scan_podules {
+    my $base = shift;
     my @pod_files;
     find( sub {
+	      (my $relative = $File::Find::name) =~ s{^\Q$base\E/}{};
 	      if ( /^blib$/ ) {
 		  $File::Find::prune = 1;
 	      }
 	      elsif ( /^.*\.pod\z/s ) {
-		  push @pod_files, $File::Find::name;
+		  push @pod_files, $relative;
 	      }
 	      elsif ( /^.*\.pm\z/s ) {
 		  (my $pod_file = $_) =~ s{pm$}{pod};
 		  if ( -f $pod_file ) {
 		      whisper "skipping $_ - .pod file exists";
 		  } else {
-		      push @pod_files, $File::Find::name
+		      push @pod_files, $relative;
 		  }
 	      }
-	  }, @_);
+	  }, map { "$base/$_" } @_);
     @pod_files;
 }
 
 #=====================================================================
 #  MAIN SECTION STARTS HERE
 #=====================================================================
-getopt();
+my $modules_dir = ".";
+my $output_dir  = "pod";
+getopt("modules|m=s" => \$modules_dir,
+       "output|o=s"  => \$output_dir,
+      );
 
-chdir(MODULES) or abort "failed to change to ${\(MODULES)}; $!";
+#chdir(MODULES) or abort "failed to change to ${\(MODULES)}; $!";
 
-my $dir = shift;
 my @dirs;
-if ($dir)  {
-   @dirs = $dir."/lib";
+if (!@ARGV) {
+    @dirs = glob("$modules_dir/*/lib");
 } else {
-   @dirs = <*/lib>;
+    while ( my $dir = shift ) {
+        if ( -d "$modules_dir/$dir" )  {
+            push @dirs, $dir."/lib";
+        } else {
+            abort "$dir is not a directory";
+        }
+    }
 }
-say "scanning Perl modules in ${\(MODULES)}: @dirs";
+say "scanning for Perl modules in $modules_dir: @dirs";
 
-my @pod_files = scan_podules(@dirs);
+my @pod_files = scan_podules($modules_dir, @dirs);
 
 say "extracting POD from ".@pod_files." file(s)";
 for my $pod_file ( @pod_files ) {
@@ -113,7 +120,7 @@ for my $pod_file ( @pod_files ) {
 
     if ( $dest_file =~ m{/} ) {
 	(my $dirname = $dest_file) =~ s{/[^/]*$}{};
-	$dirname = DESTDIR."/".$dirname;
+	$dirname = $output_dir."/".$dirname;
 
 	( -d $dirname ) or run "mkdir", "-p", $dirname;
     }
@@ -121,8 +128,8 @@ for my $pod_file ( @pod_files ) {
     pod2html( "--htmlroot=".ROOT,
 	      "--css=".CSS,
 	      "--libpods=perlfunc:perlguts:perlvar:perlrun:perlop",
-	      "--infile=".$pod_file,
-	      "--outfile=".DESTDIR."/$dest_file",
+	      "--infile=".$modules_dir."/".$pod_file,
+	      "--outfile=".$output_dir."/$dest_file",
 	    );
 }
 
