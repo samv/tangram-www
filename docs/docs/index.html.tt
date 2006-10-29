@@ -21,6 +21,20 @@
 
 <a name="pres"></a>
 
+<h2>Papers</h2>
+
+<p>I have written a white paper on how to bridge the gap between the
+Database Modelling camp (eg, <tt>Alzabo</tt>, <tt>DBIx::Class</tt>)
+and the Object Persistence camp (eg, Tangram, Pixie).
+
+<p>The paper is called “<a href="dbic-tangram.pdf">Database - Slave or
+Master?</a>”, and was prepared for
+<a href="http://osdc2006.cgpublisher.com/proposals/53/index_html">an
+OSDC talk</a>.  Note I will <em>NOT</em> just be talking about this
+paper, the talk will be more practical, and if I can manage it,
+include examples of doing Tangram-esque tricks using
+<tt>DBIx::Class</tt>.
+
 <h2>Presentations</h2>
 
 <p>Presentation files can sometimes be a good insight
