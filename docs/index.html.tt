@@ -135,6 +135,15 @@
       can't be getting new, improved, etc.  It will be Tangram 2
       <em>refined</em>.
 
+    <p><b>Update</b>: looks like hell was freezing over at a faster
+      rate than T2 being finished.  But all is not lost, I hope to
+      start again using <a href="http://search.cpan.org/dist/Moose">Moose</a>
+      as a meta-model and <a href="http://search.cpan.org/dist/DBIx-Class">DBIx::Class</a>
+      as a database driver for the new project, which I have written a
+      <a href="docs/dbic-tangram.pdf">paper</a> on.  Somebody once
+      said that you can tell that the death of a project is nigh when
+      they start putting up specifications in postscript.  Oh, well.
+
     <div class="head1">Getting Started</div>
 
     <p>There is extensive <a href="[% top
