@@ -68,7 +68,10 @@
     <a name="git"></a><div class="head1">Git Repository</div>
 
     <p>The latest development version of Tangram is available via
-      Git from the utsl.gen.nz Git repository.</p>
+      Git from the utsl.gen.nz Git repository.  You can also browse
+      via the <a href="http://utsl.gen.nz/gitweb/?p=Tangram">gitweb
+      interface</a> (and actually look at commit history and compare
+      changes between revisions... who'd have thought it?)
 
     <p>To access, you will need to get a working Git client, such as
       <a href="http://git.or.cz/cogito/">cogito</a>.  There is no good
