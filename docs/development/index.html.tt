@@ -65,53 +65,50 @@
     likely they are to be found in Google - so go ahead and log it
     anyway.
 
-    <a name="svn"></a><div class="head1">Subversion Repository</div>
+    <a name="git"></a><div class="head1">Git Repository</div>
 
     <p>The latest development version of Tangram is available via
-      Subversion from the tangram.utsl.gen.nz Subversion
-      repository.</p>
+      Git from the utsl.gen.nz Git repository.</p>
 
-    <p>To access, you will need to get a working SVN client, such as
-      <a href="http://subversion.tigris.org/">command line
-      subversion</a>, or perhaps you would prefer to use a Subversion
-      plug-in to your favourite graphical shell, such as <a
-      href="http://gsvn.tigris.org/">GSVN</a> (if you can stand GNOME
-      apps) or <a
-      href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> for
-      Windows.</p>
+    <p>To access, you will need to get a working Git client, such as
+      <a href="http://git.or.cz/cogito/">cogito</a>.  There is no good
+      plug-in to file browsers yet, so if you wanted that, you'll just
+      have to harden up.
 
-    <p>The Subversion URL is:
-      <tt>svn://tangram.utsl.gen.nz/trunk/</tt>
+    <p>The Git URL is:
+      <tt>git://utsl.gen.nz/Tangram</tt>
 
-    <p>Sadly, Subversion has a million dependancies, including some
-      "oh, no, another gnome-style glib" general purpose C library
-      bundled with Aboched<sup>1</sup> 2, and is therefore a bitch to
-      compile and install.  Getting binary packages is highly
-      recommended.
+    <p>Thankfully, Git has no unusual dependancies, and is therefore
+      easy to build.
 
-    <p>Once you have SVN installed, you can check out the Tangram
+    <p>Once you have cogito installed, you can check out the Tangram
       module with the following command:
 
-     <pre>svn co svn://tangram.utsl.gen.nz/trunk/Tangram</pre>
+     <pre>cg-clone git://utsl.gen.nz/Tangram</pre>
     
     <p>There is no password for anonymous access.</p>
 
-    <p>Developers with commit access will need to login to longdrop
-      first, and forward their localhost port 3690 to
-      longdrop:3690 to commit;</p>
+    <p>Please feel free to send <tt>git-format-patch</tt> style
+      patches to the
+      <a href="[% top %]lists/t2-users"><tt>t2-users</tt></a> list.
+      In fact I wrote some fuller instructions for cpan6 - see <a
+      href="http://cpan6.org/patch-submission.html">cpan6.org</a>.
 
-<pre>ssh -n -L 3690:longdrop:3690 tangram.utsl.gen.nz
-co svn://localhost/trunk/Tangram</pre>
+    <p>If I've somehow roped you into committing changes directly, you
+      will need to add a "port 1001" to their <tt>~/.ssh/config</tt>
+      for <tt>git.utsl.gen.nz</tt>, and then use something like:
 
-[% INCLUDE footnotes.tt
-   footnotes = [
+<pre>git-branch -D origin
+cg-branch-add origin ssh+git://git.utsl.gen.nz/git/Tangram
+cg-push -r HEAD</pre>
 
-'Aboched is short for "A Botched Webserver"<sup>2</sup>',
+    <p>In fact the same thing applies to this web site; its URL is
+      <tt>git://git.utsl.gen.nz/tangram-website</tt> - it's a bit like
+      a wiki, in that anyone can edit any page and send a patch to the
+      mailing list.  It's just a bit slower.
 
-'all contributions to the web site and code base are encouraged to be
-as Gonzo style as possible.  Patches may be turned down on the grounds
-that they do not add enough character.'
-
-] %]
+    <p>All contributions to the web site and code base are encouraged
+      to be as Gonzo style as possible.  Patches may be turned down on
+      the grounds that they do not add enough character to the work.
 
 [% INCLUDE footer.tt %]

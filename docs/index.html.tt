@@ -155,8 +155,8 @@
       href="http://search.cpan.org/dist/Tangram/">search.cpan.org</a>,
       the <a href="[% top %]download/index.html">downloads section</a>
       of this web site, or directly from the <a href="[% top
-      %]development/index.html#svn">tangram.utsl.gen.nz Subversion
-      repository</a>.</p>
+      %]development/index.html#git">utsl.gen.nz Git repository</a>.
+    </p>
 
 [% INCLUDE footnotes.tt
    footnotes = [
