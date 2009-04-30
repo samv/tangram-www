@@ -7,5 +7,5 @@ publish:
 	(cd docs; make all)
 	if git diff-files --name-status | grep '.'; then /bin/false; else :; fi
 	rsync -O --exclude .git\* --exclude Makefile --exclude .publish\* -ruv --delete . `cat .publish_target`
-	cg-push -r HEAD
+	git push origin HEAD
 
