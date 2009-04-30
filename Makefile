@@ -5,7 +5,7 @@ check:
 
 publish:
 	(cd docs; make all)
-	if git-status | grep '^#'; then /bin/false; else :; fi
+	if git diff-files --name-status | grep '.'; then /bin/false; else :; fi
 	rsync --exclude .git\* --exclude Makefile --exclude .publish\* -ruav --delete . `cat .publish_target`
 	cg-push -r HEAD
 
